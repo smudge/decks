@@ -45,7 +45,7 @@ by reducing the risk of making major changes, we can...
 # How?
 
 1. Run new code along side existing code. <!-- the code it is meant to replace -->
-2. Compare outputs & track whether or not they match.
+2. Compare outputs & track whether or not they match. <!-- also track runtime to detect perf regressions -->
 3. Return the output of the existing code. <!-- so, effectively, the new code is NOT live -->
 
 ---
@@ -240,6 +240,8 @@ Ran the experiment for a while, investigated failures.
 Fixed a bug in the experiment.
 
 Mismatches are now zero!
+
+Also note the performance improvements (on average, at least)!
 -->
 
 ---
