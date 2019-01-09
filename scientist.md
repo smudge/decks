@@ -31,7 +31,17 @@ be confident in the stability of a major changes, before we ship the change
 
 sidebar: you might ask, right, so why not just write a bunch of tests
 and you wouldn't be wrong. our test suite is an obvious line of defense...
-...but it doesn't have to be the only one.
+...but it doesn't have to be the only line of defense.
+
+This is for when tests aren't enough.
+
+Maybe you're dealing with a lot of legacy customer data.
+Or maybe it's a combinatorially complex problem that can't be reduced any further.
+Or maybe you just need to make some big changes and aren't confident that you can cover all of your assumptions.
+
+Think about the times you'd add a regression test -- where you discover an issue in production, fix it, and add a test to make sure it doesn't come up again.
+...and then you have to deal with the fallout.
+What if you could detect those cases -- in production -- but before the code is _actually_ live?
 -->
 
 <!--
@@ -45,8 +55,40 @@ by reducing the risk of making major changes, we can...
 # How?
 
 1. Run new code along side existing code. <!-- the code it is meant to replace -->
+
+---
+
+# How?
+
+1. Run new code along side existing code. <!-- the code it is meant to replace -->
+2. Compare outputs & track whether or not they match. <!-- also track runtime to detect perf regressions -->
+
+---
+
+# How?
+
+1. Run new code along side existing code. <!-- the code it is meant to replace -->
 2. Compare outputs & track whether or not they match. <!-- also track runtime to detect perf regressions -->
 3. Return the output of the existing code. <!-- so, effectively, the new code is NOT live -->
+
+---
+
+# How?
+
+1. Run new code along side existing code. <!-- the code it is meant to replace -->
+2. Compare outputs & track whether or not they match. <!-- also track runtime to detect perf regressions -->
+3. Return the output of the existing code. <!-- so, effectively, the new code is NOT live -->
+4. ...
+
+---
+
+# How?
+
+1. Run new code along side existing code. <!-- the code it is meant to replace -->
+2. Compare outputs & track whether or not they match. <!-- also track runtime to detect perf regressions -->
+3. Return the output of the existing code. <!-- so, effectively, the new code is NOT live -->
+4. ...
+5. Promote the new code and delete the existing code.
 
 ---
 
