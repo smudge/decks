@@ -1,6 +1,9 @@
-title: Refactoring with Science
-author: Nathan Griffith (aka smudge)
-date: January 10, 2019
+# Refactoring with Science
+
+#### Nathan Griffith (aka "smudge")
+
+January 10, 2019
+
 ---
 
 # "Science"
@@ -16,9 +19,13 @@ That's where "Science" comes in.
 Or, more specifically, a controlled experiment that we ran in our production environment.
 -->
 
+---
+
 # Why?
 
 - Reduce the risk of refactoring our code
+- Speed up development
+
 <!--
 be confident in the stability of a major changes, before we ship the change
 
@@ -26,12 +33,14 @@ sidebar: you might ask, right, so why not just write a bunch of tests
 and you wouldn't be wrong. our test suite is an obvious line of defense...
 ...but it doesn't have to be the only one.
 -->
-- Speed up development
+
 <!--
 by reducing the risk of making major changes, we can...
 ...make those major changes that allow us to deliver quality software faster
 ...and be more confident that decisions we make today can be adjusted in the future.
 -->
+
+---
 
 # How?
 
@@ -39,22 +48,25 @@ by reducing the risk of making major changes, we can...
 2. Compare outputs & track whether or not they match.
 3. Return the output of the existing code. <!-- so, effectively, the new code is NOT live -->
 
+---
+
 # `scientist`
 
 GitHub made a Ruby gem to do exactly this.
 
+---
+
+# `scientist`
+
 It has been ported to many, many languages, including Java.
+
+---
+
+# `scientist`
 
 But it doesn't do everything. <!-- like reporting -->
 
-# Anatomy of a Code Experiment
-
-```ruby
-  Scientist.run 'my-experiment' do |e|
-    e.use { current_implementation(user) }
-    e.try { experimental_implementaiton(bar) }
-  end
-```
+---
 
 # Anatomy of a Code Experiment
 
@@ -63,6 +75,8 @@ But it doesn't do everything. <!-- like reporting -->
   e.run(this::controlFunction, this::candidateFunction);
 ```
 
+---
+
 # Anatomy of a Code Experiment
 
 ```ruby
@@ -72,15 +86,20 @@ But it doesn't do everything. <!-- like reporting -->
   end
 ```
 
+---
+
 # Anatomy of a Code Experiment
 
 ```ruby
   Scientist.run 'my-experiment' do |e|
     e.use { current_implementation(user) }
     e.try { experimental_implementaiton(bar) }
-    e.run_if { rand(100) < ENV['MY_EXPERIMENT_ROLLOUT'] } # 10% of the time
+
+    e.context(user_id: user.id, foo: 'bar')
   end
 ```
+
+---
 
 # Anatomy of a Code Experiment
 
@@ -89,29 +108,126 @@ But it doesn't do everything. <!-- like reporting -->
     e.use { current_implementation(user) }
     e.try { experimental_implementaiton(bar) }
     e.context(user_id: user.id, foo: 'bar')
-    e.ignore { |control, experiment| (control - experiment).abs < 0.1 }
+
+    e.run_if { rand(100) < ENV['MY_EXPERIMENT_ROLLOUT'] } # X% of the time
   end
 ```
 
-# Our reporting solution
+---
+
+# Anatomy of a Code Experiment
 
 ```ruby
-results = { name: experiment_name, status: status }.to_json.to_s
+  Scientist.run 'my-experiment' do |e|
+    e.use { current_implementation(user) }
+    e.try { experimental_implementaiton(bar) }
+    e.context(user_id: user.id, foo: 'bar')
+    e.run_if { rand(100) < ENV['MY_EXPERIMENT_ROLLOUT'] }
+
+    e.compare { |control, experiment| (control - experiment).abs < 0.1 }
+  end
+```
+
+---
+
+# Anatomy of a Code Experiment
+
+```ruby
+  Scientist.run 'my-experiment' do |e|
+    e.use { current_implementation(user) }
+    e.try { experimental_implementaiton(bar) }
+    e.context(user_id: user.id, foo: 'bar')
+    e.run_if { rand(100) < ENV['MY_EXPERIMENT_ROLLOUT'] }
+    e.compare { |control, experiment| (control - experiment).abs < 0.1 }
+
+    e.ignore { |control, experiment| known_edge_case?(control, experiment) }
+  en
+```
+
+---
+
+# Our reporting solution
+
+<!-- In essence: -->
+
+```ruby
+results = {
+  name: experiment_name,
+  status: status,
+  context: experiment.context,
+  # etc...
+}.to_json.to_s
+
 Rails.logger.info("[science-experiment] #{results}")
 ```
 
+---
+
+# Our reporting solution
+
+<!-- In essence: -->
+
+```ruby
+results = {
+  name: experiment_name,
+  status: status,
+  context: experiment.context,
+  # etc...
+}.to_json.to_s
+
+Rails.logger.info("[science-experiment] #{results}")
+```
+
+Compatible with:
+
+- Splunk
+- DataDog
+- Humans
+
+<!-- but let's look at an actual log entry in DataDog -->
+
+---
+
 # Other Opinionated Defaults
 
-Where we diverge from GitHub's implementation.
+(Where we diverge from GitHub's implementation.)
+
+---
+
+# Other Opinionated Defaults
+
+(Where we diverge from GitHub's implementation.)
 
 - Only run in delayed jobs by default.
-<!-- lower customer impact, and zero risk of timing-out web requests -->
+<!-- Largely for performance reasons. Cuts risk of timing-out web requests, limit customer impact. -->
+
+---
+
+# Other Opinionated Defaults
+
+(Where we diverge from GitHub's implementation.)
+
+- Only run in delayed jobs by default.
 - Run 100% of the time locally and in CI.
-- Fail automated tests if there are any mismatches.
+<!-- There is no reason not to, since we aren't worried about performance. -->
+
+---
+
+# Other Opinionated Defaults
+
+(Where we diverge from GitHub's implementation.)
+
+- Only run in delayed jobs by default.
+- Run 100% of the time locally and in CI.
+- Raise locally if there are any mismatches.
+<!-- Early implementation feedback! Don't wait until after a deploy to find obvious discrepancies! -->
+<!-- In fact, while I was refactoring our vesting math, I discovered a bug in the existing code! -->
+
+---
 
 # So how did it work?
 
-Let's look at the dashboard.
+zero-mismatches.png
 
 <!--
 timeline:
@@ -124,12 +240,45 @@ Fixed a bug in the experiment.
 
 Mismatches are now zero!
 -->
+
+---
+
 # I need your help making it:
 
-- Easy to add to our code. <!-- works in many situations, and we know when to add it -->
+<!--
+This is a new idea, so we need to reduce friction and discover/prevent any footguns.
+The best way to do that is to battle-test our implementation.
+-->
+
+- Easy to add to our code.
+<!-- works in many situations, and we want to know when to add it -->
+
+---
+
+# I need your help making it:
+
+- Easy to add to our code.
 - Hard to get wrong. <!-- protects us from common pitfalls, particularly around mutations -->
 
 <!--
 This is a new idea, so we need to reduce friction and discover/prevent any footguns.
 The best way to do that is to battle-test our implementation.
 -->
+
+---
+
+# Thanks!
+
+#### Scientist-related resources
+
+https://github.com/github/scientist (Ruby source)  
+https://githubengineering.com/scientist/ (Introduction blog post)  
+https://githubengineering.com/move-fast/ (Real-world case study)
+
+#### Talks on testing in production
+
+Testing in Production - Quality Software Faster (Michael Bryzek)  
+https://www.youtube.com/watch?v=9C0efJkT0Hg
+
+The Doctor Is In: Using checkups to find bugs in production (Ryan Laughlin)  
+https://www.youtube.com/watch?v=gEAlhKaK2I4
