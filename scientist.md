@@ -221,6 +221,7 @@ Compatible with:
 - Run 100% of the time locally and in CI.
 - Raise locally if there are any mismatches.
 <!-- Early implementation feedback! Don't wait until after a deploy to find obvious discrepancies! -->
+<!-- Guarantees that production mismatches are for cases not covered by tests. -->
 <!-- In fact, while I was refactoring our vesting math, I discovered a bug in the existing code! -->
 
 ---
