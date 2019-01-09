@@ -10,6 +10,12 @@ January 10, 2019
 
 <div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/fqIBaMWI7m7O8" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
 
+---
+
+# "Science"
+
+But, actually, science?
+
 <!--
 In the fall of 2018, the B4B team discovered a rare edge case in our participant vesting logic. To fix it, we would need to refactor some existing code in a nontrivial way.
 
@@ -17,6 +23,7 @@ Unfortunately, this would impact a highly-trafficked, business-critical codepath
 
 That's where "Science" comes in.
 Or, more specifically, a controlled experiment that we ran in our production environment.
+
 -->
 
 ---
