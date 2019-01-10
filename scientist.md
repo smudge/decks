@@ -8,7 +8,7 @@ January 10, 2019
 
 # "Science"
 
-<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/fqIBaMWI7m7O8" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
+<img src="https://i.imgur.com/M5o4O9P.gif" style="width:100%" />
 
 ---
 
@@ -101,13 +101,33 @@ by reducing the risk of making major changes, we can...
 
 # `scientist`
 
-GitHub made a Ruby gem to do exactly this.
+<!-- Github made a Ruby library that does exactly this -->
+
+<img src="https://i.imgur.com/vVeiTWQ.png" style="width:100%" />
 
 ---
 
 # `scientist`
 
-It has been ported to many, many languages, including Java.
+<!-- it has been ported to a zillion languages -->
+
+- [github/scientist](https://github.com/github/scientist) (Ruby)
+- [daylerees/scientist](https://github.com/daylerees/scientist) (PHP)
+- [github/scientist.net](https://github.com/github/scientist.net) (.NET)
+- [joealcorn/laboratory](https://github.com/joealcorn/laboratory) (Python)
+- [rawls238/Scientist4J](https://github.com/rawls238/Scientist4J) (Java)
+- [tomiaijo/scientist](https://github.com/tomiaijo/scientist) (C++)
+- [trello/scientist](https://github.com/trello/scientist) (node.js)
+- [ziyasal/scientist.js](https://github.com/ziyasal/scientist.js) (node.js, ES6)
+- [yeller/laboratory](https://github.com/yeller/laboratory) (Clojure)
+- [lancew/Scientist](https://github.com/lancew/Scientist) (Perl 5)
+- [lancew/ScientistP6](https://github.com/lancew/ScientistP6) (Perl 6)
+- [MadcapJake/Test-Lab](https://github.com/MadcapJake/Test-Lab) (Perl 6)
+- [cwbriones/scientist](https://github.com/cwbriones/scientist) (Elixir)
+- [calavera/go-scientist](https://github.com/calavera/go-scientist) (Go)
+- [jelmersnoeck/experiment](https://github.com/jelmersnoeck/experiment) (Go)
+- [spoptchev/scientist](https://github.com/spoptchev/scientist) (Kotlin / Java)
+- [junkpiano/scientist](https://github.com/junkpiano/scientist) (Swift)
 
 ---
 
@@ -275,9 +295,9 @@ Compatible with:
 
 ---
 
-# So how did it work?
+# So how did it go?
 
-zero-mismatches.png
+<img src="https://i.imgur.com/YzJF7sb.png" style="width:100%" />
 
 <!--
 timeline:
@@ -302,14 +322,14 @@ This is a new idea, so we need to reduce friction and discover/prevent any footg
 The best way to do that is to battle-test our implementation.
 -->
 
-- Easy to add to our code.
+- Easy to drop new experiments into existing code.
 <!-- works in many situations, and we want to know when to add it -->
 
 ---
 
 # I need your help making it:
 
-- Easy to add to our code.
+- Easy to drop new experiments into existing code.
 - Hard to get wrong. <!-- protects us from common pitfalls, particularly around mutations -->
 
 <!--
