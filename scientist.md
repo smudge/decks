@@ -2,9 +2,14 @@
 
 <img src="http://www.gravatar.com/avatar/4b0e809dfd8629466d64c96ea45ac03c" />
 
-#### Nathan Griffith (aka "smudge")
+#### Nathan Griffith
+[github.com/smudge](https://github.com/smudge)
 
 January 10, 2019
+
+???
+
+Okay, so I know you might be thinking...
 
 ---
 
@@ -16,102 +21,102 @@ January 10, 2019
 
 # "Science"
 
-But, actually, science?
+First, some background.
 
-<!--
-In the fall of 2018, the B4B team discovered a rare edge case in our participant vesting logic. To fix it, we would need to refactor some existing code in a nontrivial way.
+???
 
-Unfortunately, this would impact a highly-trafficked, business-critical codepath, and could adversely affect a wide array of balance calculations. We decided that relying on automated tests alone might not be sufficient given the risks involved, so we decided we needed to be able to safely test this change in production.
+In December, we discovered a bug in our balance calculations - a very rare case in the way we calculate vested amounts.
+
+FLIP TO SPREADSHEET. FLIP BACK.
+
+We decided to fix it, but first we needed to refactor the existing code to make it easier to slot in a fix.
+
+Unfortunately, this would impact a highly-trafficked, business-critical codepath.
+
+And automated tests alone might not be sufficient, because we're dealing with a huge variety of customer data.
+
+It's a combinatorially complex problem.
+
+So we decided we needed to be able to safely test this change in production.
 
 That's where "Science" comes in.
-Or, more specifically, a controlled experiment that we ran in our production environment.
 
--->
+Or, more specifically, a controlled experiment.
 
----
+That we ran in our production environment.
 
-# Why?
-
-- Reduce the risk of refactoring our code
-- Speed up development
-
-<!--
-be confident in the stability of a major changes, before we ship the change
-
-sidebar: you might ask, right, so why not just write a bunch of tests
-and you wouldn't be wrong. our test suite is an obvious line of defense...
-...but it doesn't have to be the only line of defense.
-
-This is for when tests aren't enough.
-
-Maybe you're dealing with a lot of legacy customer data.
-Or maybe it's a combinatorially complex problem that can't be reduced any further.
-Or maybe you just need to make some big changes and aren't confident that you can cover all of your assumptions.
-
-Think about the times you'd add a regression test -- where you discover an issue in production, fix it, and add a test to make sure it doesn't come up again.
-...and then you have to deal with the fallout.
-What if you could detect those cases -- in production -- but before the code is _actually_ live?
--->
-
-<!--
-by reducing the risk of making major changes, we can...
-...make those major changes that allow us to deliver quality software faster
-...and be more confident that decisions we make today can be adjusted in the future.
--->
+Essentially allowing us to run the new code alongside the old code and make sure it returned the correct results.
 
 ---
 
-# How?
+# How it Works
 
-1. Run new code along side existing code. <!-- the code it is meant to replace -->
+1. Run new code along side existing code.
 
----
+???
 
-# How?
-
-1. Run new code along side existing code. <!-- the code it is meant to replace -->
-2. Compare outputs & track whether or not they match. <!-- also track runtime to detect perf regressions -->
+the code it is meant to replace
 
 ---
 
-# How?
+# How it Works
 
-1. Run new code along side existing code. <!-- the code it is meant to replace -->
-2. Compare outputs & track whether or not they match. <!-- also track runtime to detect perf regressions -->
-3. Return the output of the existing code. <!-- so, effectively, the new code is NOT live -->
+1. Run new code along side existing code.
+2. Compare outputs & track whether or not they match.
+
+???
+
+also track runtime to detect perf regressions
 
 ---
 
-# How?
+# How it Works
 
-1. Run new code along side existing code. <!-- the code it is meant to replace -->
-2. Compare outputs & track whether or not they match. <!-- also track runtime to detect perf regressions -->
-3. Return the output of the existing code. <!-- so, effectively, the new code is NOT live -->
+1. Run new code along side existing code.
+2. Compare outputs & track whether or not they match.
+3. Return the output of the existing code.
+
+???
+
+so, effectively, the new code is NOT live
+
+---
+
+# How it Works
+
+1. Run new code along side existing code.
+2. Compare outputs & track whether or not they match.
+3. Return the output of the existing code.
 4. ...
 
 ---
 
-# How?
+# How it Works
 
-1. Run new code along side existing code. <!-- the code it is meant to replace -->
-2. Compare outputs & track whether or not they match. <!-- also track runtime to detect perf regressions -->
-3. Return the output of the existing code. <!-- so, effectively, the new code is NOT live -->
+1. Run new code along side existing code.
+2. Compare outputs & track whether or not they match.
+3. Return the output of the existing code.
 4. ...
 5. Promote the new code and delete the existing code.
 
+???
+
+awesome! so... how do we do that?
+
 ---
 
-# `scientist`
 
-<!-- Github made a Ruby library that does exactly this -->
+# `scientist`
 
 <img src="https://i.imgur.com/vVeiTWQ.png" style="width:100%" />
 
+???
+
+Github made a Ruby library that does exactly this
+
 ---
 
 # `scientist`
-
-<!-- it has been ported to a zillion languages -->
 
 - [github/scientist](https://github.com/github/scientist) (Ruby)
 - [daylerees/scientist](https://github.com/daylerees/scientist) (PHP)
@@ -131,20 +136,19 @@ by reducing the risk of making major changes, we can...
 - [spoptchev/scientist](https://github.com/spoptchev/scientist) (Kotlin / Java)
 - [junkpiano/scientist](https://github.com/junkpiano/scientist) (Swift)
 
+???
+
+it has been ported to a zillion languages
+
 ---
 
 # `scientist`
 
-But it doesn't do everything. <!-- like reporting -->
+But it doesn't do everything.
 
----
+???
 
-# Anatomy of a Code Experiment
-
-```java
-  Experiment<Integer> e = new Experiment("foo");
-  e.run(this::controlFunction, this::candidateFunction);
-```
+like reporting! actually seeing the results is kind important.
 
 ---
 
@@ -217,9 +221,15 @@ But it doesn't do everything. <!-- like reporting -->
 
 ---
 
-# Our reporting solution
+# GitHub's reporting solution
 
-<!-- In essence: -->
+???
+
+there is none. you have to build it yourself.
+
+---
+
+# Our reporting solution
 
 ```ruby
 results = {
@@ -232,11 +242,13 @@ results = {
 Rails.logger.info("[science-experiment] #{results}")
 ```
 
+???
+
+More or less, log out a JSON blob.
+
 ---
 
 # Our reporting solution
-
-<!-- In essence: -->
 
 ```ruby
 results = {
@@ -255,13 +267,19 @@ Compatible with:
 - DataDog
 - Humans
 
-<!-- but let's look at an actual log entry in DataDog -->
+???
+
+but let's look at an actual log entry in DataDog
 
 ---
 
 # Other Opinionated Defaults
 
 (Where we diverge from GitHub's implementation.)
+
+???
+
+FLIP TO CUSTOM EXPERIMENT CODE (if time)
 
 ---
 
@@ -270,7 +288,10 @@ Compatible with:
 (Where we diverge from GitHub's implementation.)
 
 - Only run in delayed jobs by default.
-<!-- Largely for performance reasons. Cuts risk of timing-out web requests, limit customer impact. -->
+
+???
+
+Largely for performance reasons. Cuts risk of timing-out web requests, limit customer impact.
 
 ---
 
@@ -280,7 +301,10 @@ Compatible with:
 
 - Only run in delayed jobs by default.
 - Run 100% of the time locally and in CI.
-<!-- There is no reason not to, since we aren't worried about performance. -->
+
+???
+
+There is no reason not to, since we aren't worried about performance.
 
 ---
 
@@ -291,9 +315,14 @@ Compatible with:
 - Only run in delayed jobs by default.
 - Run 100% of the time locally and in CI.
 - Raise locally if there are any mismatches.
-<!-- Early implementation feedback! Don't wait until after a deploy to find obvious discrepancies! -->
-<!-- Guarantees that production mismatches are for cases not covered by tests. -->
-<!-- In fact, while I was refactoring our vesting math, I discovered a bug in the existing code! -->
+
+???
+
+Early implementation feedback! Don't wait until after a deploy to find obvious discrepancies!
+
+Guarantees that production mismatches are for cases not covered by tests.
+
+In fact, while I was refactoring our vesting math, I discovered a bug in the existing code!
 
 ---
 
@@ -301,7 +330,8 @@ Compatible with:
 
 <img src="https://i.imgur.com/YzJF7sb.png" style="width:100%" />
 
-<!--
+???
+
 timeline:
 
 Got it green and discovered a bug in the control code.
@@ -313,31 +343,39 @@ Fixed a bug in the experiment.
 Mismatches are now zero!
 
 Also note the performance improvements (on average, at least)!
--->
 
 ---
 
 # I need your help making it:
 
-<!--
+???
+
+
 This is a new idea, so we need to reduce friction and discover/prevent any footguns.
 The best way to do that is to battle-test our implementation.
--->
-
-- Easy to drop new experiments into existing code.
-<!-- works in many situations, and we want to know when to add it -->
 
 ---
 
 # I need your help making it:
 
 - Easy to drop new experiments into existing code.
-- Hard to get wrong. <!-- protects us from common pitfalls, particularly around mutations -->
 
-<!--
-This is a new idea, so we need to reduce friction and discover/prevent any footguns.
-The best way to do that is to battle-test our implementation.
--->
+???
+
+works in many situations, and we want to know when to add it.
+
+---
+
+# I need your help making it:
+
+- Easy to drop new experiments into existing code.
+- Hard to get wrong.
+
+???
+
+protects us from common pitfalls, particularly around side-effects.
+
+(INSERT, DELETE, POST, PUT, etc)
 
 ---
 
