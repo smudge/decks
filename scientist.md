@@ -1,5 +1,7 @@
 # Refactoring with Science
 
+<img src="http://www.gravatar.com/avatar/4b0e809dfd8629466d64c96ea45ac03c" />
+
 #### Nathan Griffith (aka "smudge")
 
 January 10, 2019
