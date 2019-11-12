@@ -24,7 +24,7 @@
 ### DNS
 
 - /etc/hosts (no)
-- /etc/resolvers/test (yup!)
+- /etc/resolver/test (yup!)
 
 ---
 
