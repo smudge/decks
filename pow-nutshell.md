@@ -116,14 +116,37 @@ $ ln -s ~/src/cerberus
 
 #### 80 -> 3000
 
-- Firewall rules
+- Firewall rule (pow)
 ```
 echo "rdr pass on lo0 inet proto tcp from any to any port 80 -> 127.0.0.1 port 3000" |
 sudo pfctl -a 'com.apple/250.InvokerFirewall' -f - -E
 ```
-- Launch Daemon "Socket"
+--
 
+- Launch Daemon -> Unix Socket (puma-dev)
 
+```
+$ launchctl load ~/Library/LaunchAgents/io.puma.dev.plist
+```
+
+```xml
+...
+<key>KeepAlive</key>
+<true/>
+<key>RunAtLoad</key>
+<true/>
+<key>Sockets</key>
+<dict>
+  <key>Socket</key>
+  <dict>
+    <key>SockNodeName</key>
+    <string>0.0.0.0</string>
+    <key>SockServiceName</key>
+    <string>80</string>
+  </dict>
+</dict>
+...
+```
 ---
 
 ### Process Manager
@@ -142,7 +165,8 @@ $ cat /etc/resolver/test
 $ dscacheutil -flushcache
 $ dscacheutil -q host -a name cerberus.test
 $ ./pow-nutshell/cerberus --serve
-$ echo "rdr pass on lo0 inet proto tcp from any to any port 80 -> 127.0.0.1 port 8080" | sudo pfctl -a 'com.apple/250.InvokerFirewall' -f - -E
+$ echo "rdr pass on lo0 inet proto tcp from any to any port 80 -> 127.0.0.1 port 7878" |
+sudo pfctl -a 'com.apple/250.InvokerFirewall' -f - -E
 ```
 
 ???
