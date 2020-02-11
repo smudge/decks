@@ -27,6 +27,14 @@ these are the types of issues that immediately happen. And they are reproducible
 
 How Can I Break This?
 
+???
+
+The "trickster" -- a 2nd thread that comes in and deliberately throws off the 1st.
+The "chaos monkey" -- we drop the network request and you don't know if it worked or not.
+The "churninator" -- data changes in the DB as we read it, making our writes obsolete/dangerous.
+=> special case of this -- pagination!
+=> number one rule of locking: always clear your caches
+
 ---
 
 To Understand the Problem,
