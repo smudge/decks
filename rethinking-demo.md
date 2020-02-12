@@ -139,7 +139,6 @@ And I did all of the opposite
 
 - ~~complete app ecosystem (all apps)~~
 
-
 --
 
   _only_ the app being demoed (WebValve)
@@ -235,7 +234,7 @@ But by doing what we do every day, we _all_ help _maintain_ the demo app.
 
 # &nbsp;
 # &nbsp;
-# ty
+# 😃
 
 ???
 
