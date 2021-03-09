@@ -10,7 +10,8 @@ class: middle
 
 - Hi, I'm Nathan.
 - I work at a company called Betterment.
-- We focus on helping people achieve financial peace of mind by being a smart money manager and investing planner.
+- We do a lot of things these days, managing investments, giving retirement advice, benefits programs like 401ks, you name it.
+- But our number one product, the one that drew me to Betterment in the first place, is the financial peace of mind we give to our customers.
 
 ---
 class: center, middle
@@ -20,9 +21,12 @@ class: center, middle
 
 ???
 
-- Because I work in a regulated industry, I've paid careful attention to some of the guarantees we can make when writing code, to achieve operational peace of mind.
-- And I've found that being able to trust our persistence operations, our "save" methods, is one of the most important guarantees.
-- And so that's what this talk is about: Writing resilient "save" methods.
+- Now, if you work in finance, or health care, or, I dunno, maybe auto manufacturing, you might know what it's like to work in a highly regulated industry.
+- Since joining Betterment, I've been on a quest to help us achieve operational peace of mind.
+- We need to be able to trust that our systems will do what we expect, or, at the very least, will fail in a way that we can predict and recover from.
+- Because if we get that wrong, well, I mean, so much of what we do involves real money. Failing to predict an errant behavior might have a real dollar value attached.
+- And so that's what this talk is about: persistence operations.
+- Or, as I like to call them, "save" methods.
 
 ---
 class: center, middle
@@ -35,9 +39,7 @@ class: center, middle
 
 I mean anything that does meaningful persistence work internally.
 
-Maybe that means a controller action. Maybe you're using model callbacks.
-
-At Betterment, we use a kind of Service Object. We call them "Resource Models"
+Maybe that means a controller action. Maybe you're using model callbacks. Doesn't matter. It saves stuff. It's a "save" method.
 
 ---
 class: center, middle
@@ -60,15 +62,83 @@ What I don't mean is "robust" -- a robust system can absorb failures and keep ch
 That's not what I want to talk about today, I'm talking about making our persistence operations resilient to common types of errors.
 
 ---
-class: center, middle
 
-# Improbable Things Happen All The Time
+# Why aren't all "save" methods resilient?
 
 ???
 
-We are expecting a thunderstorm.
+I write a method. It checks a couple things, it inserts one model and updates another, and then it fires off an email.
+I ship it, it works in production for months, maybe years, but suddenly it breaks? Why?
 
-Lightning will strike your home tonight. (1/1M odds)
-Lightning will strike _a_ home in your city tonight. (relative certainty)
+---
+
+# Murphy's Law
+
+[interstellar gif]
+
+???
+
+I'm not actually a fan of using Murphy's Law as an _explanation_.
+I especially don't think it makes sense to cite this when reviewing someone's code.
+What do you say? "I've identified something that is extremely unlikely to break, but Murphy's Law tells me it will break, therefore you need to fix it?"
+Not a very compelling argument.
+
+So if murphy's law is fake statistics, maybe there's something in the study of _real_ statistics that can explain these probabilistic puzzlers.
+
+---
+class: center, middle
+
+# Improbable things happen _all the time_
+
+???
+
+The Improbability Principle
+- David J. Hand
+
+How Not To Be Wrong
+- Jordan Ellenberg
+
+Two books that came out in 2014.
+
+---
+
+# Law of Truly Large Numbers
+
+???
+
+- With enough traffic, unlikely outcomes are bound to happen.
 
 
+# Law of the Probability Lever
+
+???
+
+The probabilities of things happening are not unrelated.
+Something that seems very unlikely might become very likely given the right conditions.
+Say you inadvertently run a very expensive query, and suddenly your DB CPU is maxed out at 100%.
+Or maybe your database fails over, causing all connections to go bad at once.
+Or you have an unexpected traffic spike, and a bunch of requests pile up and time out en masse.
+Point being, you can't assume that your code will always run under ideal conditions.
+Something that works today might suddenly break in strange ways because of something totally unrelated.
+
+---
+
+???
+
+The scale tipping point: when the impact of novel errors surpasses the impact of "known" issues.
+
+
+---
+
+
+# WRITE IT OUT
+
+Get it to fit in the 
+
+# ASK: CAN I BREAK THIS?
+
+---
+
+???
+
+Our entire careers, we've been writing variations of the same save operation. It _always_ (or almost always) fits in this structure.
