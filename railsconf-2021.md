@@ -1,50 +1,140 @@
-class: middle
+class: center, middle
 
 <h1 style="margin-bottom:0;font-size:80px;">Predicting the Improbable:</h1>
 <h1 style="margin-top:0;">Writing resilient "save" methods</h1>
 
-<h3 style="margin-bottom:0;">Nathan Griffith</h3>
-<h4 style="margin-top:0;">https://ngriffith.com<br/>@smudge on GitHub<br/>@smudgethefirst on Twitter</h4>
-
 ???
 
 - Hi, I'm Nathan.
-- I work at a company called Betterment.
-- We do a lot of things these days, managing investments, giving retirement advice, benefits programs like 401ks, you name it.
-- But our number one product, the one that drew me to Betterment in the first place, is the financial peace of mind we give to our customers.
+- And, uh, thanks for joining me here, on the internet.
+- I'm happy to be here, giving this talk, on the internet, but also in my home, which is not the internet.
+- Today I'm going to talk about "writing resilient save methods" by "Predicting the Improbable", but more on that later.
+- First, a bit about me:
 
 ---
-class: center, middle
-class: center, middle
 
-# 💸
+
+<h3 style="margin-bottom:0;">Nathan Griffith</h3>
+<h4 style="margin-top:0;">https://ngriffith.com<br/>@smudge on GitHub<br/>@smudgethefirst on Twitter</h4>
+
 
 ???
 
-- Now, if you work in finance, or health care, or, I dunno, maybe auto manufacturing, you might know what it's like to work in a highly regulated industry.
-- Since joining Betterment, I've been on a quest to help us achieve operational peace of mind.
-- We need to be able to trust that our systems will do what we expect, or, at the very least, will fail in a way that we can predict and recover from.
-- Because if we get that wrong, well, I mean, so much of what we do involves real money. Failing to predict an errant behavior might have a real dollar value attached.
-- And so that's what this talk is about: persistence operations.
-- Or, as I like to call them, "save" methods.
-
+- I'm a staff engineer at Betterment where I work on one of the platform teams.
+- My team focuses on a lot of cross-cutting concerns, like performance, scale, resiliency, and developer efficiency.
+- Outside of work, I enjoy karaoke, reading books, and lately I've been streaming a ton of Jackbox games over Zoom.
+- Now, I joined Betterment in 2016, but I've been working with Ruby on Rails since 2008...
 ---
-class: center, middle
-
-# Writing resilient .red.bold["save" methods]
 
 ???
 
-"But I already have a save method."
+- ...when I was hired to help build web applications for my university's IT department.
+- (there I am, probably trying to get a Rails view working with Internet Explorer 6.)
 
-I mean anything that does meaningful persistence work internally.
+---
 
-Maybe that means a controller action. Maybe you're using model callbacks. Doesn't matter. It saves stuff. It's a "save" method.
+???
+
+- Over the years, I've had the opportunity to see Rails applications grow, both in terms of lines of code and number of users.
+- And I've had the privilege of helping solve some of the challenges that emerge along the way.
+- There's one challenge in particular that has always interested me.
+
+---
+
+???
+
+- It's the challenge of what to do about errors that _seem_ very improbable, but that happen anyways.
+- These can take many forms: race conditions, data integrity issues, dropped messages, the list goes on.
+- What all of these have in common is that they are:
+=> intermittent and usually somewhat infrequent
+=> difficult to detect with automated tests
+=> hard to spot even when you think you know what you're looking for
+
+- To help contextualize what I'm talking about, I'm going to tell a story.
+
+---
+
+
+???
+
+So, one Monday morning, early in my career, I was with my team, planning out an exciting new feature, when an urgent bug report hit our radar.
+A bit of payment processing code that had been in production for months had, out of nowhere, decided to ... run about 12 times instead of once.
+I checked the database to confirm, and, yes. Over the weekend, one of our biggest clients had been charged twelve times for the same order.
+I had no idea how this was possible, but there it was.
+
+So, I spent the next few hours puzzling through layers of payment code.
+Eventually, I discovered that a resiliency issue had been hiding in plain sight from the very beginning.
+It was pretty obvious now, but of course hindsight is 20-20.
+Thankfully, the client had a good sense of humor, and so we refunded them and shipped a fix.
+---
+
+???
+
+Maybe this story sounds familiar. For me, it was the first time I encountered a such a puzzling error in production.
+And the question I kept coming back to was... why now? Why did it suddenly fail now, and not weeks ago?
+
+Now, if you're like me, this kind of experience will make you question your entire codebase.
+If that very innocuous-looking piece of code could make it through thousands of runs with zero issues,
+what other potential errors might be lying in wait, scattered throughout all the code we had written over the years?
+
+---
+
+# 🏖️
+
+???
+
+A few years (and many similar bugfixes) later, I was reading a book while on vacation, and a line jumped out at me.
+
+---
+
+## "Improbable things happen a lot"
+### - Jordan Ellenberg
+
+???
+
+Now, there are whole chapters on probability and how to interpret the world around us.
+
+But what struck me about this is that 
+
+---
+
+# 🤔
+
+???
+
+- For one, they tend to happen in and around persistence operations, or, as I like to call them, "save" methods.
+
+---
+class: middle
+```ruby
+def save!
+  # ...
+end
+
+def update!(**attrs)
+  # ...
+end
+
+def post_changes_to_api!
+  # ...
+end
+
+def perform_later
+  # ...
+end
+```
+
+???
+
+- I'm talking about any method that does "persistence" work.
+- Maybe it sends things to a database. Maybe it posts them to a remote API. Or maybe it sends something to a job queue.
+- Look, as far as I'm concerned, these are all "save" methods.
+- And if we want to make our applications more resilient to 
 
 ---
 class: center, middle
 
-# Writing .red.bold[resilient] "save" methods
+# Writing <strong>resilient<strong> "save" methods
 
 ???
 
@@ -53,7 +143,7 @@ The ability to recover to a stable, functioning state when something goes wrong.
 ---
 class: center, middle
 
-# Writing ~~robust~~ .red.bold[resilient] "save" methods
+# Writing ~~robust~~ <strong>resilient</strong> "save" methods
 
 ???
 
@@ -62,33 +152,13 @@ What I don't mean is "robust" -- a robust system can absorb failures and keep ch
 That's not what I want to talk about today, I'm talking about making our persistence operations resilient to common types of errors.
 
 ---
+class: middle
 
-# Why aren't all "save" methods resilient?
+### "Improbable things happen a lot"<br/>- Jordan Ellenberg
 
-???
-
-I write a method. It checks a couple things, it inserts one model and updates another, and then it fires off an email.
-I ship it, it works in production for months, maybe years, but suddenly it breaks? Why?
 
 ---
 
-# Murphy's Law
-
-[interstellar gif]
-
-???
-
-I'm not actually a fan of using Murphy's Law as an _explanation_.
-I especially don't think it makes sense to cite this when reviewing someone's code.
-What do you say? "I've identified something that is extremely unlikely to break, but Murphy's Law tells me it will break, therefore you need to fix it?"
-Not a very compelling argument.
-
-So if murphy's law is fake statistics, maybe there's something in the study of _real_ statistics that can explain these probabilistic puzzlers.
-
----
-class: center, middle
-
-# Improbable things happen _all the time_
 
 ???
 
@@ -102,19 +172,31 @@ Two books that came out in 2014.
 
 ---
 
+# Law of Inevitability
+
+???
+
+- "Something must always happen."
+- If a controller action does not succeed, it must still do _something._
+- "If you make a list of all possible outcomes, then one of them must occur." (Even if we don't know which one.)
+
+---
+
 # Law of Truly Large Numbers
 
 ???
 
-- With enough traffic, unlikely outcomes are bound to happen.
+- Given enough opportunities, we should expect a specified event to happen.
+- With enough traffic, unlikely errors are bound to occur.
 
+---
 
 # Law of the Probability Lever
 
 ???
 
-The probabilities of things happening are not unrelated.
-Something that seems very unlikely might become very likely given the right conditions.
+- "A slight change in circumstances can have a huge impact on probabilities"
+Something that seems very unlikely might become a lot more likely given the right conditions.
 Say you inadvertently run a very expensive query, and suddenly your DB CPU is maxed out at 100%.
 Or maybe your database fails over, causing all connections to go bad at once.
 Or you have an unexpected traffic spike, and a bunch of requests pile up and time out en masse.
@@ -141,19 +223,22 @@ Get it to fit in the
 
 ???
 
-Our entire careers, we've been writing variations of the same save operation. It _always_ (or almost always) fits in this structure.
+- Our entire careers, we've been writing variations of the same save operation. 
+- It _always_ (or almost always) fits in this structure.
 
 
 ---
 
 ```ruby
-class UsersController < ApplicationController
-  def update
-    user_update = UserUpdate.new(
+class PasswordChangesController < ApplicationController
+  def create
+    password_change = PasswordChange.new(
       user: current_user,
-      email: params.require(:user).permit(:email).fetch(:email),
+      old_password: permitted_params[:old_password]
+      new_password: permitted_params[:new_password]
     )
-    if user_update.save
+
+    if password_change.save
       # yay
     else
       # boo
@@ -163,19 +248,34 @@ end
 ```
 
 ```ruby
-class UserUpdate
+class PasswordChange
   include ActiveModel::Model
 
-  attr_accessor :user, :email
+  attr_accessor :user, :old_password, :new_password
 
   def save
-    user.email = email
-    if user.valid?
-      user.save!
+    if user.authenticate(old_password)
+      user.update(password: new_password)
     end
   end
 end
 ```
+
+---
+
+```ruby
+def save
+  user.update(email: email)
+end
+```
+
+```ruby
+def save
+  user.update(email: email) &&
+    
+end
+```
+
 
 ---
 
@@ -188,13 +288,35 @@ def save
 end
 ```
 
-
 ---
 
 ```ruby
 def save
-  user.deposits.create(amount: 100) &&
-    user.balance.update(user.balance + 100)
+  user.email = email
+  if user.valid?
+    user.save!
+
+  end
 end
 ```
+
+
+
+---
+
+???
+
+
+
+
+
+When I say "Predicting the Improbable", I'm not talking about anything magical.
+
+---
+
+???
+
+We aren't gazing into a crystal ball and observing the future state of our bug tracker.
+Instead, we can make informed predictions based on careful observation of our code.
+Our goal is to reduce uncertainty about what _might_ go wrong, not say for sure what _will_ go wrong.
 
