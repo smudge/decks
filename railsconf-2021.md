@@ -142,3 +142,59 @@ Get it to fit in the
 ???
 
 Our entire careers, we've been writing variations of the same save operation. It _always_ (or almost always) fits in this structure.
+
+
+---
+
+```ruby
+class UsersController < ApplicationController
+  def update
+    user_update = UserUpdate.new(
+      user: current_user,
+      email: params.require(:user).permit(:email).fetch(:email),
+    )
+    if user_update.save
+      # yay
+    else
+      # boo
+    end
+  end
+end
+```
+
+```ruby
+class UserUpdate
+  include ActiveModel::Model
+
+  attr_accessor :user, :email
+
+  def save
+    user.email = email
+    if user.valid?
+      user.save!
+    end
+  end
+end
+```
+
+---
+
+```ruby
+def save
+  user.email = email
+  if user.valid?
+    user.save!
+  end
+end
+```
+
+
+---
+
+```ruby
+def save
+  user.deposits.create(amount: 100) &&
+    user.balance.update(user.balance + 100)
+end
+```
+
