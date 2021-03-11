@@ -86,7 +86,8 @@ class: center, middle
 - I define "resiliency" as the ability for code to handle adverse conditions and, when something goes really wrong, recover to a stable state
 - To fail... quickly, and successfully, in a way that is controlled and predictable, and then resume normal operation when possible.
 - Now the "challenge" in this is in writing code that accounts for the realities of a production environment.
-- Things like latency, memory leaks, timeouts, network errors, service outages. Let's call all of this entropy.
+- Things like latency, memory leaks, timeouts, network errors, service outages.
+- Let's call all of this entropy.
 
 ---
 
@@ -161,7 +162,7 @@ class: center, middle
 - instead, we are are concerned with the outliers.
 - errors that may _seem_ very unlikely, but that happen anyways.
 - They _might_ happen, but simply haven't happened _yet._
-- And that leads us to another realization. The _second step_ towards writing resilient code.
+- And that leads us to another realization.
 
 ---
 
@@ -171,11 +172,12 @@ class: center, middle
 ???
 
 - errors. are. probabilistic
-- most of the bugs we catch with tests have a high likelihood of occurring.
-- but the bugs we don't, the ones that lie in wait, they have a low probability.
-- But how should we interpret this?
+- most of the bugs we catch with our automated tests have a high chance of occurring. Like, often 100%.
+- but the bugs we don't catch, the ones that make it into production, and that lie in wait,
+- they sometimes have a relatively low probability.
+- So how should we interpret that information?
 - Does that mean we shouldn't worry about them? Or should we invest more in preventing them?
-- Well, probabilities are just math, right? So maybe we should consult a mathematician.
+- Well, probabilities are just math, right? Okay, but I'm no mathematician. So maybe we should consult a mathematician.
 
 ---
 
@@ -188,6 +190,7 @@ class: center, middle
 - But that day on the beach, one line in particular jumped out at me:
 
 ---
+class: middle
 
 ## "Improbable things happen a lot"
 ### - Jordan Ellenberg
@@ -199,10 +202,11 @@ class: center, middle
 - But this line in particular could easily be applied to software engineering:
 
 ---
+class: middle
 
-## "Improbable ~things~ production errors happen a lot"
+## "Improbable ~~things~~ errors happen a lot"
 ### - Jordan Ellenberg
-##### - Nathan Griffith
+#### - Me
 
 ???
 
@@ -224,15 +228,25 @@ class: center, middle
 
 ---
 
+# [ book cover ]
+
+???
+
+- Time for another book recommendation.
+- The Improbability Principle by David J. Hand, a statistician,
+- devotes an entire chapter to The Law of Truly Large Numbers
+
+---
+
 # ⛈️  + 🎰 + ⛳
 
 ???
 
-- Common examples of this law in action involve lightning strikes, lotteries, and golf
+- The book outlines examples of this law in action, and many of them involve lightning strikes, lotteries, and golf
 - Where the same person survives multiple lightning strikes, years apart,
 - Or, wins the lottery twice,
 - Or, gets two holes in one, two days in a row.
-- Maybe not the _same_ person experiences all of the above, but... maybe they do.
+- Maybe not the _same_ person experiences all of the above, but... maybe they do...?
 
 ---
 
@@ -257,10 +271,9 @@ https://techcrunch.com/2016/02/01/gmail-now-has-more-than-1b-monthly-active-user
 https://9to5mac.com/2020/01/28/apple-hits-1-5-billion-active-devices
 ???
 
-- I mean, this list legitimately scares me.
-- A billion is A LOT.
-- Very, very few of us can expect the code we write to approach anywhere near that number of monthly active users.
-- But that doesn't mean that these principles don't apply to us as well.
+- Now, a billion is A LOT.
+- Very few of us can expect the code we write to approach anywhere near that number of monthly active users.
+- But that doesn't mean that these principles don't apply to others in the industry.
 
 ---
 
@@ -271,92 +284,130 @@ https://9to5mac.com/2020/01/28/apple-hits-1-5-billion-active-devices
 ???
 
 - a failure that has a one-in-a-million chance of occurring _will_ occur if it is given enough chances.
+- How many web requests have you had in the entire lifetime of your app?
 - even a one-in-a-thousand bug might not really show up, until we hit a certain number of users.
-- Now, assigning probabilities to production failures is... not something we can realistically do.
 
 ---
 
-# [ book cover ]
+# [ book cover ] [ book cover ]
 
 ???
 
-- If you're interested in reading more about how and why such improbable events happen so frequently
-- I can recommend another book: The Improbability Principle by David J. Hand, a statistician.
-- This book actually came out the _same year_ as my previous recommendation.
-- Apparently 2014 was a good year for conference talk material.
-- Yet another coincidence that the book might help explain.
+- Again, I'm no mathematician, or statistician, so I'd encourage you to read these books, and develop your own takeaways.
+- By the way, _both_ of these books came out at almost the same time in 2014, and now I've referenced them both on the same slide.
+- Which is yet another seemingly-improbable coincidence that both books might help explain.
+
+- Now, I'd like to pull one more law out of that second book, The Improbability Principle,
+- because I think we can also apply it here.
 
 ---
 
-# _Expect Unlikely Failures_
+# Law of the Probability Lever
+
+"A slight change in circumstances can have a huge impact on probabilities"
 
 ???
 
-- We've learned now that with enough traffic, we should _expect_ extremely unlikely failures.
-- So, scaling your system, introducing entropy, results in new bugs from _old_ code.
+- And that's the Law of the Probability Lever
+- It states that "A slight change in circumstances can have a huge impact on probabilities"
 
 ---
 
-# Predicting the Improbable: writing resilient "save" methods
+[ see saw diagram ]
 
 ???
 
-- So, that brings us all the way back to the title of this talk.
-- By now, we should know what "resilient" means
+- Like a see-saw, when one person moves a little, the whole thing can tip in a new direction.
 
 ---
+
+[ error rate chart with big spike ]
 
 ???
 
-- What all of these have in common is that they are:
-=> difficult to detect with automated tests
-=> hard to spot during code review, even when you think you know what you're looking for
-=> intermittent and probabilistic. They _seem_ to occur purely by chance, like the Rails gods are grumpy at you.
+- So, how does this apply to a Rails app?
+- Essentially, a resiliency error that seems very unlikely might become a lot more likely given the right conditions.
 
-Sometimes we call them "flakes" and we ignore them.
+- Say, for example, your database fails over, causing all open connections to go bad at once.
+- Think of all the codepaths that might be halfway-done right at that moment.
+- Suddenly, * snaps fingers * -- there's your probability lever.
+
+- It's a similar story if you have an unexpected traffic spike, and a bunch of requests time out en masse.
+- Or, say you inadvertently run a very expensive query, and now your database CPU is maxed out.
+- By running that query, you, yourself have created novel conditions under which ... who knows what might happen.
 
 ---
+class: middle, center
 
-[graph]
+# Your Code Will Not Always Run Under Ideal Conditions
 
 ???
 
-- So, back to that graph of error frequencies.
+- Point being, you can't assume that your code will always run under ideal conditions.
+- The Law of Probability Lever tells us that failures aren't always unrelated.
+- They may play off one another, in making unlikely errors suddenly very likely.
 
 ---
 
-# 🤔
+# Let's Summarize
 
 ???
 
-- For one, they tend to happen in and around persistence operations, or, as I like to call them, "save" methods.
+- By now, we should have a sense for what "resiliency" means.
+- We've learned that with enough traffic or under adverse conditions, we should _expect_ seemingly-unlikely failures.
+- And how increasing scale, essentially adding entropy to the system, can cause _old code_ to yield _new bugs_.
+
+
+- So next, let's talk about how we can use this knowledge to actually _predict_,
+- and _prevent_ some of the more common resiliency issues.
 
 ---
-class: middle
+
+# 🔮
+
+???
+
+- To be clear, when I say "predict", I'm not talking about anything magical.
+- We aren't gazing into a crystal ball and observing the future state of our bug tracker.
+- Instead, we can make informed guesses based on careful observation of our code.
+- Our goal is to reduce uncertainty about what _might_ go wrong, even if we can't say for sure what _will_ go wrong.
+
+---
+
+- This requires 
+
+---
+
+# 🔍 👀
+
+???
+
+- There's one observation, a big one, that I'm gonna focus on for the second half of this talk.
+- And that is that most resiliency issues involve _persistence operations_, which I call "save methods"
+- These errors are the results of a lack of resiliency in data updates, and insertions, and deletions.
+
+---
+
+# persistence operations, a.k.a "save" methods
+
+???
+
+- Such code might live in your controller, or in model callbacks, or a cron job, maybe a rake task.
+- Wherever it lives, what it does, usually, is save things to a database. But not always!
+- Maybe it posts them to a remote API. Or maybe it sends something to a message queue.
+- It persists a change into the universe, and so, it's a "persistence" operation.
+- I would argue that sending an email counts.
+- I like to generalize and call these things "save" methods, hence the title of the talk.
+
+---
+
+## Predicting the Improbable: Writing resilient "save" methods
+
 ```ruby
-def save!
-  # ...
-end
-
-def update!(**attrs)
-  # ...
-end
-
-def post_changes_to_api!
-  # ...
-end
-
-def perform_later
-  # ...
+def save
+ # persisting changes to the universe!
 end
 ```
-
-???
-
-- I'm talking about any method that does "persistence" work.
-- Maybe it sends things to a database. Maybe it posts them to a remote API. Or maybe it sends something to a job queue.
-- It persists a change into the universe, and so 
-- And if we want to make our applications more resilient to 
 
 ---
 
@@ -367,27 +418,6 @@ end
 - "Something must always happen."
 - If a controller action does not succeed, it must still do _something._
 - "If you make a list of all possible outcomes, then one of them must occur." (Even if we don't know which one.)
-
----
-
-# Law of the Probability Lever
-
-???
-
-- "A slight change in circumstances can have a huge impact on probabilities"
-Something that seems very unlikely might become a lot more likely given the right conditions.
-Say you inadvertently run a very expensive query, and suddenly your DB CPU is maxed out at 100%.
-Or maybe your database fails over, causing all connections to go bad at once.
-Or you have an unexpected traffic spike, and a bunch of requests pile up and time out en masse.
-Point being, you can't assume that your code will always run under ideal conditions.
-Something that works today might suddenly break in strange ways because of something totally unrelated.
-
----
-
-???
-
-The scale tipping point: when the impact of novel errors surpasses the impact of "known" issues.
-
 
 ---
 
@@ -478,24 +508,4 @@ def save
   end
 end
 ```
-
-
-
----
-
-???
-
-
-
-
-
-When I say "Predicting the Improbable", I'm not talking about anything magical.
-
----
-
-???
-
-We aren't gazing into a crystal ball and observing the future state of our bug tracker.
-Instead, we can make informed predictions based on careful observation of our code.
-Our goal is to reduce uncertainty about what _might_ go wrong, not say for sure what _will_ go wrong.
 
