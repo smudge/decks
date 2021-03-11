@@ -97,7 +97,7 @@ class: center, middle
 - Now, this kind of entropy, software entropy, isn't a universal law, like like the second law of thermodynamics, 
 - but much like that law, what we see in software is that entropy typically increases over time.
 - As an application gets more users, receives more traffic, gets more features, does more things, entropy goes up.
-- This is often what we mean by the word "scale"
+- I suspect this is what we often mean by the word "scale"
 
 ---
 
