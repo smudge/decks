@@ -9,6 +9,8 @@ def save
     if from_account.valid? && to_account.valid?
       from_account.save!
       to_account.save!
+      TransferMailer.with(account: from_account).outbound_confirm.deliver_now
+      TransferMailer.with(account: to_account).inbound_confirm.deliver_now
 
       true
     else

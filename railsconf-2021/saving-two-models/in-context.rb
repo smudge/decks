@@ -8,6 +8,9 @@ class TransfersController < ApplicationController
     @to_account.balance = @to_account.balance + amount
 
     if @from_account.save && @to_account.save
+      TransferMailer.with(account: @from_account).outbound_confirm.deliver_now
+      TransferMailer.with(account: @to_account).inbound_confirm.deliver_now
+
       redirect_to transfer_completions_path
     else
       render :new

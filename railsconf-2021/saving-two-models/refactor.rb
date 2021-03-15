@@ -7,6 +7,8 @@ def save
       from_account.save!
       to_account.save!
     end
+    TransferMailer.with(account: from_account).outbound_confirm.deliver_now
+    TransferMailer.with(account: to_account).inbound_confirm.deliver_now
 
     true
   else
