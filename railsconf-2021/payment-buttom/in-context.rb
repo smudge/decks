@@ -3,7 +3,7 @@ class PurchasesController < ApplicationController
     @order = Order.find_by!(cart_id: session[:cart_id])
 
     if @order.shipping_info.valid? && @order.payment_info.valid?
-      BillingAPI.charge!(amount: @order.amount, card: @order.card)
+      BillingAPI.charge!(@order)
       @order.update!(completed: true)
       FulfillmentAPI.notify!(@order)
 

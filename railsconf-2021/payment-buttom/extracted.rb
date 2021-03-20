@@ -12,10 +12,10 @@ class PurchasesController < ApplicationController
   end
 end
 
-class PurchaseAttempt
+class Purchase
   include ActiveModel::Model
 
-  attr_accessor :purchase
+  attr_accessor :order
 
   def save
     # ...
@@ -23,11 +23,10 @@ class PurchaseAttempt
 end
 
 def save
-  if purchase.shipping_info.valid? && purchase.payment_info.valid?
-    BillingService.charge!(amount: purchase.amount, card: purchase.card)
-    purchase.update!(completed: true)
-    InventoryService.track!(purchase)
-    FulfillmentService.notify!(purchase)
+  if order.shipping_info.valid? && order.payment_info.valid?
+    BillingAPI.charge!(order)
+    order.update!(completed: true)
+    FulfillmentAPI.notify!(order)
 
     true
   else

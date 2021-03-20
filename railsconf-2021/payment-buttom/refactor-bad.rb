@@ -1,16 +1,14 @@
-
 def save
-  @purchase.transaction do
-    @purchase.lock!
+  order.transaction do
+    order.lock!
 
-    if !@purchase.completed? &&
-        @purchase.shipping_info.valid? &&
-        @purchase.payment_info.valid?
+    if !order.completed? &&
+        order.shipping_info.valid? &&
+        order.payment_info.valid?
 
-      BillingService.charge!(amount: @purchase.amount, card: @purchase.card)
-      @purchase.update!(completed: true)
-      InventoryService.track!(@purchase)
-      FulfillmentService.notify!(@purchase)
+      BillingAPI.charge!(order)
+      order.update!(completed: true)
+      FulfillmentAPI.notify!(order)
 
       true
     else

@@ -1,14 +1,11 @@
 def save
-  purchase.transaction do
-    @purchase.lock!
+  order.transaction do
+    order.lock!
 
-    if !@purchase.in_progress? &&
-       !@purchase.completed? &&
-        @purchase.shipping_info.valid? &&
-        @purchase.payment_info.valid?
+    if !order.in_progress? && order.shipping_info.valid? && order.payment_info.valid?
 
-      @purchase.update!(in_progress: true)
-      PaymentAttemptJob.perform_later(@purchase)
+      order.update!(in_progress: true)
+      PaymentAttemptJob.perform_later(order)
 
       true
     else
@@ -18,21 +15,23 @@ def save
 end
 
 class PaymentAttemptJob < ApplicationJob
-  def perform(purchase)
-    BillingService.charge!(amount: @purchase.amount, card: @purchase.card)
-    InventoryService.track!(@purchase)
-    FulfillmentService.notify!(@purchase)
-    @purchase.update!(in_progress: false, completed: true)
+  def perform(order)
+    BillingAPI.charge!(order)
+    order.update!(completed: true)
+    FulfillmentAPI.notify!(order)
   end
 end
 
+class PurchasesController < ApplicationController
+  def create
+    # ...
+  end
 
-class PurchaseAttemptsController < ApplicationController
   def show
-    @purchase = Purchase.find_by!(cart_id: session[:cart_id])
+    @order = Order.find_by!(cart_id: session[:cart_id])
 
-    if @purchase.completed?
-      redirect_to purchase_confirmations_path(@purchase)
+    if @order.completed?
+      redirect_to purchase_confirmations_path(@order)
     else
       render :edit
     end
