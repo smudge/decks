@@ -103,20 +103,18 @@ class: middle, center
 ???
 
 - All of this is to say, it was a very nerve-wracking experience.
-- I was kind of a mess for those few weeks, and there were a lot of things I wish I had known, or thought about, or been told
-- and so I'm here today to share a few of those with you
+- I was kind of a mess for those few weeks, and there were a lot of things I wish I had known, or thought about, or been told.
+- and so I'm here today to share a few of those with you.
 
-???
+- Also, I really had no idea what any of it entailed going in, but I quickly learned that it was actually a lot less intimidating than it seemed.
+- You really only need two things: a plausible-sounding idea and a thoughtfully-crafted proposal.
+
 ---
 class: center, middle, inverse
 
 # Part 1: The Idea
 
 ???
-
-- So, part one, is just understanding how to get started.
-- I really had no idea what any of it entailed going in, but I quickly learned that it was actually a lot less intimidating than it seemed.
-- You really only need two things: a plausible-sounding idea and a thoughtfully-crafted proposal.
 
 - I can't tell you how to come up with an idea.
 - It's a creative process, and everyone works differently, but I'm going to pass along some advice that I was given...
@@ -250,7 +248,7 @@ class: center, middle, inverse
 
 ???
 
-- So, you have an idea, but now you want to 
+- So, you have an idea, but now you want to actually go somewhere with it.
 - Most conferences will have a "call for proposals" a couple months beforehand.
 - And, basically all this is is a form that you fill out.
 
@@ -302,7 +300,7 @@ class: middle, center
 
 - Secondly, you'll be asked to write a more detailed breakdown or outline. Only the review committee will see this.
 - What you want to demonstrate here is:
-  - That you generally know what you're talking about.
+  - That you've thought through everything you want to say.
   - That you know who your audience will be at the conference, and you've tailored your content to them.
   - That you've thought about what you'd like your audience to take away from the talk. What is the desired outcome?
   - That you have the right amount of material for the time allotted.
@@ -362,8 +360,8 @@ class: middle, center
 ???
 
 - Lastly, prepare for rejection.
-- In 2020, I submitted my talk to the "Rails at Scale" track.
-- I tailored a lot of my proposal to the idea of writing resilient controllers at scale. I put a lot of thought into this kind of spin.
+- In 2020, I tailored a lot of my proposal to the idea of writing resilient controllers at scale.
+- I put a lot of thought into the "rails at scale" spin.
 - And... I was rejected.
 
 ---
@@ -443,7 +441,7 @@ class: middle
 - I had a whole section prepared today about the content that I cut from my RailsConf talk, specifically on deadlocks, state machines, and eventual consistency.
 - But then I decided to cut that material, so now you don't need to sit through it!
 
-- The point is, being coherent and concise is often better than being comprehensive, so don't be afraid to cut stuff.
+- The point is, being coherent is more important than being comprehensive, so don't be afraid to cut stuff.
 
 
 ---
@@ -479,7 +477,7 @@ class: middle
 
 - But, also, avoid the temptation to make last minute revisions to a real talk.
 - Better to go with what you know than second-guess yourself at the last minute.
-- You got this.
+- It's the night before? You've got this.
 
 ---
 class: middle
@@ -490,9 +488,10 @@ class: middle
 
 - This doesn't apply to live talks, but My RailsConf talk was prerecorded.
 - I spent an entire week trying to get the perfect take.
-- When I made a big mistake, I'd stop the recording and start over. Several times, I made it almost to the end, and then messed up the entire take.
+- When I made a big mistake, I'd stop the recording and start over.
+- I sometimes made it almost to the end, and then messed up the entire take, and threw it all out. It felt awful.
 
-- The take I ended up using was the very last take I recorded. I woke up early, recorded a take, and then left for the weekend.
+- The take I ended up using was the very last take I recorded. I woke up early, recorded a take, and then left the city for the weekend.
 - It was the last possible chance I had, and suddenly it just clicked.
 - I was under enough pressure that I pushed through a few minor mistakes and made it all the way to the end. It was by far my best take of the entire week.
 - My second best take was one of the first, early draft recordings I had done, before my slides were even finished.
@@ -522,10 +521,10 @@ class: center, middle
 - I didn't know if my talk would be any good, I hope it was, but I had this paralyzing fear that I was going to screw it up and give a bad talk.
 - I know that it's common, especially in software engineering, to have imposter syndrome. And this was, probably, a bit of that.
 - It was also, just, uncharted territory for me.
-- So if you're listening to this, and the mere thought of giving a talk makes you cringe with self-doubt, hear these words.
+- So if you're listening to this, and the mere thought of giving a talk makes you cringe with self-doubt, listen.
 
 - It's okay to just stand up there and talk about something. Most conference talks aren't amazing, and that's totally fine. They're useful, and fun,
-- And they'll help you grow, just as much as they help others pick up new ideas.
+- And they'll help you grow, just as much as they help conference-goers learn things.
 - The other speakers will be really supportive. The conference staff will be there to help.
 - If you decide to give this a shot, it'll be worth it. And, it'll be okay! Really.
 
