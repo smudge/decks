@@ -460,7 +460,7 @@ class: center, middle, inverse
 ---
 class: middle
 
-# Have a Script, But Don't Read It
+# 📜 Have a Script, But Don't Read It 📜
 
 ???
 
@@ -471,20 +471,20 @@ class: middle
 ---
 class: middle
 
-# Don't Make Changes the Night Before
+# 🌒 Don't Make Changes the Night Before 😴
 
 ???
 
 - I wrote this entire talk last night, so don't do that.
 
 - But, also, avoid the temptation to make last minute revisions to a real talk.
-- You won't be used to them by the next day.
-- Better to go with what you know than flub something that might've been slightly better.
+- Better to go with what you know than second-guess yourself at the last minute.
+- You got this.
 
 ---
 class: middle
 
-# Schedule Your Recording
+# 📅 Schedule Your Recording 🕒
 
 ???
 
