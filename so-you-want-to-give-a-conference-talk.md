@@ -444,7 +444,7 @@ class: center, middle, inverse
 ---
 class: middle
 
-# Have A Script, But Don't Read It
+# Have a Script, But Don't Read It
 
 ???
 
