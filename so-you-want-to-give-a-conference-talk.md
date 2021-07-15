@@ -27,8 +27,6 @@ a, a > code {
 - I'm on the Fullstack Platform Team.
 - I'm in the NY offices most Thursdays and sometimes Tuesdays, and probably more days in the near future.
 - And my talk today is called "So You Want to Give a Conference Talk"
-- My goal today isn't to tell exactly how you how to give a talk at a major conference.
-- But if I inspire just one person to make that leap, then I'll be really happy.
 
 ---
 class: middle
@@ -37,10 +35,11 @@ class: middle
 
 ???
 
-When I told my wife the title of this talk, she started singing this fugue, called "so you want to write a fugue"
-So I get that there's something amusing about giving a talk about giving talks.
-Maybe this is the start of a recursive chain of talks that I give about prior talks I gave.
+- When I told my wife the title of this talk, she started singing this fugue, called "so you want to write a fugue"
+- So I get that there's something amusing about giving a talk about giving talks.
 
+- My goal today isn't to tell exactly how you how to give a talk at a major conference.
+- But if I inspire just one person to make that leap, then I'll be really happy.
 ---
 class: center, middle
 
@@ -48,7 +47,7 @@ class: center, middle
 
 ???
 
-- So, speaking of prior talks, in April I gave a talk at RailsConf 2021.
+- So, for some background, in April I gave a talk at RailsConf 2021.
 - You might've watched it, but it's also fine if you didn't. I'm not offended. 
 - I was considering giving part of it again today, but instead I decided to talk about the experience itself.
 - I think the talk went well, overall, and I'm **really** happy I did it.
@@ -104,11 +103,102 @@ class: middle
 ---
 class: center, middle, inverse
 
-# Part 1: Proposing the Talk
+# Part 1: The Idea
 
 ???
 
-- So, I'll get to the idea part later, but first I think it would be helpful to just go over just the strucuture of the proposal itself.
+So let's start with the idea.
+
+---
+class: middle
+
+## Start from Somewhere
+
+???
+
+All talks start with the seed of an idea. Developing the talk is a matter of planting those seeds and seeing how they grow.
+Sometimes your idea is a single acorn. A central thesis from which you grow a big tree of topics.
+Other times, you have a bunch of different seeds and you grow a garden.
+
+Start with one or two ideas, and then try to expand on them organically. See where different subtopics lead you.
+
+---
+class: middle
+
+## Give it Some Structure
+
+???
+
+Next up, think about the structure of your talk. There's no right answer, but here are some ideas that might help you give your talk some shape.
+
+You could structure it around...
+
+--
+- Beginner's Curiosity
+
+???
+
+- A Beginner's Curiosity - is the story of learning something new
+
+--
+- Idea Mashup
+
+???
+
+- Idea mashup - explore the intersection of two or more seeminly unrelated thigns. Talks I've heard about: assembly language and pokemon, or archaeology and version control.
+
+--
+- Broad Overview
+
+???
+
+- Broad overviews - do a bunch of research into a domain so that your audience doesn't have to. I love these. I watch them to keep up with industry trends.
+
+--
+- Personal Experience
+
+???
+
+- A personal experience - share something you went through, because others might relate to it or might be going through it too
+
+--
+- Historical Narrative
+
+???
+
+- Historical narratives - explore a past event, or series of events, or a person's biography, uncover interesting and surprising details, and relate it all back to a general thesis
+
+--
+- Realtime Problem-solving
+
+???
+
+- Present some problems, maybe some code examples, and step through them with your audience!
+
+---
+class: middle
+
+## Speak From Where You Are
+
+???
+
+- Speak From Where You Are
+- In other words, don't try to be someone you aren't. Be yourself.
+- There will always be someone who knows more than you. Don't try to beat the experts at their game.
+- Remember that you are already an expert in your own experiences, and in thinking the way that you do, so speak from where you are.
+- Being authentic and interesting is far better than being impressive or novel.
+
+---
+class: center, middle, inverse
+
+# Part 2: Proposing the Talk
+
+???
+
+- So, you have an idea, but now you want to 
+- Most conferences will have a "call for proposals" a couple months beforehand.
+- You'll 
+- I think it would be helpful to just go over just the strucuture of the proposal itself.
 - Not all conferences use the same format, but you should be able to get the gist by looking at my RailsConf proposal.
 - And as always, everyone will approach this process differently, so don't focus too much on the particulars of my own proposal.
 
@@ -207,92 +297,14 @@ class: middle
 ---
 class: center, middle, inverse
 
-# Part 2: Developing the Talk
+# Part 3: Finishing the Talk
 
 ???
 
-So next up is to actually develop the talk. Write the slides, flesh out the narrative, practice the delivery.
-Fair warning, this is gonna be a bit of a shmorgasboard of disconnected thoughts.
-Some of it's advice that was given to me, and the rest is just, things that I thought might useful!
-
----
-class: middle
-
-## Start from Somewhere
-
-???
-
-All talks start with the seed of an idea. Developing the talk is a matter of planting those seeds and seeing how they grow.
-Sometimes your idea is a single acorn. A central thesis from which you grow a big tree of topics.
-Other times, you have a bunch of different seeds and you grow a garden.
-
-Write a few milemarker slides, and then try to expand on them organically. See where different subtopics lead you.
-
----
-class: middle
-
-## Give it Some Structure
-
-???
-
-Next up, think about the structure of your talk. There's no right answer, but here are some ideas that might help you give your talk some shape.
-
-You could structure it around...
-
---
-- Beginner's Curiosity
-
-???
-
-- A Beginner's Curiosity - is the story of learning something new
-
---
-- Idea Mashup
-
-???
-
-- Idea mashup - explore the intersection of two or more seeminly unrelated thigns. Talks I've heard about: assembly language and pokemon, or archaeology and version control.
-
---
-- Broad Overview
-
-???
-
-- Broad overviews - do a bunch of research into a domain so that your audience doesn't have to. I love these. I watch them to keep up with industry trends.
-
---
-- Personal Experience
-
-???
-
-- A personal experience - share something you went through, because others might relate to it or might be going through it too
-
---
-- Historical Narrative
-
-???
-
-- Historical narratives - explore a past event, or series of events, or a person's biography, uncover interesting and surprising details, and relate it all back to a general thesis
-
---
-- Realtime Problem-solving
-
-???
-
-- Present some problems, maybe some code examples, and step through them with your audience!
-
----
-class: middle
-
-## Speak From Where You Are
-
-???
-
-- Speak From Where You Are
-- In other words, don't try to be someone you aren't. Be yourself.
-- There will always be someone who knows more than you, or is better at speaking than you. Don't try to beat the experts at their game.
-- Remember that you are already an expert in your own experiences, and in thinking the way that you do, so speak from where you are.
-- Being authentic and interesting is far better than being impressive or novel.
+- But say your proposal is actually accepted! Now comes the hard part: you have to actually develop the talk.
+- Flesh out the narrative, write all the slides, find a bunch of public domain images, and then practice the delivery.
+- You should already have an idea, and at the very least, a pretty good outline from the proposal.
+- But don't underestimate how long it will take to do the tedious work of writing slides.
 
 ---
 class: middle
@@ -302,11 +314,25 @@ class: middle
 ???
 
 - I was really bad at this, and I wish I had done this sooner.
-- When my proposal was accepted, I had no actual talk prepared, so I toiled for two weeks, on my own, and it wasn't until week 3 that I showed any of the slides to anyone.
+- When my proposal was accepted, I had nothing else prepared, so I toiled for two weeks, on my own, and it wasn't until week 3 that I showed any of the slides to anyone.
 
 - In hindsight, I wish I had prepared at least some material before my proposal was accepted.
 - Like, write a blog post on the topic.
 - Or pilot a short version of the talk at a meetup, or here at BetterDev!
+
+---
+class: middle
+
+## Optimize for Fast Iteration
+
+???
+
+- By this, I mean, don't focus too much on polishing up the design of your slides. Save that for the end.
+- You can pick a theme and some templates to make the slides look good enough.
+- But focus on the ability to quickly and easily redo and rework sections.
+- The presentation you're watching right now is actually written entirely in a markdown format,
+- And the slide layouts are generated on the fly.
+- It's not most pretty result, but it gets the job done, and it allowed me to spend most of my time focusing on the actual content.
 
 ---
 class: middle
@@ -320,10 +346,11 @@ class: middle
 
 - The point is, being coherent and concise is often better than being comprehensive, so don't be afraid to cut stuff.
 
+
 ---
 class: center, middle, inverse
 
-# Part 3: Delivering the Talk
+# Part 4: Delivering the Talk
 
 ???
 
