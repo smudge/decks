@@ -108,7 +108,7 @@ class: center, middle, inverse
 
 ???
 
-- So, I'll get to the idea part later, but first I think it would be helpful to just go over the strucutre of the proposal.
+- So, I'll get to the idea part later, but first I think it would be helpful to just go over just the strucuture of the proposal itself.
 - Not all conferences use the same format, but you should be able to get the gist by looking at my RailsConf proposal.
 - And as always, everyone will approach this process differently, so don't focus too much on the particulars of my own proposal.
 
@@ -231,33 +231,55 @@ Write a few milemarker slides, and then try to expand on them organically. See w
 ---
 class: middle
 
-## Give it some Structure
+## Give it Some Structure
+
+???
+
+Next up, think about the structure of your talk. There's no right answer, but here are some ideas that might help you give your talk some shape.
+
+You could structure it around...
 
 --
 - Beginner's Curiosity
 
+???
+
+- A Beginner's Curiosity - is the story of learning something new
+
 --
 - Idea Mashup
+
+???
+
+- Idea mashup - explore the intersection of two or more seeminly unrelated thigns. Talks I've heard about: assembly language and pokemon, or archaeology and version control.
 
 --
 - Broad Overview
 
+???
+
+- Broad overviews - do a bunch of research into a domain so that your audience doesn't have to. I love these. I watch them to keep up with industry trends.
+
 --
 - Personal Experience
+
+???
+
+- A personal experience - share something you went through, because others might relate to it or might be going through it too
 
 --
 - Historical Narrative
 
+???
+
+- Historical narratives - explore a past event, or series of events, or a person's biography, uncover interesting and surprising details, and relate it all back to a general thesis
+
 --
-- Practice Problems
+- Realtime Problem-solving
 
 ???
 
-- A Beginner's Curiosity - is the story of learning something new
-- Idea mashup - explore the intersection of two or more seeminly unrelated thigns. Talks I've heard about: assembly language and pokemon, or javascript and oragami, or archaeology and version control.
-- Broad overviews - do a bunch of research into a domain so that your audience doesn't have to. I love these. I use them to keep up with industry trends.
-- A personal experience - share something you went through, because others might relate to it or might be going through it too
-- Historical narratives - explore a past event, or series of events, or a person's biography, uncover interesting and surprising details, and relate it all back to a general thesis
+- Present some problems, maybe some code examples, and step through them with your audience!
 
 ---
 class: middle
@@ -270,7 +292,7 @@ class: middle
 - In other words, don't try to be someone you aren't. Be yourself.
 - There will always be someone who knows more than you, or is better at speaking than you. Don't try to beat the experts at their game.
 - Remember that you are already an expert in your own experiences, and in thinking the way that you do, so speak from where you are.
-- Being authentic and interesting is far better than being novel or impressive.
+- Being authentic and interesting is far better than being impressive or novel.
 
 ---
 class: middle
@@ -280,7 +302,7 @@ class: middle
 ???
 
 - I was really bad at this, and I wish I had done this sooner.
-- When my talk was accepted, I had nothing, so I toiled for two weeks, on my own, and it wasn't until week 3 that I showed any of the slides to anyone.
+- When my proposal was accepted, I had no actual talk prepared, so I toiled for two weeks, on my own, and it wasn't until week 3 that I showed any of the slides to anyone.
 
 - In hindsight, I wish I had prepared at least some material before my proposal was accepted.
 - Like, write a blog post on the topic.
@@ -293,9 +315,10 @@ class: middle
 
 ???
 
-- Being coherent is better than being comprehensive, so don't be afraid to cut stuff.
 - I had a whole section prepared today about the content that I cut from my RailsConf talk, specifically on deadlocks, state machines, and eventual consistency.
 - But then I decided to cut that material, so now you don't need to sit through it!
+
+- The point is, being coherent and concise is often better than being comprehensive, so don't be afraid to cut stuff.
 
 ---
 class: center, middle, inverse
@@ -304,7 +327,8 @@ class: center, middle, inverse
 
 ???
 
-- There's a lot of advice out there on how to do public speaking, so I'll keep this last section short.
+- So you've got slides and generally know what you want to say. But now you have to actually deliver the talk.
+- There's a lot of advice out there on how to do public speaking, and I'm no expert, so I'll keep this last section short.
 - But I did learn a few things that I wanted to share.
 
 ---
@@ -315,8 +339,8 @@ class: middle
 ???
 
 - This is just something that works for me, but I like to write out a full script in my speakers notes
-- but then break it apart into bullets and try not to read it word for word
-- It's possible to over-practice your lines, and this helps you keep it feeling fresh each time.
+- but then break it apart into bullets and try not to read it word for word. I don't want to sound like I'm reading.
+- It's also possible to over-practice, and this approach helps it feel more fresh each time.
 
 ---
 class: middle
@@ -325,7 +349,8 @@ class: middle
 
 ???
 
-- I wrote this entire talk last night, so don't do what I did today.
+- I wrote this entire talk last night, so don't do that.
+
 - But, also, avoid the temptation to make last minute revisions to a real talk.
 - You won't be used to them by the next day.
 - Better to go with what you know than flub something that might've been slightly better.
@@ -355,31 +380,33 @@ class: center, middle, inverse
 
 ???
 
-- That's all I really have for you today, but I'll leave you with one last takeaway.
+- That's all I really have for you, but I'll leave you with one last takeaway.
 - It's actually The first thing that I wish I had been told,
 - right off the bat,
 - as soon as my talk was accepted,
 - and that is, that...
 
 ---
-class: middle
+class: center, middle
 
-## ❤️ It'll be okay! ❤️
+# ❤️ It'll be okay! ❤️
 
 ???
 
 - It'll be okay.
 
-- I didn't know if my talk would be any good, I hope it was, but I had this paralyzing fear that I was going to screw it up by giving a bad talk.
+- I didn't know if my talk would be any good, I hope it was, but I had this paralyzing fear that I was going to screw it up and give a bad talk.
 - I know that it's common, especially in software engineering, to have imposter syndrome. And this was, probably, a bit of that.
+- It was also, just, uncharted territory for me.
 - So if you're listening to this, and the mere thought of giving a talk makes you cringe with self-doubt, hear these words.
 
-- It's okay to just stand up there and talk about something. Most conference talks aren't amazing, and that's okay. They're useful, and fun,
-- And they'll help you grow, just as much as they help others learn new things.
+- It's okay to just stand up there and talk about something. Most conference talks aren't amazing, and that's totally fine. They're useful, and fun,
+- And they'll help you grow, just as much as they help others pick up new ideas.
 - The other speakers will be really supportive. The conference staff will be there to help.
 - If you decide to give this a shot, it'll be worth it. And, it'll be okay! Really.
 
 ---
+class: middle
 
 ## Thanks! 🎉🎉🎉
 
@@ -391,4 +418,6 @@ class: middle
 
 ???
 
-- Thanks for listening! That's all I have. I'll share these slides so that you can click on these links if you're interested.
+- Thanks for listening! 
+- I'll share these slides so that you can click on these links if you're interested.
+- Thanks! That's all I have. 
