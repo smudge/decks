@@ -6,13 +6,13 @@ info: For RailsConf 2022
 highlighter: shiki
 lineNumbers: false
 
-background: https://source.unsplash.com/collection/94734566/1920x1080
+background: /images/demo_mode_fancy.jpg
 class: text-center
 ---
 
-# RAILS_ENV=demo
+# **RAILS_ENV=demo**
 
-#### Unlocking the potential of the "demo" environment
+#### unlocking the potential of the "demo" environment
 
 <!--
 Hello. Welcome. I'm glad to be here.
@@ -31,33 +31,191 @@ Homepage: <a href="https://ngriffith.com">ngriffith.com</a>
 
 <!--
 Quick intro: My name is Nathan. I can be found online.
+
+I work for Betterment, and we're hiring!
 -->
-
+---
+layout: fact
 ---
 
-# framing the problem
-- making a sufficiently complex application "demoable"
-
----
-
-# anecdotal example
+# RAILS_ENV=demo
 
 <!--
-I’ll describe the painful experience of maintaining a demo deployment that constantly broke, leading to a complete overhaul and a bunch of lessons along the way
+Okay, so you might be here because of the title of the talk
 -->
 
 ---
+layout: fact
+---
+
+## **RAILS_ENV=demo** bundle exec rails s
+
+<!--
+You might stick this in front of your server command, and run an app in this environment
+But what is an environment?
+-->
+
+---
+
+```bash
+$ ls config/environments/
+```
+
+```
+├── development.rb
+├── production.rb
+└── test.rb
+```
+
+<!--
+Well, when you generate a new rails app, you start with three.
+Dev, test, and production
+And they get corresponding config files in your environments folder.
+--> 
+
+---
+
+```mermaid
+graph TD
+
+A[production]
+B[development]
+C[test]
+
+subgraph cloud
+A
+end
+
+subgraph local / CI
+C
+end
+
+subgraph local
+B
+end
+
+```
+
+<!--
+And when you run your app, you pick one of these three modes.
+
+Often they correspond to _where_ you're running the app, and _why_.
+You run in development when... developing your app.
+You run in test when testing your app locally or on a CI server.
+And you run in production when you deploy your app to the world!
+-->
+
+---
+
+```mermaid
+graph TD
+
+A[production]
+B[development]
+C[test]
+D[demo]
+
+subgraph cloud
+A & D
+end
+
+subgraph local / CI
+C
+end
+
+subgraph local
+B
+end
+
+```
+
+<!--
+So, really, I'm proposing adding another one of these.
+Because
+-->
+
+---
+layout: fact
+---
+
+# 2016
+
+<!--
+And in 2016, that's exactly what my team needed.
+You see, I had just joined Betterment, and my team was building out our 401k offering, which is now part of our Betterment @ Work product.
+-->
+
+---
+
+```mermaid
+graph BT
+
+A((My Team)) --> B[401k Product]
+B --> C(Companies)
+D((Other Teams)) --> E[Consumer Product]
+E --> F(Retail Investors)
+```
+
+
+<!--
+Now this is a huge oversimplification, but just to give you a sense,
+we were a B2B team, building a B2B product,
+and we, the team on the left, 
+wanted to show off the product on the right,
+to our clients (and prospective clients) there on the left.
+-->
+
+---
+
+```bash
+$ ls config/environments/
+```
+
+```
+├── development.rb
+├── demo.rb ✨
+├── production.rb
+└── test.rb
+```
+
+
+
+---
+
+<div class="grid grid-cols-3">
+
+
+<div>
+
+# Decisions:
+
+<v-clicks>
+
+- **Services**  
+- **Database**  
+- **Users**  
+- **Deployments**  
+- **Ownership**  
+
+</v-clicks>
+
+</div><div>
 
 # Demo v1
 
 <v-clicks>
 
-- A complete service ecosystem
-- Pre-seeded user accounts
-- Infrequent deployments
-- Managed by a specific team
+- all of them  
+- refreshed nightly  
+- fixtures/seeds  
+- as needed
+- single team  
 
 </v-clicks>
+
+</div>
+</div>
+
 
 <!--
 …was deployed as a "complete" environment (alongside "demo"/sandbox instances of all external services and collaborators).
@@ -130,6 +288,35 @@ end
 ```
 
 </v-click>
+
+---
+
+# How?
+
+- Webmock
+- WebValve
+
+---
+
+# WebValve
+
+```ruby
+class FakeBank < WebValve::FakeService
+  get '/widgets' do
+    json result: 'it works!'
+  end
+end
+```
+
+---
+
+# "Stateful" Fakes
+
+- Real database models, fake data
+
+---
+
+
 
 ---
 layout: image-right
