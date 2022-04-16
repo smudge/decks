@@ -19,6 +19,197 @@ Hello. Welcome. I'm glad to be here.
 -->
 
 ---
+layout: section
+---
+
+# RAILS_ENV=demo
+
+<!--
+Okay, so you might be here because of the title of the talk.
+RAILS_ENV=demo
+So just to unpack that a little, what I'm referring to is
+-->
+
+---
+layout: fact
+---
+
+## **RAILS_ENV=demo** bundle exec rails s
+
+<!--
+the environment variable used to control the environment you start your Rails app in.
+-->
+
+---
+layout: fact
+---
+
+## **RAILS_ENV=development** bundle exec rails s
+
+<!--
+Usually that's development
+-->
+
+---
+layout: fact
+---
+
+## **RAILS_ENV=test** bundle exec rails s
+
+<!--
+test
+-->
+
+---
+layout: fact
+---
+
+## **RAILS_ENV=production** bundle exec rails s
+
+<!--
+or production
+-->
+
+---
+layout: fact
+---
+
+## **RAILS_ENV=staging** bundle exec rails s
+
+<!--
+and sometimes folks add things like staging environments
+-->
+
+---
+layout: fact
+---
+
+## ~~**RAILS_ENV=staging** bundle exec rails s~~
+
+<!--
+but that's not actually standard
+-->
+
+---
+layout: fact
+---
+
+## **RAILS_ENV={development, production, test}**
+
+<!--
+and so out of the box you get the big three
+-->
+
+---
+layout: center
+---
+
+```bash
+$ ls config/environments/
+
+  development.rb
+  production.rb
+  test.rb
+```
+
+<style>
+pre {
+font-size: 200% !important;
+line-height: 120% !important;
+}
+</style>
+
+<!--
+and of course these environments correspond to
+files live in your config/environments folder
+--> 
+
+---
+layout: center
+---
+
+### config/environments/production.rb
+
+```ruby
+Rails.application.configure do
+  config.cache_classes = true
+  config.eager_load = true
+
+  config.consider_all_requests_local = false
+  config.action_controller.perform_caching = true
+
+  config.assets.compile = false
+
+  config.log_level = :info
+  config.log_tags = %i(request_id)
+
+  # ...
+end
+```
+
+<!--
+and these files contain the instructions for how to run
+these apps in that environment
+-->
+
+---
+layout: fact
+---
+
+## RAILS_ENV={**demo**, development, test, production}
+
+<!--
+And so what I'm going to be talking about today is this idea
+of adding a dedicated environment for giving application demos.
+-->
+
+---
+layout: center
+---
+
+
+```bash {3}
+$ ls config/environments/
+
+  demo.rb
+  development.rb
+  production.rb
+  test.rb
+```
+
+<style>
+pre {
+font-size: 200% !important;
+line-height: 120% !important;
+}
+</style>
+
+<!--
+And so we're on the same page, it really starts with just adding that demo.rb file
+to define the new environment.
+-->
+
+---
+layout: section
+---
+
+# Why?
+
+<!--
+So why though? Why am I here, talking about environment files?
+
+Well, speaking as someone who loves building Rails apps,
+and has been building them for 14 years, I want to make it easy to show off
+the things that I build. Like, to friends, coworkers, my parents, you name it.
+
+And if you build Rails apps, you can probably relate to that. I'm sure my parents
+would love to get a demo of your app.
+
+But more specifically, I want to tell you the story of a demo
+environment that I and my team have been working on for almost six years.
+-->
+
+---
 layout: image-left
 image: /images/me.jpg
 ---
@@ -30,108 +221,22 @@ Twitter: <a href="https://twitter.com/smudgethefirst">@smudgethefirst</a><br/>
 Homepage: <a href="https://ngriffith.com">ngriffith.com</a>
 
 <!--
-Quick intro: My name is Nathan. I can be found online.
+And so, who am I?
 
-I work for Betterment, and we're hiring!
--->
----
-layout: fact
----
+Well, my name is Nathan. I exist online.
 
-# RAILS_ENV=demo
-
-<!--
-Okay, so you might be here because of the title of the talk
--->
-
----
-layout: fact
----
-
-## **RAILS_ENV=demo** bundle exec rails s
-
-<!--
-You might stick this in front of your server command, and run an app in this environment
-But what is an environment?
+I also exist in real life, and work at a company called Betterment.
 -->
 
 ---
 
-```bash
-$ ls config/environments/
-```
-
-```
-├── development.rb
-├── production.rb
-└── test.rb
-```
+# Betterment
 
 <!--
-Well, when you generate a new rails app, you start with three.
-Dev, test, and production
-And they get corresponding config files in your environments folder.
---> 
+You might've heard of us. We offer financial advice, investing accounts, checking,
+retirement, you name it.
 
----
-
-```mermaid
-graph TD
-
-A[production]
-B[development]
-C[test]
-
-subgraph cloud
-A
-end
-
-subgraph local / CI
-C
-end
-
-subgraph local
-B
-end
-
-```
-
-<!--
-And when you run your app, you pick one of these three modes.
-
-Often they correspond to _where_ you're running the app, and _why_.
-You run in development when... developing your app.
-You run in test when testing your app locally or on a CI server.
-And you run in production when you deploy your app to the world!
--->
-
----
-
-```mermaid
-graph TD
-
-A[production]
-B[development]
-C[test]
-D[demo]
-
-subgraph cloud
-A & D
-end
-
-subgraph local / CI
-C
-end
-
-subgraph local
-B
-end
-
-```
-
-<!--
-So, really, I'm proposing adding another one of these.
-Because
+I like to think that our top product is financial peace of mind.
 -->
 
 ---
@@ -141,8 +246,7 @@ layout: fact
 # 2016
 
 <!--
-And in 2016, that's exactly what my team needed.
-You see, I had just joined Betterment, and my team was building out our 401k offering, which is now part of our Betterment @ Work product.
+And the story I want to tell you starts in 2016, when I first joined the company.
 -->
 
 ---
@@ -164,21 +268,6 @@ and we, the team on the left,
 wanted to show off the product on the right,
 to our clients (and prospective clients) there on the left.
 -->
-
----
-
-```bash
-$ ls config/environments/
-```
-
-```
-├── development.rb
-├── demo.rb ✨
-├── production.rb
-└── test.rb
-```
-
-
 
 ---
 
