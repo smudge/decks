@@ -1,11 +1,10 @@
 ---
 theme: default
-colorSchema: 'light'
+colorSchema: light
 title: RAILS_ENV=demo
 info: For RailsConf 2022
 highlighter: shiki
 lineNumbers: false
-
 background: /images/demo_mode_fancy.jpg
 class: text-center
 ---
@@ -15,7 +14,14 @@ class: text-center
 #### unlocking the potential of the "demo" environment
 
 <!--
-Hello. Welcome. I'm glad to be here.
+Okay, so let's get started.
+
+Hello. Welcome. I'm Nathan. I'm glad to be here.
+A little nervous, too.
+
+This is actually my first live conference talk.
+
+I gave one last year, but it was prerecorded, so I spent like a week recording over and over trying to get the perfect take. Would definitely not recommend, so I'm more than happy to YOLO this one with you all today.
 -->
 
 ---
@@ -25,79 +31,85 @@ layout: section
 # RAILS_ENV=demo
 
 <!--
-Okay, so you might be here because of the title of the talk.
+Okay, so you might be here because you saw the title of this talk
+
 RAILS_ENV=demo
-So just to unpack that a little, what I'm referring to is
+
+and something about it intrigued you.
+
+Or maybe you just picked a room at random. I don't know why you're here.
+
+And so let's just unpack this.
 -->
 
 ---
 layout: fact
 ---
 
-## **RAILS_ENV=demo** bundle exec rails s
+## **RAILS_ENV=<ins>demo</ins>** bundle exec rails s
 
 <!--
-the environment variable used to control the environment you start your Rails app in.
+What I'm referring to is the environment variable used to control the mode that your Rails app starts in.
 -->
 
 ---
 layout: fact
 ---
 
-## **RAILS_ENV=development** bundle exec rails s
+## **RAILS_ENV=<ins>development</ins>** bundle exec rails s
 
 <!--
-Usually that's development
+Now, usually that's development.
 -->
 
 ---
 layout: fact
 ---
 
-## **RAILS_ENV=test** bundle exec rails s
+## **RAILS_ENV=<ins>test</ins>** bundle exec rails s
 
 <!--
-test
+Or test
 -->
 
 ---
 layout: fact
 ---
 
-## **RAILS_ENV=production** bundle exec rails s
+## **RAILS_ENV=<ins>production</ins>** bundle exec rails s
 
 <!--
-or production
+Or production, like when you deploy your app somewhere.
 -->
 
 ---
 layout: fact
 ---
 
-## **RAILS_ENV=staging** bundle exec rails s
+## **RAILS_ENV=<ins>staging</ins>** bundle exec rails s
 
 <!--
-and sometimes folks add things like staging environments
+Some teams might also have a staging environment.
 -->
 
 ---
 layout: fact
 ---
 
-## ~~**RAILS_ENV=staging** bundle exec rails s~~
+## ~~**RAILS_ENV=<ins>staging</ins>** bundle exec rails s~~
 
 <!--
-but that's not actually standard
+But that's actually not one of the built-ins.
 -->
 
 ---
 layout: fact
 ---
 
-## **RAILS_ENV={development, production, test}**
+## RAILS_ENV={**development**, **production**, **test**}
 
 <!--
-and so out of the box you get the big three
+Out of the box you get the big three: development, production, and test.
 -->
 
 ---
@@ -120,9 +132,9 @@ line-height: 120% !important;
 </style>
 
 <!--
-and of course these environments correspond to
-files live in your config/environments folder
---> 
+and these environments correspond to
+files live in your config-slash-environments folder
+-->
 
 ---
 layout: center
@@ -148,8 +160,7 @@ end
 ```
 
 <!--
-and these files contain the instructions for how to run
-these apps in that environment
+And then contained within these files are the actual *instructions* for how your app should behave in each environment.
 -->
 
 ---
@@ -159,14 +170,12 @@ layout: fact
 ## RAILS_ENV={**demo**, development, test, production}
 
 <!--
-And so what I'm going to be talking about today is this idea
-of adding a dedicated environment for giving application demos.
+And so what I'm going to be talking about today is this idea of adding a new, dedicated environment -- called "demo" -- for giving application demos.
 -->
 
 ---
 layout: center
 ---
-
 
 ```bash {3}
 $ ls config/environments/
@@ -185,8 +194,7 @@ line-height: 120% !important;
 </style>
 
 <!--
-And so we're on the same page, it really starts with just adding that demo.rb file
-to define the new environment.
+And I wish I could say it were as simple as just adding a new demo.rb file, but that's just the beginning.
 -->
 
 ---
@@ -205,8 +213,10 @@ the things that I build. Like, to friends, coworkers, my parents, you name it.
 And if you build Rails apps, you can probably relate to that. I'm sure my parents
 would love to get a demo of your app.
 
-But more specifically, I want to tell you the story of a demo
+But more specifically, I want to tell you the story of a particular demo
 environment that I and my team have been working on for almost six years.
+
+And so who am I?
 -->
 
 ---
@@ -221,34 +231,76 @@ Twitter: <a href="https://twitter.com/smudgethefirst">@smudgethefirst</a><br/>
 Homepage: <a href="https://ngriffith.com">ngriffith.com</a>
 
 <!--
-And so, who am I?
+Well, let me introduce myself.
 
-Well, my name is Nathan. I exist online.
+My name is Nathan. I exist online in a few places.
 
-I also exist in real life, and work at a company called Betterment.
+I also exist in real life, and I work at a company called Betterment.
 -->
 
 ---
+layout: center
+---
 
-# Betterment
+![Betterment Logo](/images/betterment.png)
 
 <!--
 You might've heard of us. We offer financial advice, investing accounts, checking,
 retirement, you name it.
+I like to say that our top product is financial peace of mind. Oh, also, we're hiring.
 
-I like to think that our top product is financial peace of mind.
+And I work on the application platform teams at Betterment.
+We focus on a lot of cross-cutting concerns, and we
+provide our product teams with more of a day-to-day peace of mind.
+
+But I haven't always worked on this team.
+-->
+
+---
+layout: section
+---
+
+# 2016
+
+<!--
+Now, the story I want to tell starts in 2016, when I first joined Betterment.
 -->
 
 ---
 layout: fact
 ---
 
-# 2016
+## 401(k)
 
 <!--
-And the story I want to tell you starts in 2016, when I first joined the company.
+And back then, I was on a different team, helping build Betterment's 401k offering,
+now known as Betterment @ Work.
 -->
 
+---
+layout: two-cols
+class: px-40
+---
+
+::right::
+
+```mermaid
+graph BT
+
+D((Other Teams)) --> E[Consumer Product]
+E --> F(Retail Investors)
+```
+
+
+<!--
+And so while most people think of Betterment as a B2C business.
+Like, financial services for everyday people like me and my parents.
+(The industry calls them "retail investors")
+-->
+
+---
+layout: two-cols
+class: px-40
 ---
 
 ```mermaid
@@ -256,17 +308,41 @@ graph BT
 
 A((My Team)) --> B[401k Product]
 B --> C(Companies)
+```
+
+::right::
+
+```mermaid
+graph BT
+
 D((Other Teams)) --> E[Consumer Product]
 E --> F(Retail Investors)
 ```
 
+<!--
+
+The thing my team was building was actually a B2B product.
+Because our customers were companies, who might want to offer 401k plans to their employees.
+-->
+
+---
 
 <!--
-Now this is a huge oversimplification, but just to give you a sense,
-we were a B2B team, building a B2B product,
-and we, the team on the left, 
-wanted to show off the product on the right,
-to our clients (and prospective clients) there on the left.
+And, look, I'm not on the business side of things.
+I'm just a humble software engineer, and so I'm not gonna
+try to explain why things work this way.
+
+But if there's one thing I know about B2B businesses,
+it's that they do a lot of product demos.
+
+And so we found ourselves in a position where, we 
+really wanted to SHOW OFF Betterment's consumer product
+to all of our new and prospective business clients.
+-->
+
+---
+
+<!--
 -->
 
 ---
