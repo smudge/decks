@@ -39,7 +39,7 @@ and something about it intrigued you.
 
 Or maybe you just picked a room at random. I don't know why you're here.
 
-And so let's just unpack this.
+But either way, let's just unpack this title.
 -->
 
 ---
@@ -49,7 +49,7 @@ layout: fact
 ## **RAILS_ENV=<ins>demo</ins>** bundle exec rails s
 
 <!--
-What I'm referring to is the environment variable used to control the mode that your Rails app starts in.
+So, what it refers to is the environment variable used to control the mode that your Rails app boots up in.
 -->
 
 ---
@@ -59,7 +59,7 @@ layout: fact
 ## **RAILS_ENV=<ins>development</ins>** bundle exec rails s
 
 <!--
-Now, usually that's development.
+Now, by default, that's actually gonna be development.
 -->
 
 ---
@@ -69,7 +69,7 @@ layout: fact
 ## **RAILS_ENV=<ins>test</ins>** bundle exec rails s
 
 <!--
-Or test
+Or test if you're running your tests
 -->
 
 ---
@@ -79,7 +79,7 @@ layout: fact
 ## **RAILS_ENV=<ins>production</ins>** bundle exec rails s
 
 <!--
-Or production, like when you deploy your app somewhere.
+And you can toggle it to production, when you deploy your app somewhere.
 -->
 
 ---
@@ -160,7 +160,12 @@ end
 ```
 
 <!--
-And then contained within these files are the actual *instructions* for how your app should behave in each environment.
+And these files contain the actual *instructions* for how your app should behave in each environment.
+
+Like, what makes that environment different.
+
+
+Are you with me so far? Good.
 -->
 
 ---
@@ -170,7 +175,7 @@ layout: fact
 ## RAILS_ENV={**demo**, development, test, production}
 
 <!--
-And so what I'm going to be talking about today is this idea of adding a new, dedicated environment -- called "demo" -- for giving application demos.
+And so what I'm going to be talking about today is this idea of adding a new, dedicated environment -- called "demo" -- for giving, well, application demos.
 -->
 
 ---
@@ -197,24 +202,20 @@ line-height: 120% !important;
 And I wish I could say it were as simple as just adding a new demo.rb file, but that's just the beginning.
 -->
 
+
 ---
-layout: section
+layout: fact
 ---
 
-# Why?
+# "demoability"
 
 <!--
-So why though? Why am I here, talking about environment files?
+Because "demoability" -- the ability to quickly take something
+you've been building, and show it off to the world -- is about
+a lot more than just the way you boot up your app.
 
-Well, speaking as someone who loves building Rails apps,
-and has been building them for 14 years, I want to make it easy to show off
-the things that I build. Like, to friends, coworkers, my parents, you name it.
-
-And if you build Rails apps, you can probably relate to that. I'm sure my parents
-would love to get a demo of your app.
-
-But more specifically, I want to tell you the story of a particular demo
-environment that I and my team have been working on for almost six years.
+It's actually something I and my team have been thinking
+about and iterating on for almost six years.
 
 And so who am I?
 -->
@@ -273,7 +274,7 @@ layout: fact
 ## 401(k)
 
 <!--
-And back then, I was on a different team, helping build Betterment's 401k offering,
+Back then, I was on a different team, helping build Betterment's 401k offering,
 now known as Betterment @ Work.
 -->
 
@@ -327,6 +328,8 @@ Because our customers were companies, who might want to offer 401k plans to thei
 
 ---
 
+# "sales"
+
 <!--
 And, look, I'm not on the business side of things.
 I'm just a humble software engineer, and so I'm not gonna
@@ -342,7 +345,141 @@ to all of our new and prospective business clients.
 
 ---
 
+# "staging"
+
 <!--
+And so how did we do that?
+Well, we looked around and saw that Betterment
+already had a Staging environment.
+
+It was basically a replica of production, except
+the database was reset and repopulated nightly with some magical sanitized data instead of real production data.
+
+And so we made a copy of that.
+-->
+
+---
+
+# owl
+
+<!--
+and if this sounds a bit like
+
+"step 1, draw circles, step 2, draw the owl"
+
+it's because that's exactly what this is.
+you see, if what you need is a drawing of an owl,
+and someone else is already drawing owls,
+then you don't really need to learn to draw the owl.
+
+And so, the staging environment was our owl.
+-->
+
+---
+
+# owl with hat
+
+<!--
+Of course, we made a couple modifications to the owl. We
+didn't need or even want all of the sanitized stage data, so
+we added another process that would pick out just the demo
+accounts we needed.
+-->
+
+---
+
+# copy-paste
+
+<!--
+But as for the rest of it, we just copy-pasted the deployment
+scripts, the environment file, everything that made staging...
+staging. And we deployed it, 
+-->
+
+---
+
+# Success!
+
+<!--
+and it worked! so, our work was done, right?
+
+well that's what we thought.
+-->
+
+---
+
+# 2017
+
+<!--
+But fast forward a bit, and by 2017 the cracks
+were starting to show.
+-->
+
+---
+
+## Busy working
+
+<!--
+We were still hard at work on our roadmap.
+Improving existing features and building out new functionality like payroll integrations.
+-->
+
+---
+
+## images of slack conversations
+
+<!--
+And while we were hard at work.
+We started to get a sense that the demo environment wasn't
+really all that reliable.
+
+And, you know, anytime this happened, we could drop
+everything and fix it. But it was a choice between
+that and the roadmap.
+
+Plus, everytime it broke,
+it got a little bit harder to fix. Like an old
+car that you keep patching up until eventually it's held
+together by duck tape and sheer force of will.
+
+and eventually, when you turn the key to start the ignition,
+-->
+
+---
+
+## image of broken builds
+
+<!--
+nothing happens.
+
+that's where we ended up. and so we gave up.
+We don't use Jenkins anymore, but I saved this image,
+and if you look closely, it's actually an entire year's
+worth of broken builds.
+-->
+
+---
+
+# 2019
+
+<!--
+So fast forward again, and by 2019, the business need
+had caught up with us again. We really needed this thing
+to be working.
+
+But this time, we made a point to justify time on the roadmap.
+This was no longer just a passion project.
+-->
+
+---
+
+# retro
+
+<!--
+And so the first thing we did was do a bit of an incident
+retro -- you know, a root cause analysis -- to try to
+understand firstly, how the system worked in the first place,
+and in turn, what about it caused the system to break down.
 -->
 
 ---
@@ -383,7 +520,9 @@ to all of our new and prospective business clients.
 
 
 <!--
-…was deployed as a "complete" environment (alongside "demo"/sandbox instances of all external services and collaborators).
+And so here's what we came up with.
+
+Firstly, it was deployed as a "complete" environment (alongside "demo"/sandbox instances of all external services and collaborators).
 …relied on having pre-seeded, "known" accounts (which could be generated by fixtures or by sanitizing staging/production data), and was periodically wiped clean and reset.
 …was deployed only weekly, then monthly, and then via "push button" (perhaps better described as "push button and cross fingers").
 …was maintained solely by the team closest to the need for its existence (the team incentivized to do the work).
