@@ -581,6 +581,15 @@ layout: center
 
 <v-clicks>
 <img style="position:absolute;left:8%;top:40%;width:60%" src="/images/slacks/2.png" />
+<img style="position:absolute;left:45%;top:50%;width:50%" src="/images/slacks/3.png" />
+<img style="position:absolute;left:30%;top:60%;width:60%" src="/images/slacks/4.png" />
+<img style="position:absolute;left:20%;top:75%;width:60%" src="/images/slacks/5.png" />
+<img style="position:absolute;left:15%;top:55%;width:50%" src="/images/slacks/6.png" />
+<img style="position:absolute;left:20%;top:40%;width:50%" src="/images/slacks/7.png" />
+<img style="position:absolute;left:10%;top:45%;width:70%" src="/images/slacks/8.png" />
+<img style="position:absolute;left:20%;top:40%;width:50%" src="/images/slacks/9.png" />
+<img style="position:absolute;left:30%;top:55%;width:50%" src="/images/slacks/11.png" />
+<img style="position:absolute;left:40%;top:30%;width:45%" src="/images/slacks/12.png" />
 </v-clicks>
 
 <!--
@@ -601,8 +610,11 @@ and eventually, one morning, when you turn the key to start the ignition,
 -->
 
 ---
+layout: center
+class: pt-20
+---
 
-## image of broken builds
+<img style="width:41%;margin:0 auto;" src="/images/jenkins.png" />
 
 <!--
 nothing happens.
