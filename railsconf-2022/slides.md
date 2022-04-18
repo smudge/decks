@@ -162,10 +162,9 @@ end
 <!--
 And these files contain the actual *instructions* for how your app should behave in each environment.
 
-Like, what makes that environment different.
+Like, what makes that environment unique.
 
-
-Are you with me so far? Good.
+With me so far? Good.
 -->
 
 ---
@@ -176,6 +175,52 @@ layout: fact
 
 <!--
 And so what I'm going to be talking about today is this idea of adding a new, dedicated environment -- called "demo" -- for giving, well, application demos.
+-->
+
+---
+layout: image
+image: /images/sales-pitch.jpg
+---
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs text-opacity-100">
+Photo by <a href="https://unsplash.com/@xteemu?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Teemu Paananen</a> on <a href="https://unsplash.com/s/photos/pitch?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
+
+<!--
+Like, the ability to step up in front of an audience, and show off a live version of your product.
+Like, reliably. And repeatably. And consistently.
+
+Because the last thing you want is to get up there, and for something to go wrong.
+-->
+
+---
+layout: image
+image: /images/showroom.jpg
+---
+
+<div style="position:absolute;right:10px;bottom:10px"  class="text-xs">
+Photo by <a href="https://unsplash.com/@rahulbhogal?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Rahul Bhogal</a> on <a href="https://unsplash.com/s/photos/showroom?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
+
+<!-- 
+So think of this like the showroom model of your app.
+-->
+
+---
+layout: image
+image: /images/kiosk.jpg
+class: bg-contain
+style: 'background-size: contain'
+---
+
+<div class="text-xs" style="color:grey;position:absolute;right:10px;bottom:10px">
+Source: <a href="https://www.reddit.com/r/n64/comments/bn3x7d/playing_demos_in_the_stores/">reddit.com</a>
+</div>
+
+<!--
+or maybe the walmart gamecube kiosk version of your app.
+
+except without the horrible neck strain.
 -->
 
 ---
@@ -199,15 +244,21 @@ line-height: 120% !important;
 </style>
 
 <!--
-And I wish I could say it were as simple as just adding a new demo.rb file, but that's just the beginning.
+And I wish I could say it were as simple as just adding a new
+demo.rb file to your app, but that's just the tip of the iceberg.
 -->
 
-
 ---
-layout: fact
+layout: image
+image: /images/iceberg.jpg
+class: text-center
 ---
 
-# "demoability"
+<div class="mt-50 text-shadow-lg">
+
+<h1 style="font-size:400%"><b>"demoability"</b></h1>
+
+</div>
 
 <!--
 Because "demoability" -- the ability to quickly take something
@@ -248,7 +299,7 @@ layout: center
 <!--
 You might've heard of us. We offer financial advice, investing accounts, checking,
 retirement, you name it.
-I like to say that our top product is financial peace of mind. Oh, also, we're hiring.
+I like to say that our top product is financial peace of mind.
 
 And I work on the application platform teams at Betterment.
 We focus on a lot of cross-cutting concerns, and we
@@ -332,8 +383,7 @@ Because our customers were companies, who might want to offer 401k plans to thei
 
 <!--
 And, look, I'm not on the business side of things.
-I'm just a humble software engineer, and so I'm not gonna
-try to explain why things work this way.
+I'm just a humble software engineer,
 
 But if there's one thing I know about B2B businesses,
 it's that they do a lot of product demos.
@@ -355,7 +405,7 @@ already had a Staging environment.
 It was basically a replica of production, except
 the database was reset and repopulated nightly with some magical sanitized data instead of real production data.
 
-And so we made a copy of that.
+And we said, hey, what if we just did something like that?
 -->
 
 ---
@@ -381,9 +431,9 @@ And so, the staging environment was our owl.
 
 <!--
 Of course, we made a couple modifications to the owl. We
-didn't need or even want all of the sanitized stage data, so
+didn't need or even want all of the sanitized staging data, so
 we added another process that would pick out just the demo
-accounts we needed.
+accounts we needed and keep those around.
 -->
 
 ---
@@ -434,7 +484,7 @@ We started to get a sense that the demo environment wasn't
 really all that reliable.
 
 And, you know, anytime this happened, we could drop
-everything and fix it. But it was a choice between
+what we were doing and fix it. But it was always a choice between
 that and the roadmap.
 
 Plus, everytime it broke,
@@ -442,7 +492,7 @@ it got a little bit harder to fix. Like an old
 car that you keep patching up until eventually it's held
 together by duck tape and sheer force of will.
 
-and eventually, when you turn the key to start the ignition,
+and eventually, one morning, when you turn the key to start the ignition,
 -->
 
 ---
@@ -452,10 +502,13 @@ and eventually, when you turn the key to start the ignition,
 <!--
 nothing happens.
 
-that's where we ended up. and so we gave up.
-We don't use Jenkins anymore, but I saved this image,
+that's where we ended up. and so we effectively gave up. And it felt bad.
+
+By the way, we don't use Jenkins anymore, but I saved this image of our Jenkins builds,
 and if you look closely, it's actually an entire year's
 worth of broken builds.
+
+Each one of those was a developer, banging their head against their keyboard, trying to get this working.
 -->
 
 ---
@@ -464,11 +517,11 @@ worth of broken builds.
 
 <!--
 So fast forward again, and by 2019, the business need
-had caught up with us again. We really needed this thing
-to be working.
+had caught up with us, again. We really needed this thing
+to be working. Like, we had been making do with other ways of demoing our product, but we really needed a reliable and repeatable demo experience. Again, "demoability."
 
-But this time, we made a point to justify time on the roadmap.
-This was no longer just a passion project.
+And so, this time, our team was bigger, and we were in a great position to add it to the roadmap.
+This was no longer just a passion project for our team.
 -->
 
 ---
@@ -477,11 +530,16 @@ This was no longer just a passion project.
 
 <!--
 And so the first thing we did was do a bit of an incident
-retro -- you know, a root cause analysis -- to try to
-understand firstly, how the system worked in the first place,
-and in turn, what about it caused the system to break down.
+response meeting -- you know, a root cause analysis -- to try to understand firstly, how
+everything had even worked, and in turn, what
+decisions and assumptions had resulted in it ultimately
+breaking down.
+
+real systems thinking
 -->
 
+---
+layout: center
 ---
 
 <div class="grid grid-cols-3">
@@ -489,60 +547,107 @@ and in turn, what about it caused the system to break down.
 
 <div>
 
-# Decisions:
+# &nbsp;
 
-<v-clicks>
-
-- **Services**  
-- **Database**  
-- **Users**  
-- **Deployments**  
-- **Ownership**  
-
-</v-clicks>
+## **Apps/Services:**
+## **User Accounts:**
+## **Database:**
+## **Cadence:**
+## **Ownership:**
 
 </div><div>
 
-# Demo v1
+# Demo v1:
 
 <v-clicks>
 
-- all of them  
-- refreshed nightly  
-- fixtures/seeds  
-- as needed
-- single team  
+## all of them  
+## fixtures/seeds  
+## periodically reset  
+## push button (and 🤞)  
+## single team  
 
 </v-clicks>
 
 </div>
 </div>
-
 
 <!--
 And so here's what we came up with.
 
-Firstly, it was deployed as a "complete" environment (alongside "demo"/sandbox instances of all external services and collaborators).
-…relied on having pre-seeded, "known" accounts (which could be generated by fixtures or by sanitizing staging/production data), and was periodically wiped clean and reset.
-…was deployed only weekly, then monthly, and then via "push button" (perhaps better described as "push button and cross fingers").
-…was maintained solely by the team closest to the need for its existence (the team incentivized to do the work).
+- Firstly, it was deployed as a "complete" environment.
+So we run a **bunch** of apps at betterment, and when we deployed the demo env, we had to deploy every one of those, so that they could talk to each other, and function. They even connected to things like third party sandbox servers.
+- Next, it relied on having a set of pre-populated, "known" accounts. So, basically, fixture or seed data. And there are a lot of different ways to produce this.
+- Then, to keep those user accounts fresh, we would periodically wipe the database and reset this data. 
+- And at first, all of this was deployed weekly (on Sundays), but then when that got too painful, we switched it to monthly, but that got even _more_ painful, so we started only deploying when we needed to update it to demo newer features or designs. So, let's call this "push button" deploys (but it was really "push button and cross fingers").
+- Lastly, it was maintained solely by, well, us. The engineering team closest to the need for its existence (and most incentivized to do the work)
+
+So we had this list of choices we'd made (both intended and unintended), and so then we started to ask ourselves,
+what can we choose instead?
 -->
 
 ---
-layout: two-cols
+layout: center
 ---
-# Demo v1
 
-- ~~A complete service ecosystem~~
-- Pre-seeded user accounts
-- Infrequent deployments
-- Managed by a specific team
+<div class="grid grid-cols-3">
 
-::right::
 
-# Demo v2
+<div>
 
-- A standalone Rails app with **Stateful Fakes**
+# &nbsp;
+
+## **Apps/Services:**
+## **User Accounts:**
+## **Database:**
+## **Cadence:**
+## **Ownership:**
+
+</div><div>
+
+# Demo v1:
+
+## ~~all of them~~  
+## fixtures/seeds  
+## periodically reset  
+## push button (and 🤞)  
+## single team  
+
+</div><div>
+
+# Demo v2:
+
+## ???
+
+</div>
+</div>
+
+<!--
+
+Like, if we wanna cross some of these things out, and try something else,
+what are the alternatives?
+
+And so, firstly, we thought, what if instead of deploying an
+entire cluster of services, we deploy just a single,
+standalone app.
+
+Now, the more cross-dependencies you have, the harder
+this might be to do, but in our case, we actually already
+had a way of doing this.
+-->
+
+---
+
+# ~~staging~~ -> **development**
+
+<!--
+Instead of basing this off of our _staging_ environment,
+We just had to look to the way our **development** environments
+worked.
+
+Because we could already run these apps in isolation
+on our laptops, when developing them.
+-->
 
 ---
 layout: two-cols
