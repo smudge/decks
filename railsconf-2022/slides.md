@@ -182,7 +182,7 @@ layout: image
 image: /images/sales-pitch.jpg
 ---
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs text-opacity-100">
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
 Photo by <a href="https://unsplash.com/@xteemu?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Teemu Paananen</a> on <a href="https://unsplash.com/s/photos/pitch?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -292,6 +292,7 @@ I also exist in real life, and I work at a company called Betterment.
 
 ---
 layout: center
+class: px-40
 ---
 
 ![Betterment Logo](/images/betterment.png)
@@ -309,20 +310,21 @@ But I haven't always worked on this team.
 -->
 
 ---
-layout: section
+layout: image
+image: /images/2016.svg
 ---
-
-# 2016
+# &nbsp;
 
 <!--
 Now, the story I want to tell starts in 2016, when I first joined Betterment.
 -->
 
 ---
-layout: fact
+layout: center
+class: px-30
 ---
 
-## 401(k)
+![Betterment Logo](/images/b4b.png)
 
 <!--
 Back then, I was on a different team, helping build Betterment's 401k offering,
@@ -330,87 +332,114 @@ now known as Betterment @ Work.
 -->
 
 ---
-layout: two-cols
-class: px-40
+layout: image
+image: /images/sales-b2c.svg
 ---
 
-::right::
-
-```mermaid
-graph BT
-
-D((Other Teams)) --> E[Consumer Product]
-E --> F(Retail Investors)
-```
+# &nbsp;
 
 
 <!--
 And so while most people think of Betterment as a B2C business.
 Like, financial services for everyday people like me and my parents.
-(The industry calls them "retail investors")
 -->
 
 ---
-layout: two-cols
-class: px-40
+layout: image
+image: /images/sales-b2b.svg
 ---
 
-```mermaid
-graph BT
-
-A((My Team)) --> B[401k Product]
-B --> C(Companies)
-```
-
-::right::
-
-```mermaid
-graph BT
-
-D((Other Teams)) --> E[Consumer Product]
-E --> F(Retail Investors)
-```
+# &nbsp;
 
 <!--
 
 The thing my team was building was actually a B2B product.
 Because our customers were companies, who might want to offer 401k plans to their employees.
--->
 
----
-
-# "sales"
-
-<!--
 And, look, I'm not on the business side of things.
 I'm just a humble software engineer,
 
 But if there's one thing I know about B2B businesses,
 it's that they do a lot of product demos.
+-->
+
+---
+layout: image
+image: /images/sales-b2c2b.svg
+---
+
+# &nbsp;
+
+<!--
 
 And so we found ourselves in a position where, we 
 really wanted to SHOW OFF Betterment's consumer product
 to all of our new and prospective business clients.
+
+And so how did we do that?
 -->
 
 ---
+layout: two-cols
+class: text-center px-30
+---
+
+# production
+
+```mermaid
+graph BT
+
+U((Customers)) --> A
+A[App A] .-> B[App B] & C[App C] & D
+B .-> C
+C .-> B
+D[App D] .-> C
+C .-> E[App E]
+D .-> E
+E .-> C
+```
+
+
+::right::
+
+<v-click>
 
 # "staging"
 
-<!--
-And so how did we do that?
-Well, we looked around and saw that Betterment
-already had a Staging environment.
+```mermaid
+graph BT
 
-It was basically a replica of production, except
+U((Developers)) --> A
+A[App A] .-> B[App B] & C[App C] & D
+B .-> C
+C .-> B
+D[App D] .-> C
+C .-> E[App E]
+D .-> E
+E .-> C
+```
+
+</v-click>
+
+<!--
+So, firstly, there's always the option to just use the production cluster, right?
+But since our app involves real money, and real personal info, that option didn't feel great.
+
+But we looked around and saw that Betterment also had a _staging_ environment.
+
+CLICK
+
+It was deployed in exactly the same overall configuration as production, except
 the database was reset and repopulated nightly with some magical sanitized data instead of real production data.
 
 And we said, hey, what if we just did something like that?
 -->
 
 ---
+layout: center
+---
 
-# owl
+![how to draw an owl](/images/how-owl.jpg)
 
 <!--
 and if this sounds a bit like
@@ -421,15 +450,37 @@ it's because that's exactly what this is.
 you see, if what you need is a drawing of an owl,
 and someone else is already drawing owls,
 then you don't really need to learn to draw the owl.
-
-And so, the staging environment was our owl.
 -->
 
 ---
+layout: two-cols
+class: text-center px-30
+---
 
-# owl with hat
+# staging
+
+<img src="/images/owl.jpg" class="mt-15" />
+
+::right::
+
+<v-click>
+
+# demo
+
+<div class="relative mt-15">
+
+<img src="/images/owl.jpg" />
+
+<img src="/images/tophat.svg" class="absolute" style="top:-45px; left:50px; transform:rotate(25deg);" />
+<img src="/images/moustache.svg" class="absolute" style="top:20px;left:-5px; width:75%;" />
+
+</div>
+
+</v-click>
 
 <!--
+And so, the staging environment was our owl.
+
 Of course, we made a couple modifications to the owl. We
 didn't need or even want all of the sanitized staging data, so
 we added another process that would pick out just the demo
@@ -437,8 +488,42 @@ accounts we needed and keep those around.
 -->
 
 ---
+layout: two-cols
+class: text-center px-30
+---
 
-# copy-paste
+# staging
+
+```mermaid
+graph BT
+
+U((Customers)) --> A
+A[App A] .-> B[App B] & C[App C] & D
+B .-> C
+C .-> B
+D[App D] .-> C
+C .-> E[App E]
+D .-> E
+E .-> C
+```
+
+
+::right::
+
+# demo
+
+```mermaid
+graph BT
+
+U((Developers)) --> A
+A[App A] .-> B[App B] & C[App C] & D
+B .-> C
+C .-> B
+D[App D] .-> C
+C .-> E[App E]
+D .-> E
+E .-> C
+```
 
 <!--
 But as for the rest of it, we just copy-pasted the deployment
@@ -447,8 +532,13 @@ staging. And we deployed it,
 -->
 
 ---
+layout: image
+image: /images/reenactment.jpg
+---
 
-# Success!
+<div style="position:absolute;right:10px;bottom:10px"  class="text-xs">
+Photo by <a href="https://unsplash.com/@xteemu?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Teemu Paananen</a> on <a href="https://unsplash.com/s/photos/pitch?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
 
 <!--
 and it worked! so, our work was done, right?
@@ -457,8 +547,11 @@ well that's what we thought.
 -->
 
 ---
+layout: image
+image: /images/2017.svg
+---
 
-# 2017
+# &nbsp;
 
 <!--
 But fast forward a bit, and by 2017 the cracks
@@ -466,17 +559,29 @@ were starting to show.
 -->
 
 ---
+layout: image
+image: /images/roadmap.jpg
+---
 
-## Busy working
+<div style="position:absolute;right:10px;bottom:10px"  class="text-xs">
+Photo by <a href="https://unsplash.com/@airfocus?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">airfocus</a> on <a href="https://unsplash.com/s/photos/roadmap?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>  
 
 <!--
+
 We were still hard at work on our roadmap.
 Improving existing features and building out new functionality like payroll integrations.
 -->
 
 ---
+layout: center
+---
 
-## images of slack conversations
+<img style="width:60%;margin:0 auto;" src="/images/slacks/1.png" />
+
+<v-clicks>
+<img style="position:absolute;left:8%;top:40%;width:60%" src="/images/slacks/2.png" />
+</v-clicks>
 
 <!--
 And while we were hard at work.
@@ -512,8 +617,11 @@ Each one of those was a developer, banging their head against their keyboard, tr
 -->
 
 ---
+layout: image
+image: /images/2019.svg
+---
 
-# 2019
+# &nbsp;
 
 <!--
 So fast forward again, and by 2019, the business need
