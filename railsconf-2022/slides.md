@@ -497,7 +497,7 @@ class: text-center px-30
 ```mermaid
 graph BT
 
-U((Customers)) --> A
+U((Developers)) --> A
 A[App A] .-> B[App B] & C[App C] & D
 B .-> C
 C .-> B
@@ -515,7 +515,7 @@ E .-> C
 ```mermaid
 graph BT
 
-U((Developers)) --> A
+U((Demoers)) --> A
 A[App A] .-> B[App B] & C[App C] & D
 B .-> C
 C .-> B
@@ -554,8 +554,7 @@ image: /images/2017.svg
 # &nbsp;
 
 <!--
-But fast forward a bit, and by 2017 the cracks
-were starting to show.
+But fast forward a bit, to 2017.
 -->
 
 ---
@@ -570,7 +569,6 @@ Photo by <a href="https://unsplash.com/@airfocus?utm_source=unsplash&utm_medium=
 <!--
 
 We were still hard at work on our roadmap.
-Improving existing features and building out new functionality like payroll integrations.
 -->
 
 ---
@@ -580,22 +578,19 @@ layout: center
 <img style="width:60%;margin:0 auto;" src="/images/slacks/1.png" />
 
 <v-clicks>
-<img style="position:absolute;left:8%;top:40%;width:60%" src="/images/slacks/2.png" />
-<img style="position:absolute;left:45%;top:50%;width:50%" src="/images/slacks/3.png" />
-<img style="position:absolute;left:30%;top:60%;width:60%" src="/images/slacks/4.png" />
-<img style="position:absolute;left:20%;top:75%;width:60%" src="/images/slacks/5.png" />
-<img style="position:absolute;left:15%;top:55%;width:50%" src="/images/slacks/6.png" />
-<img style="position:absolute;left:20%;top:40%;width:50%" src="/images/slacks/7.png" />
-<img style="position:absolute;left:10%;top:45%;width:70%" src="/images/slacks/8.png" />
-<img style="position:absolute;left:20%;top:40%;width:50%" src="/images/slacks/9.png" />
-<img style="position:absolute;left:30%;top:55%;width:50%" src="/images/slacks/11.png" />
-<img style="position:absolute;left:40%;top:30%;width:45%" src="/images/slacks/12.png" />
+<img style="position:absolute;left:8%;top:40%;width:60%;transform:rotate(-9deg)" src="/images/slacks/2.png" />
+<img style="position:absolute;left:45%;top:50%;width:50%;transform:rotate(12deg)" src="/images/slacks/3.png" />
+<img style="position:absolute;left:25%;top:60%;width:60%" src="/images/slacks/4.png" />
+<img style="position:absolute;left:20%;top:15%;width:60%" src="/images/slacks/5.png" />
+<img style="position:absolute;left:15%;top:25%;width:50%;transform:rotate(-15deg)" src="/images/slacks/6.png" />
+<img style="position:absolute;left:30%;top:20%;width:50%;transform:rotate(15deg)" src="/images/slacks/7.png" />
+<img style="position:absolute;left:10%;top:30%;width:60%" src="/images/slacks/8.png" />
+<img style="position:absolute;left:18%;top:45%;width:50%;transform:rotate(-40deg)" src="/images/slacks/9.png" />
+<img style="position:absolute;left:30%;top:30%;width:50%;transform:rotate(30deg)" src="/images/slacks/11.png" />
 </v-clicks>
 
 <!--
-And while we were hard at work.
-We started to get a sense that the demo environment wasn't
-really all that reliable.
+But we were getting a sense that the demo environment wasn't really all that reliable.
 
 And, you know, anytime this happened, we could drop
 what we were doing and fix it. But it was always a choice between
@@ -611,19 +606,29 @@ and eventually, one morning, when you turn the key to start the ignition,
 
 ---
 layout: center
-class: pt-20
 ---
 
-<img style="width:41%;margin:0 auto;" src="/images/jenkins.png" />
+<img src="/images/slacks/12.png" />
+
 
 <!--
 nothing happens.
+-->
+
+---
+layout: center
+class: pt-20
+---
+
+
+<img style="width:42%;margin:0 auto;" src="/images/jenkins.png" />
+
+<!--
 
 that's where we ended up. and so we effectively gave up. And it felt bad.
 
-By the way, we don't use Jenkins anymore, but I saved this image of our Jenkins builds,
-and if you look closely, it's actually an entire year's
-worth of broken builds.
+By the way, we don't use Jenkins anymore, but I saved this screengrab of our build history,
+and if you look closely, it's actually an entire year's worth of broken builds.
 
 Each one of those was a developer, banging their head against their keyboard, trying to get this working.
 -->
@@ -636,26 +641,42 @@ image: /images/2019.svg
 # &nbsp;
 
 <!--
-So fast forward again, and by 2019, the business need
-had caught up with us, again. We really needed this thing
-to be working. Like, we had been making do with other ways of demoing our product, but we really needed a reliable and repeatable demo experience. Again, "demoability."
+So fast forward again, and by 2019, the business needs had caught up with us
+again. We really needed this thing to be working.
 
-And so, this time, our team was bigger, and we were in a great position to add it to the roadmap.
-This was no longer just a passion project for our team.
+But we also had time in our roadmap finally.
 -->
 
 ---
+layout: image
+image: /images/iceberg.jpg
+---
 
-# retro
+<div class="ml-50 mt-30 text-3xl text-shadow-lg font-bold">
+
+<v-clicks>
+
+- What was deployed?
+- How frequently was it deployed?
+- Where did the data come from?
+- How did you log in?
+- Who owned it?
+
+</v-clicks>
+
+</div>
 
 <!--
-And so the first thing we did was do a bit of an incident
-response meeting -- you know, a root cause analysis -- to try to understand firstly, how
-everything had even worked, and in turn, what
-decisions and assumptions had resulted in it ultimately
-breaking down.
+And so the first thing we did was a bit of a retrospective deep dive, to try to
+understand firstly, how everything had even worked, and in turn, what decisions
+and assumptions had resulted in it ultimately breaking down.
 
-real systems thinking
+And so we asked ourselves questions like:
+- What got deployed
+- And how frequently?
+- How did the database work?
+- How did you log in?
+- And, most importantly, whose job was it to maintain this thing?
 -->
 
 ---
@@ -669,23 +690,21 @@ layout: center
 
 # &nbsp;
 
-## **Apps/Services:**
-## **User Accounts:**
-## **Database:**
+## **Deployed:**
+## **Data:**
 ## **Cadence:**
 ## **Ownership:**
 
-</div><div>
+</div><div class="pr-10">
 
 # Demo v1:
 
 <v-clicks>
 
-## all of them  
-## fixtures/seeds  
-## periodically reset  
-## push button (and 🤞)  
-## single team  
+## everything
+## fixtures/seeds
+## push button (🤞)
+## single team
 
 </v-clicks>
 
@@ -693,17 +712,22 @@ layout: center
 </div>
 
 <!--
-And so here's what we came up with.
+And this helped us trace things back to 4 major architectural decisions.
 
-- Firstly, it was deployed as a "complete" environment.
-So we run a **bunch** of apps at betterment, and when we deployed the demo env, we had to deploy every one of those, so that they could talk to each other, and function. They even connected to things like third party sandbox servers.
-- Next, it relied on having a set of pre-populated, "known" accounts. So, basically, fixture or seed data. And there are a lot of different ways to produce this.
-- Then, to keep those user accounts fresh, we would periodically wipe the database and reset this data. 
-- And at first, all of this was deployed weekly (on Sundays), but then when that got too painful, we switched it to monthly, but that got even _more_ painful, so we started only deploying when we needed to update it to demo newer features or designs. So, let's call this "push button" deploys (but it was really "push button and cross fingers").
-- Lastly, it was maintained solely by, well, us. The engineering team closest to the need for its existence (and most incentivized to do the work)
+Firstly, what got deployed? Well, everything. All of our apps.
 
-So we had this list of choices we'd made (both intended and unintended), and so then we started to ask ourselves,
-what can we choose instead?
+Secondly, the database was populated up front with all of the demo accounts,
+and this got reset with every deployment.
+
+And at first, all of this was deployed weekly (on Sundays), and then Monthly,
+but when even that got to be too painful, we started only deploying when we
+needed to. So it was "push button" deploys, but I'd call it"push button and
+cross fingers"
+
+Lastly, who maintained it? Well, us. The engineering team closest to the need
+for its existence (and most incentivized to do the work)
+
+And so, next, we started crossing these things out.
 -->
 
 ---
@@ -717,21 +741,19 @@ layout: center
 
 # &nbsp;
 
-## **Apps/Services:**
-## **User Accounts:**
-## **Database:**
+## **Deployed:**
+## **Data:**
 ## **Cadence:**
 ## **Ownership:**
 
-</div><div>
+</div><div class="pr-10">
 
 # Demo v1:
 
-## ~~all of them~~  
-## fixtures/seeds  
-## periodically reset  
-## push button (and 🤞)  
-## single team  
+## ~~everything~~
+## fixtures/seeds
+## push button (🤞)
+## single team
 
 </div><div>
 
@@ -743,30 +765,35 @@ layout: center
 </div>
 
 <!--
+First, we thought, what if instead of deploying an
+entire cluster of services, we deploy just the one app that we want to demo, running in some kind of standalone mode.
 
-Like, if we wanna cross some of these things out, and try something else,
-what are the alternatives?
-
-And so, firstly, we thought, what if instead of deploying an
-entire cluster of services, we deploy just a single,
-standalone app.
-
-Now, the more cross-dependencies you have, the harder
-this might be to do, but in our case, we actually already
-had a way of doing this.
+And that got us thinking, because we already had a way of running apps in isolation.
 -->
 
 ---
+layout: image
+image: /images/dev-laptop.jpg
+---
 
-# ~~staging~~ -> **development**
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@cgower?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Christopher Gower</a> on <a href="https://unsplash.com/s/photos/laptop-office?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
+
 
 <!--
-Instead of basing this off of our _staging_ environment,
-We just had to look to the way our **development** environments
-worked.
 
-Because we could already run these apps in isolation
-on our laptops, when developing them.
+It's how we ran them on our development laptops!
+-->
+
+---
+layout: center
+---
+
+![webvalve](/images/webvalve.png)
+
+<!--
+When developing locally, we use a tool called webvalve.
 -->
 
 ---
@@ -775,7 +802,7 @@ class: text-center
 ---
 
 
-# Without Fakes:
+# Without WebValve:
 
 <v-click>
 
@@ -788,12 +815,8 @@ C --> B
 B --> C
 D[App D] --> C
 
-subgraph primary app
+subgraph Main App
 A
-end
-
-subgraph the rest of the ecosystem
-B & C & D
 end
 ```
 
@@ -802,7 +825,7 @@ end
 ::right::
 
 
-# With Fakes:
+# With WebValve:
 
 <v-click>
 
@@ -811,19 +834,21 @@ graph LR
 
 A[App A] --> B(Fake B) & C(Fake C)
 
-subgraph primary app
-A
+subgraph Main App
+A & B & C
 end
 ```
 
 </v-click>
 
----
+<!--
+and so instead of running an entire cluster of applications locally.
+what webvalve lets us do is define fake versions of them,
+and it will automatically route all web traffic to the fakes,
+which are running _inside_ of your Rails app.
 
-# How?
-
-- Webmock
-- WebValve
+So it's all one Rails process.
+-->
 
 ---
 
@@ -832,10 +857,40 @@ end
 ```ruby
 class FakeBank < WebValve::FakeService
   get '/widgets' do
-    json result: 'it works!'
+    json result: {
+      value: 9.99,
+      message: 'it works!'
+    }
   end
 end
 ```
+
+<!--
+And these fakes apps are really simple.
+
+They don't have to do everything the real app would do,
+they just have to respond with some fake data, so that your app doesn't break.
+-->
+
+---
+
+## github screenshot
+
+<!--
+
+Now, there's a whole other talk on how useful WebValve can be for local development
+and testing. Our VP of Architecture, Sam Moore, does a great job summarizing,
+and so I'm not going to do a deep dive here.
+-->
+
+---
+
+## 
+
+<!--
+But I'd like to share with you what happened when I turned webvalve on, and then
+showed it to one of my colleagues.
+-->
 
 ---
 
