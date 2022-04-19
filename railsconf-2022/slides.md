@@ -328,7 +328,7 @@ class: px-30
 
 <!--
 Back then, I was on a different team, helping build Betterment's 401k offering,
-now known as Betterment @ Work.
+which is now part of Betterment @ Work.
 -->
 
 ---
