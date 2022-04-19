@@ -298,7 +298,7 @@ class: px-40
 ![Betterment Logo](/images/betterment.png)
 
 <!--
-You might've heard of us. We offer financial advice, investing accounts, checking,
+You might've heard of us. We offer financial advice, investing accounts,
 retirement, you name it.
 I like to say that our top product is financial peace of mind.
 
@@ -422,7 +422,7 @@ E .-> C
 </v-click>
 
 <!--
-So, firstly, there's always the option to just use the production cluster, right?
+So, firstly, there's always the option to just use the production app, right? And in our case, it's a cluster of multiple applications.
 But since our app involves real money, and real personal info, that option didn't feel great.
 
 But we looked around and saw that Betterment also had a _staging_ environment.
@@ -725,9 +725,9 @@ needed to. So it was "push button" deploys, but I'd call it"push button and
 cross fingers"
 
 Lastly, who maintained it? Well, us. The engineering team closest to the need
-for its existence (and most incentivized to do the work)
+for its existence (and most incentivized to do the work).
 
-And so, next, we started crossing these things out.
+And so, now that we had this list, we started crossing things out.
 -->
 
 ---
@@ -768,7 +768,10 @@ layout: center
 First, we thought, what if instead of deploying an
 entire cluster of services, we deploy just the one app that we want to demo, running in some kind of standalone mode.
 
-And that got us thinking, because we already had a way of running apps in isolation.
+And the benefits there should be obvious right? From a maintainability standpoint, why manage all of this
+if we could just manage this.
+
+And that got us thinking, because at Betterment we already have a way of running our Rails apps in isolation.
 -->
 
 ---
@@ -783,7 +786,9 @@ Photo by <a href="https://unsplash.com/@cgower?utm_source=unsplash&utm_medium=re
 
 <!--
 
-It's how we ran them on our development laptops!
+It's how we run them on our development laptops!
+
+And so when we develop apps locally, we use a tool called...
 -->
 
 ---
@@ -793,7 +798,10 @@ layout: center
 ![webvalve](/images/webvalve.png)
 
 <!--
-When developing locally, we use a tool called webvalve.
+...webvalve.
+
+what webvalve lets us do is define fake versions of any external service or app,
+and it will automatically route all web traffic to the fakes,
 -->
 
 ---
@@ -842,10 +850,8 @@ end
 </v-click>
 
 <!--
-and so instead of running an entire cluster of applications locally.
-what webvalve lets us do is define fake versions of them,
-and it will automatically route all web traffic to the fakes,
-which are running _inside_ of your Rails app.
+and so instead of running an entire cluster of applications locally,
+we have a set of fakes which actually run _inside_ of the Rails app itself.
 
 So it's all one Rails process.
 -->
@@ -880,7 +886,63 @@ they just have to respond with some fake data, so that your app doesn't break.
 
 Now, there's a whole other talk on how useful WebValve can be for local development
 and testing. Our VP of Architecture, Sam Moore, does a great job summarizing,
-and so I'm not going to do a deep dive here.
+and so I'm not gonna cover it here.
+
+But I will cover some of the "gotchas" that we encountered with these fakes.
+-->
+
+---
+
+##
+
+<!--
+So, firstly, we already had all of our fake services, because our developers had already
+written them when developing the apps.
+
+So I could enable webvalve right away and deploy that singleton demo app.
+
+But that didn't mean it was actually demoable.
+-->
+
+---
+
+##
+
+<!--
+For example, when I showed the app to one of my colleagues who commonly gave client demos,
+he clicked around, and he was impressed, he liked what he was seeing,
+but then he encountered this page, showing the performance history of an account.
+
+And he said, hold on, I can't show this to a client.
+-->
+
+---
+
+##
+
+<!--
+And I said, well we don't actually have any performance history, because the
+history comes from a different backend service, and blah blah blah, developer talk.
+
+And he said, doesn't matter. If a client has to ask why something looks broken,
+then the demo is already off track.
+
+So I walked away from that meeting feeling a little bummed, because he was
+right, and I knew I was just making excuses for technical shortcomings.
+
+I wondered if this was even the right approach, or if I was way off track.
+-->
+
+---
+
+##
+
+<!--
+But I thought about it more. Because, like, most of the application worked
+as intended. It was just some of these features at the edge that didn't really
+make for a good demo.
+
+And so, I thought, why not, just, make the fake services believable.
 -->
 
 ---
@@ -888,19 +950,172 @@ and so I'm not going to do a deep dive here.
 ## 
 
 <!--
-But I'd like to share with you what happened when I turned webvalve on, and then
-showed it to one of my colleagues.
+And so, I wrote a little stock market simulation.
+With buys, and sells, and market changes, and dividends, and fees.
+And it produced that graph.
+
+So I went back to my colleague, and showed it to him, and he said, yeah, sure,
+looks fine, and, so at that point I decided, yeah, okay, we can probably run with this.
+-->
+
+---
+
+##
+
+<!--
+Now, the other thing about the fake services is that they didn't remember anything.
+
+So there were a few other places where, for example, you could perform an action,
+like, a deposit, and it would reach out and submit that action to an external service, successfully.
+
+But then when it brought you back to your dashboard, your balance hadn't changed.
+
+So again, that was gonna break the immersion.
 -->
 
 ---
 
 # "Stateful" Fakes
 
-- Real database models, fake data
+<!--
+And this is where we came up with the idea of stateful fakes
+-->
 
 ---
 
+##
 
+<!--
+A stateful fake is a WebValve fake, that can remember things.
+
+It gets its own database tables.
+-->
+
+---
+
+##
+
+<!--
+And suddenly, it felt like we could do anything with them.
+Because, like, they're not loaded in production.
+They just impact the way these standalone apps behave.
+But that also feels a little dangerous.
+And so we were still cautious.
+
+And I think the lesson that we drew from this was that...
+-->
+
+---
+
+## An app should make sense in isolation.
+
+<!--
+An app should make sense... in isolation?
+
+Like if you need to rely heavily on these fakes, in order to make the application behave in a sensible way,
+then maybe your application boundaries aren't quite in the right places. Like, at that point, what is
+your application even doing.
+
+So we started to think more about the individual cohesiveness of each of our apps.
+-->
+
+---
+
+<div class="grid grid-cols-3">
+
+
+<div>
+
+# &nbsp;
+
+## **Deployed:**
+## **Data:**
+## **Cadence:**
+## **Ownership:**
+
+</div><div class="pr-10">
+
+# Demo v1:
+
+## ~~everything~~
+## fixtures/seeds
+## push button (🤞)
+## single team
+
+</div><div>
+
+# Demo v2:
+
+## one! (+stateful fakes)
+
+</div>
+</div>
+
+<!--
+and, we had successfully reduced our demo env to a single app
+
+So next we focused our attention on the user accounts.
+How the accounts got added to the demo database, and how to access them.
+-->
+
+---
+
+<!--
+and for that, we started with the most painful part of the process:
+
+the cycle of refreshing and resetting the database.
+
+Not only was this a common cause of build failure, it also wasn't
+always reliably in sync with the state of the code.
+
+Like, we were extracting certain test accounts from our staging environment,
+but there was no rule that said the expected staging and demo database schemas
+had to be in sync.
+-->
+
+---
+
+<!--
+And so ideally we'd do away with that entirely, and let the demo apps manage their
+own data.
+-->
+
+---
+
+<!--
+Now, one option there, was to use Rails' built-in seeds.rb feature.
+And we use this locally to seed our developer laptops with a bunch of test users.
+
+But this still doesn't solve one other thing, which is that,
+if I logged into one of these users, and signed up for, like, a Roth IRA,
+that user then had a Roth IRA. And so if I need to repeat that demo again,
+I already have a Roth IRA.
+
+And we saw a lot of that, where these demo accounts would sort of get into 
+these unusable states, and they wouldn't be reset until the next big data refresh.
+
+And on top of that, there was nothing stopping two people from using the same demo account,
+and that could also cause us to stomp on our own toes.
+-->
+
+---
+
+<!--
+So instead, we thought, well what if we generate a new user account, each time you log in.
+So you'd always start with a blank slate.
+
+And again, when we looked to our local development environments we saw that we already had
+a way of doing this.
+
+Factories! So we use a tool called FactoryBot. And we thought, well, what if we just call
+FactoryBot.create(:user), and then log in as that user.
+-->
+
+---
+
+<!--
+And instead of a login form, all we would need was a single sign in button.
+-->
 
 ---
 layout: image-right
