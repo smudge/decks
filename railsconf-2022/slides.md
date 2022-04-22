@@ -190,7 +190,7 @@ Photo by <a href="https://unsplash.com/@xteemu?utm_source=unsplash&utm_medium=re
 Like, the ability to step up in front of an audience, and show off a live version of your product.
 Like, reliably. And repeatably. And consistently.
 
-Because the last thing you want is to get up there, and for something to go wrong.
+Because the last thing you want is to get up there, and for something to go horribly wrong, or even a little wrong.
 -->
 
 ---
@@ -879,145 +879,394 @@ they just have to respond with some fake data, so that your app doesn't break.
 -->
 
 ---
+layout: center
+---
 
-## github screenshot
+![rails at scale](/images/rails-at-scale.jpg)
 
 <!--
-
 Now, there's a whole other talk on how useful WebValve can be for local development
-and testing. Our VP of Architecture, Sam Moore, does a great job summarizing,
+and testing.
+-->
+
+---
+layout: center
+---
+
+![rails at scale 2](/images/rails-at-scale-2.png)
+
+<!--
+Our VP of Architecture, Sam Moore, does a great job summarizing,
 and so I'm not gonna cover it here.
-
-But I will cover some of the "gotchas" that we encountered with these fakes.
 -->
 
 ---
+layout: center
+class: px-50
+---
 
-##
+<center><h2>github.com/Betterment/webvalve</h2></center>
+
+![webvalve readme](/images/webvalve-readme.png)
+
 
 <!--
-So, firstly, we already had all of our fake services, because our developers had already
-written them when developing the apps.
-
-So I could enable webvalve right away and deploy that singleton demo app.
-
-But that didn't mean it was actually demoable.
+and you can find that and more in the webvalve README
 -->
 
 ---
+layout: two-cols
+class: text-center px-30
+---
 
-##
+# Before
+
+```mermaid
+graph BT
+
+U((Demoers)) --> A
+A[App A] .-> B[App B] & C[App C] & D
+B .-> C
+C .-> B
+D[App D] .-> C
+C .-> E[App E]
+D .-> E
+E .-> C
+```
+
+
+::right::
+
+# After
+
+<v-click>
+
+<div class="mt-50 pl-10">
+
+```mermaid
+graph BT
+
+U((Demoers)) --> A[App A]
+```
+
+</div>
+
+
+</v-click>
 
 <!--
-For example, when I showed the app to one of my colleagues who commonly gave client demos,
-he clicked around, and he was impressed, he liked what he was seeing,
-but then he encountered this page, showing the performance history of an account.
+But what I will cover is how we got it working for demos.
+
+And, so, firstly,
+
+CLICK
+
+it did allow us to actually deploy just a single app, basically for free.
+
+Because it used all of the fake services that our teams had _already_ written.
+-->
+
+---
+layout: center
+class: px-40 bg-blue-100
+---
+
+![summary page](/images/summary-page.png)
+
+<!--
+And so this was great!
+
+I showed one of my colleagues who commonly gave client demos, and he clicked
+around, and he liked what he was seeing.
+
+But then he encountered...
+-->
+
+---
+layout: center
+class: px-20 bg-blue-100
+---
+
+![performance page (no graphs)](/images/performance/page-empty-graphs.png)
+
+<!--
+...this page, which is supposed to graph he performance history of an account.
 
 And he said, hold on, I can't show this to a client.
 -->
 
 ---
+layout: center
+class: px-20 bg-blue-100
+---
 
-##
+![empty returns graph](/images/performance/returns-empty.png)
 
 <!--
-And I said, well we don't actually have any performance history, because the
-history comes from a different backend service, and blah blah blah, developer talk.
+And I was like, well we don't actually have any performance history, because
+this is just a demo app, and the history comes from a different backend
+service, and blah blah blah, developer talk.
 
 And he said, doesn't matter. If a client has to ask why something looks broken,
 then the demo is already off track.
+-->
 
+---
+layout: center
+class: px-40
+---
+
+![peanuts gif](/images/charlie-brown.gif)
+
+
+<div style="position:absolute;right:10px;bottom:10px;color: #ddd" class="text-xs">
+Arrested Development (TV Series 2003-2019)
+</div>
+
+
+<!--
 So I walked away from that meeting feeling a little bummed, because he was
 right, and I knew I was just making excuses for technical shortcomings.
 
-I wondered if this was even the right approach, or if I was way off track.
+And, so I started to wonder if this was even the right approach.
 -->
 
 ---
 
-##
+
+
+<div grid="~ cols-2 gap-5" m="-t-2"><div>
+
+```ruby
+class FakeBalanceService < WebValve::FakeService
+  get '/api/daily_returns' do
+    json([
+      {
+        date: Date.yesterday.to_s(:iso8601),
+        balance_cents: 1_000_00,
+        starting_balance_cents: 1_000_00,
+        market_change_amount_cents: 0,
+        dividend_amount_cents: 0,
+        fees_cents: 0
+      }
+    ])
+  end
+end
+```
+
+</div>
+<div><div class="bg-blue-100 px-5 pt-2 pb-2 absolute top-0 bottom-0">
+
+![empty graph](/images/performance/returns-empty.png)
+
+</div></div></div>
+
 
 <!--
 But I thought about it more. Because, like, most of the application worked
-as intended. It was just some of these features at the edge that didn't really
+as intended. It was just some of these external service boundaries that didn't
 make for a good demo.
 
-And so, I thought, why not, just, make the fake services believable.
+And so, I thought, why not, just, make the fake service a little more fake.
 -->
 
 ---
 
-## 
+
+<div grid="~ cols-2 gap-5" m="-t-2"><div>
+
+```ruby {all|7|8|9|10|11|all}
+class FakeBalanceService < WebValve::FakeService
+  get '/api/daily_returns' do
+    date_range = dates(params[:from], params[:to])
+    balance = Money.new(1_000_00)
+    json(date_range.map.with_index do |date, idx|
+      starting_balance = balance
+      buys = deposit?(date) ? random_buy : 0
+      sells = withdraw?(date) ? random_sell : 0
+      mkt_changes = balance * random_market_change
+      divs = dividend?(date) ? balance * 0.01 : 0
+      fees = fee?(date) ? balance * 0.0025 : 0
+      balance += buys - sells + mkt_changes + divs - fees
+      {
+        date: date.to_s(:iso8601),
+        balance_cents: balance.cents,
+        starting_balance_cents: starting_balance.cents,
+        market_change_amount_cents: mkt_changes.cents,
+        dividend_amount_cents: divs.cents,
+        fees_cents: fees.cents,
+      }
+    end)
+  end
+end
+```
+
+</div>
+<div><div class="bg-blue-100 px-5 pt-2 pb-2 absolute top-0 bottom-0" v-click-hide>
+
+![empty graph](/images/performance/returns-empty.png)
+
+</div>
+
+<div class="bg-blue-100 px-5 pt-2 pb-2 absolute top-0 bottom-0" v-after>
+
+![graph](/images/performance/returns.png)
+
+</div></div></div>
+
+
 
 <!--
-And so, I wrote a little stock market simulation.
+And so, I wrote a fake stock market simulation.
 With buys, and sells, and market changes, and dividends, and fees.
-And it produced that graph.
 
-So I went back to my colleague, and showed it to him, and he said, yeah, sure,
-looks fine, and, so at that point I decided, yeah, okay, we can probably run with this.
+CLICK
+
+And of course, none of this is actually based in any kind of reality.
+Like, this is a terrible simulation.
+But it resulted in
+
+CLICK
+
+this graph.
+
+Again, is this real? No, absolutely not. But is it demoable? Maybe.
 -->
 
 ---
+layout: center
+class: px-20 bg-blue-100
+---
 
-##
+![performance page (with graphs)](/images/performance/page-graphs.png)
 
 <!--
-Now, the other thing about the fake services is that they didn't remember anything.
+So I went back to my colleague, and he said, yeah, sure, looks fine, and, so at
+that point I decided, okay, we can probably run with this.
 
-So there were a few other places where, for example, you could perform an action,
-like, a deposit, and it would reach out and submit that action to an external service, successfully.
+But there was one more issue.
+-->
 
-But then when it brought you back to your dashboard, your balance hadn't changed.
+---
+layout: center
+class: px-20
+---
+
+![dory](/images/dory.gif)
+
+<div style="position:absolute;right:10px;bottom:10px;color: #ddd" class="text-xs">
+Finding Nemo (2003)
+</div>
+
+
+<!--
+These fake services had no ability to remember anything.
+
+And by that I mean, if you performed an action...
+-->
+
+---
+layout: center
+class: px-20
+---
+
+```mermaid
+sequenceDiagram
+    App->>+Fake: Deposit $123
+    Fake->>+App: Okay
+    App->>+Fake: What's my balance?
+    Fake-->>+App: $0
+```
+
+<!--
+Like make a deposit, which resulted in an external POST request.
+The next time you fetched your balance, via an external GET request.
+It would show your previous balance.
 
 So again, that was gonna break the immersion.
 -->
 
 ---
+layout: center
+---
 
-# "Stateful" Fakes
+# **"Stateful" Fakes**
 
 <!--
 And this is where we came up with the idea of stateful fakes
 -->
 
 ---
+layout: center
+---
 
-##
+```ruby {all|2-5|6-11|19}
+class FakeBalanceService < WebValve::FakeService
+  class FakeAccount < ActiveRecord::Base
+    money :balance
+  end
+
+  get '/api/balance' do
+    fake_account = FakeAccount
+      .find_by(account_id: params[:account_id])
+
+    json balance_cents: fake_account&.balance.cents || 0
+  end
+
+  post '/api/deposit' do
+    fake_account = FakeAccount
+      .where(account_id: params[:account_id)
+      .first_or_create!(balance_cents: 0)
+
+    deposit = params[:amount_cents].to_money
+    fake_account.update!(balance: fake_account.balance + deposit)
+
+    json balance_cents: fake_account.balance.cents
+end
+```
+
 
 <!--
 A stateful fake is a WebValve fake, that can remember things.
 
-It gets its own database tables.
+CLICK
+
+It gets its own database tables and ActiveRecord models.
+
+CLICK
+
+And it can read from those tables during GET requests
+
+CLICK
+
+And actually UPDATE those tables during POST/PUT/PATCH/DELETE/etc
+-->
+
+---
+layout: center
+class: px-20
+---
+
+```mermaid
+sequenceDiagram
+    App->>+Fake: Deposit $123
+    Fake->>+App: Okay
+    App->>+Fake: What's my balance?
+    Fake-->>+App: $123
+```
+
+
+<!--
+And so now it can remember things!
 -->
 
 ---
 
-##
+# Recap
 
-<!--
-And suddenly, it felt like we could do anything with them.
-Because, like, they're not loaded in production.
-They just impact the way these standalone apps behave.
-But that also feels a little dangerous.
-And so we were still cautious.
-
-And I think the lesson that we drew from this was that...
--->
-
----
-
-## An app should make sense in isolation.
-
-<!--
-An app should make sense... in isolation?
-
-Like if you need to rely heavily on these fakes, in order to make the application behave in a sensible way,
-then maybe your application boundaries aren't quite in the right places. Like, at that point, what is
-your application even doing.
-
-So we started to think more about the individual cohesiveness of each of our apps.
--->
+- We enabled WebValve
+- We made the fake responses not just fake, but demoable
+- And we gave fakes the ability to remember things
 
 ---
 
@@ -1046,19 +1295,37 @@ So we started to think more about the individual cohesiveness of each of our app
 
 # Demo v2:
 
+<v-click>
+
 ## one! (+stateful fakes)
+
+</v-click>
 
 </div>
 </div>
 
 <!--
-and, we had successfully reduced our demo env to a single app
+And so we had reduced our demo env from deploying EVERYTHING, to
+
+CLICK
+
+deploying just one app.
+
 
 So next we focused our attention on the user accounts.
 How the accounts got added to the demo database, and how to access them.
 -->
 
 ---
+
+<!--
+And so if you remember, we relied on this kind of magic process that would
+tear down and recreate the database every so often.
+
+And when it did, you'd freshly-baked little demo accounts that you
+could log in as, if you knew their email and password.
+-->
+
 
 <!--
 and for that, we started with the most painful part of the process:
