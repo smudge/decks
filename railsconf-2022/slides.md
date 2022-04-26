@@ -1286,6 +1286,10 @@ U((Demoers)) --> A[App A + 'stateful' fakes]
 
 <!--
 And so we'd done it. We could run our app in total isolation from all external apps and services.
+
+And, so, quickly, to recap:
+
+We enabled WebValve. We made the fake services real _enough_ to support a useful demo. And we gave fakes the ability to remember things.
 -->
 
 ---
@@ -1301,10 +1305,6 @@ class: text-center
 </div>
 
 <!--
-And, so, quickly, to recap:
-
-We enabled WebValve. We made the fake services real _enough_ to support a useful demo. And we gave fakes the ability to remember things.
-
 And all of this brings us to the next layer of the demoability iceberg, which is that...
 
 CLICK
@@ -1428,8 +1428,6 @@ style: 'background-size: contain'
 
 <!--
 Did they, like, keep the list of demo logins on a sticky note? 
-
-CLICK
 
 How did they know that someone else wasn't already using one of the demo accounts?
 -->
@@ -1845,12 +1843,9 @@ line-height: 120% !important;
 
 
 <!--
-And we decided to actually patch the sequences feature,
+And we decided to actually patch the sequences feature to dynamically look up the next available value in the database.
 
-so that it would be able to look up the
-next value based on what was already in the database
-
-But how does that lookup work?
+And we tried a few things here.
 -->
 
 ---
@@ -1882,9 +1877,9 @@ line-height: 120% !important;
 </style>
 
 <!--
-Well first, we thought, what if we just take the MAX value in the table and then add 1.
+First, we said, let's just take the MAX value in the table - like SELECT MAX - and add 1.
 
-And if it's an integer, or a string with a standard lexographic order, it kinda works, but not really.
+And if it's an integer, or a string with a standard lexographic order, it kinda works? But not really.
 -->
 
 ---
@@ -1930,7 +1925,7 @@ line-height: 120% !important;
 
 
 <!--
-But what about nonstandard sequences? Like one that goes in
+Like, here's a sequence that goes in...
 
 CLICK
 
@@ -1938,9 +1933,27 @@ descending order.
 
 CLICK
 
-Or even worse... attributes that are encrypted at rest, but that must still be unique.
+And here's a sequence where the attribute is actually...
+
+CLICK
+
+ENCRYPTED at rest.
 
 There's just no way with SQL to select for the MAX value in these columns.
+
+There are a few ways to solve for this, and I'd say that we went with the best worst option. Which is...
+-->
+
+---
+
+# CleverSequence
+
+<!--
+...to use an exponential search function to search the space of possible values, and find the next gap in the sequence.
+
+And this was a little slow, but not that slow,
+
+and we only had to do it once. Because once you find the starting value, the sequence can just keep going from there.
 -->
 
 ---
@@ -1957,7 +1970,7 @@ module FactoryBot
     end
 
     def find_next_in_sequence(klass, name, &block)
-      block.call INSERT_RANDOM_NUMBER_HERE
+      block.call CleverSequence.lookup(klass, name).next
     end
   end
 end
@@ -1971,64 +1984,8 @@ line-height: 120% !important;
 }
 </style>
 
-<!--
-
-We could use a random number, but that doesn't actually prevent collisions. It just makes them less likely. Plus, they're no longer sequences.
--->
-
----
-layout: center
----
-
-```ruby {10-17}
-module FactoryBot
-  class DefinitionProxy
-    def sequence(name, &block)
-      add_attribute(name) do
-        find_next_in_sequence(@instance&.class, name, &block)
-      end
-    end
-
-    def find_next_in_sequence(klass, name, &block)
-      sequence = Sequence
-        .where(class_name: klass, column: name)
-        .first_or_create!
-
-      next_val = sequence.current_val + 1
-      sequence.update!(current_val: next_val)
-
-      block.call next_val
-    end
-  end
-end
-```
-
-
-<style>
-pre {
-font-size: 120% !important;
-line-height: 120% !important;
-}
-</style>
 
 <!--
-Or we could keep track of sequence values as we insert them? Like a separate registry table.
-And that might've worked too, but instead we went with what I'd call the best worst option.
--->
-
-
----
-
-# CleverSequence
-
-<!--
-We'd use an exponential search function to search the space of possible values, and find the next gap in the sequence.
-
-And this was a little slow, but not that slow,
-
-and we only had to do it once. Because the sequence can just keep going from there.
-
-CLICK
 
 And of course, we called it clever sequence (because clever code isn't always good code)
 
