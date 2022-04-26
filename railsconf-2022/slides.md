@@ -1416,8 +1416,10 @@ So we sketched out something totally different on a whiteboard.
 
 A page where you are presented with, say, 3 options. 3 users, with sign in buttons.
 
-But when you click "sign in", instead of logging you in as a _specific_ user,
-it creates a totally new COPY of that user, just for you.
+But when you click sign in, what if it created a COPY of that user, just for you.
+Nobody else would be able to mess with your demo user.
+
+And we called these things PERSONAS.
 -->
 
 ---
@@ -1426,14 +1428,14 @@ TODO: Diagram of persona picker bg job
 
 
 <!--
-So we went ahead and prototyped it. A quick interface that would
-present a list of user personas, and when you pick one, it would
-show a loading screen,
-spin out a background job to generate the user,
-and then drop you right into the dashboard once the job completed.
+And so we started to sketch out the process.
+
+Picking a persona would spin out a background job, and generate a new user account.
+
+And so you'd see a brief loading screen, and then get signed in as that user.
+
+So, we just needed to figure out how to dynamically create user accounts on the fly.
 -->
-
-
 
 ---
 layout: image
@@ -1527,13 +1529,7 @@ FactoryBot.create(:user, :with_roth_401k)
 ```
 
 <!--
-And then you can create a user, with those traits!
-
-And we thought, well, when we want to demo a feature, what if we just call
-FactoryBot.create(:user), with whatever traits we need for that feature, and
-then log in as that user.
-
-Seems reasonable.
+And so this was perfect -- we could rely on these traits to make it easy to define a bunch of different personas.
 -->
 
 
@@ -1541,7 +1537,7 @@ Seems reasonable.
 layout: center
 ---
 
-```ruby
+```ruby {all|6-8}
 DemoMode.add_persona :nathans_test_persona do
   features << 'Retirement Goal'
   features << 'Roth 401(k)'
@@ -1555,10 +1551,9 @@ end
 ```
 
 <!--
-And we came up with a quick little DSL for defining these personas.
+And so we came up with a quick little DSL for defining these personas.
 
-And I mean, you could do whatever you wanted, I mean, this is Nathan's test
-persona, with a retirement goal and roth 401k.
+All you had to do was drop your factory bot code in here, and it would take care of there rest.
 
 And then we built the UI on top of this.
 -->
@@ -1680,21 +1675,56 @@ module FactoryBot
 end
 ```
 
+
+<style>
+pre {
+font-size: 120% !important;
+line-height: 120% !important;
+}
+</style>
+
+
 <!--
-And we decided to patch sequences so that they'd be able to look up their
+And we decided to actually patch the sequences feature,
+
+so that it would be able to look up the
 next value based on what was already in the database
 
 But how does that lookup work?
 -->
 
 ---
+layout: center
+---
 
-# SELECT MAX(email) FROM users
+```ruby {10}
+module FactoryBot
+  class DefinitionProxy
+    def sequence(name, &block)
+      add_attribute(name) do
+        find_next_in_sequence(@instance&.class, name, &block)
+      end
+    end
+
+    def find_next_in_sequence(klass, name, &block)
+      klass.select("MAX(#{name})") + 1
+    end
+  end
+end
+```
+
+
+<style>
+pre {
+font-size: 120% !important;
+line-height: 120% !important;
+}
+</style>
 
 <!--
-Well first, we thought, what if we just take the MAX value.
+Well first, we thought, what if we just take the MAX value in the table and then add 1.
 
-And if it's an integer, or a string with a standard lexographic order, sure I guess that works.
+And if it's an integer, or a string with a standard lexographic order, it kinda works, but not really.
 -->
 
 ---
@@ -1720,6 +1750,14 @@ user_1.ssn_hmac # => UNIQUE
 
 </v-click>
 
+<style>
+pre {
+font-size: 120% !important;
+line-height: 120% !important;
+}
+</style>
+
+
 
 <!--
 But what about nonstandard sequences? Like one that goes in descending order.
@@ -1732,8 +1770,32 @@ There's just no way to select for the MAX value in these columns.
 -->
 
 ---
+layout: center
+---
 
-# RANDOM()
+```ruby {10}
+module FactoryBot
+  class DefinitionProxy
+    def sequence(name, &block)
+      add_attribute(name) do
+        find_next_in_sequence(@instance&.class, name, &block)
+      end
+    end
+
+    def find_next_in_sequence(klass, name, &block)
+      block.call (1...1000).rand
+    end
+  end
+end
+```
+
+
+<style>
+pre {
+font-size: 120% !important;
+line-height: 120% !important;
+}
+</style>
 
 <!--
 
@@ -1834,9 +1896,12 @@ the new personas framework powered by factories, and of course webvalve
 and our stateful fakes, all powering this fancy little standalone demo app.
 
 And we could've stopped there, but we're not done crossing out this list!
-
-So next up, was the cadence of deployments
 -->
+
+---
+
+# WIP
+
 
 ---
 layout: image
@@ -1880,6 +1945,8 @@ So we can cross out this one too. Instead
 CLICK
 
 we can run a long-lived database just like our production DB.
+
+So next up, was the cadence of deployments
 -->
 
 ---
