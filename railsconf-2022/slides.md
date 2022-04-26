@@ -1749,6 +1749,8 @@ layout: center
 
 </v-clicks>
 
+<arrow x1="350" y1="150" x2="350" y2="400" color="#aaa" width="3" />
+
 <!--
 And here's what was happening.
 
@@ -1890,23 +1892,33 @@ layout: center
 ---
 
 ```ruby
-sequence(:short_id) { |i| 12394555 - i }
+sequence(:short_id) { |i| 10000009 - i }
 ```
 
-user_1.short_id # 12394554  
-user_2.short_id # 12394553  
-user_3.short_id # 12394552
+<v-clicks>
 
-<v-click>
+<p class="ml-50 pl-10 pb-5 relative font-mono">
+  1000000<strong>9</strong><br/>
+  1000000<strong>8</strong><br/>
+  1000000<strong>7</strong><br/>
+  ...
+  <arrow x1="20" y1="0" x2="20" y2="100" color="#aaa" width="3" />
+</p>
+
 
 ```ruby
 sequence(:ssn) { |i| i.to_s.rjust(9, '0') }
 ```
 
-user_1.ssn # => [encrypted value]  
-user_1.ssn_hmac # => UNIQUE
+<p class="ml-15 pl-10 relative font-mono">
+  decrypt(<strong>"342lk9s..."</strong>) => 000-00-0000<br/>
+  decrypt(<strong>"jf9893d..."</strong>) => 000-00-0001<br/>
+  decrypt(<strong>"j52c5ag..."</strong>) => 000-00-0002<br/>
+  ...
+  <arrow x1="20" y1="0" x2="20" y2="100" color="#aaa" width="3" />
+</p>
 
-</v-click>
+</v-clicks>
 
 <style>
 pre {
@@ -1918,13 +1930,17 @@ line-height: 120% !important;
 
 
 <!--
-But what about nonstandard sequences? Like one that goes in descending order.
+But what about nonstandard sequences? Like one that goes in
 
 CLICK
 
-Or even worse... attributes that are encrypted but that have a corresponding one-way hash for enforcing uniqueness.
+descending order.
 
-There's just no way to select for the MAX value in these columns.
+CLICK
+
+Or even worse... attributes that are encrypted at rest, but that must still be unique.
+
+There's just no way with SQL to select for the MAX value in these columns.
 -->
 
 ---
@@ -1941,7 +1957,7 @@ module FactoryBot
     end
 
     def find_next_in_sequence(klass, name, &block)
-      block.call (1...1000).rand
+      block.call INSERT_RANDOM_NUMBER_HERE
     end
   end
 end
@@ -1957,10 +1973,49 @@ line-height: 120% !important;
 
 <!--
 
-We could use a random number, but some columns have a cutoff. Plus that doesn't actually prevent collisions, just makes them less likely.
-Or we could keep track of sequence values as we insert them? Like a separate registry table.
-That would've worked too, but eventually, we just went with the worst best option.
+We could use a random number, but that doesn't actually prevent collisions. It just makes them less likely. Plus, they're no longer sequences.
 -->
+
+---
+layout: center
+---
+
+```ruby {10-17}
+module FactoryBot
+  class DefinitionProxy
+    def sequence(name, &block)
+      add_attribute(name) do
+        find_next_in_sequence(@instance&.class, name, &block)
+      end
+    end
+
+    def find_next_in_sequence(klass, name, &block)
+      sequence = Sequence
+        .where(class_name: klass, column: name)
+        .first_or_create!
+
+      next_val = sequence.current_val + 1
+      sequence.update!(current_val: next_val)
+
+      block.call next_val
+    end
+  end
+end
+```
+
+
+<style>
+pre {
+font-size: 120% !important;
+line-height: 120% !important;
+}
+</style>
+
+<!--
+Or we could keep track of sequence values as we insert them? Like a separate registry table.
+And that might've worked too, but instead we went with what I'd call the best worst option.
+-->
+
 
 ---
 
@@ -2202,6 +2257,7 @@ And so now if a test failed, a developer would see a red PR build, and would hop
 
 ---
 
+# CI / CD
 
 ---
 layout: image
@@ -2325,7 +2381,7 @@ li + li {
 - Populated with <span class="text-blue-800">**personas**</span>
 - Relied on a <span class="text-blue-800">**long-lived database**</span>
 - Deployed <span class="text-blue-800">**continuously**</span>
-- Maintained by <span class="text-blue-800">**everyone**</span>
+- <strong>Maintained</strong> by <span class="text-blue-800">**everyone**</span>
 
 </div>
 
