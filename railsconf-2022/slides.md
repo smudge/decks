@@ -847,21 +847,29 @@ So it's all one Rails process.
 layout: center
 ---
 
-```ruby
+```ruby {all|3}
 class FakeBank < WebValve::FakeService
   get '/widgets' do
-    json result: {
-      value: 9.99,
-      message: 'it works!'
-    }
+    json result: { value: 9.99, message: 'it works!' }
   end
 end
 ```
+
+<style>
+pre {
+font-size: 150% !important;
+line-height: 120% !important;
+}
+</style>
+
 
 <!--
 And these fakes apps are really simple.
 
 They don't have to do everything the real app would do,
+
+CLICK
+
 they just have to respond with some fake data, so that your app doesn't break.
 -->
 
@@ -877,6 +885,7 @@ Now, there's a whole other talk on WebValve itself.
 
 ---
 layout: center
+class: px-30
 ---
 
 ![rails at scale 2](/images/rails-at-scale-2.png)
@@ -888,10 +897,10 @@ and testing, and so I'm not gonna cover all of that here.
 
 ---
 layout: center
-class: px-50
+class: px-55 text-blue-500 font-weight-500 text-center
 ---
 
-<center><h2>github.com/Betterment/webvalve</h2></center>
+## [github.com/Betterment/webvalve](https://github.com/Betterment/webvalve)
 
 ![webvalve readme](/images/webvalve-readme.png)
 
@@ -1175,7 +1184,9 @@ So again, that was gonna break the immersion.
 -->
 
 ---
-layout: center
+layout: cover
+background: /images/demo_mode_fancy.jpg
+class: text-center
 ---
 
 # **"Stateful" Fakes**
@@ -1188,7 +1199,7 @@ And this is where we came up with the idea of stateful fakes
 layout: center
 ---
 
-```ruby {all|2-5|6-11|19}
+```ruby {all|2-5|6-11|13-21|19}
 class FakeBalanceService < WebValve::FakeService
   class FakeAccount < ActiveRecord::Base
     money :balance
@@ -1210,8 +1221,18 @@ class FakeBalanceService < WebValve::FakeService
     fake_account.update!(balance: fake_account.balance + deposit)
 
     json balance_cents: fake_account.balance.cents
+  end
 end
 ```
+
+<style>
+pre {
+font-size: 95% !important;
+line-height: 140% !important;
+}
+</style>
+
+
 
 
 <!--
@@ -1227,7 +1248,11 @@ And it can read from those tables during GET requests
 
 CLICK
 
-And actually UPDATE those tables during POST/PUT/PATCH/DELETE/etc
+And during POST requests
+
+CLICK
+
+It can actually UPDATE those tables during POST/PUT/PATCH/DELETE/etc
 -->
 
 ---
@@ -1247,6 +1272,20 @@ sequenceDiagram
 And so now it can remember things!
 
 You could deposit 123 dollars and then actually see it reflected in your balance.
+-->
+
+---
+layout: center
+---
+
+```mermaid
+graph BT
+
+U((Demoers)) --> A[App A + 'stateful' fakes]
+```
+
+<!--
+And so we'd done it. We could run our app in total isolation from all external apps and services.
 -->
 
 ---
@@ -1365,7 +1404,7 @@ the user accounts ahead of time -- then what do we do?
 
 ---
 layout: center
-class: px-70
+class: px-80
 ---
 
 ![login form](/images/log_in.png)
@@ -1379,10 +1418,13 @@ Well the more we thought about this, the more we realized how awkward this must 
 -->
 
 ---
-layout: center
+layout: image
+image: /images/sticky-note.jpg
+class: bg-contain
+style: 'background-size: contain'
 ---
 
-# sticky note
+# &nbsp;
 
 <!--
 Did they, like, keep the list of demo logins on a sticky note? 
@@ -1394,7 +1436,7 @@ How did they know that someone else wasn't already using one of the demo account
 
 ---
 layout: center
-class: px-70
+class: px-80
 ---
 
 ![login form](/images/log_in.png)
@@ -1407,34 +1449,45 @@ And that was our "ah ha" moment.
 
 
 ---
+layout: center
+---
 
-TODO: Whiteboard of persona picker
+![personas whiteboard](/images/personas-whiteboard.png)
 
 
 <!--
 So we sketched out something totally different on a whiteboard.
 
-A page where you are presented with, say, 3 options. 3 users, with sign in buttons.
+A page where you are presented with, like, 3 different users, each with a sign in button.
 
-But when you click sign in, what if it created a COPY of that user, just for you.
-Nobody else would be able to mess with your demo user.
-
-And we called these things PERSONAS.
+And we thought to ourselves, well what if...
 -->
 
 ---
+layout: center
+---
 
-TODO: Diagram of persona picker bg job
+![personas whiteboard](/images/personas-whiteboard-button.png)
 
 
 <!--
-And so we started to sketch out the process.
+...when you click sign in, instead of logging in as a _specific_ user account, it spins out a background job and generates a NEW user for you on the fly.
+-->
 
-Picking a persona would spin out a background job, and generate a new user account.
 
-And so you'd see a brief loading screen, and then get signed in as that user.
+---
+layout: center
+---
 
-So, we just needed to figure out how to dynamically create user accounts on the fly.
+![personas process](/images/personas-process.png)
+
+<!--
+
+So you'd see a brief loading spinner, and then you'd be dropped straight into a totally fresh account summary page.
+
+This felt way less awkward than the login page and sticky notes approach.
+
+We just needed to figure out how to dynamically create user accounts on the fly.
 -->
 
 ---
@@ -1477,6 +1530,15 @@ FactoryBot.define do
 end
 ```
 
+<style>
+pre {
+font-size: 120% !important;
+line-height: 120% !important;
+}
+</style>
+
+
+
 <!--
 FactoryBot lets you define Factories.
 
@@ -1493,6 +1555,15 @@ user_2 = FactoryBot.create(:user)
 user_3 = FactoryBot.create(:user)
 ```
 
+<style>
+pre {
+font-size: 150% !important;
+line-height: 120% !important;
+}
+</style>
+
+
+
 <!--
 And then you can use that factory to generate as many users as you want.
 -->
@@ -1501,11 +1572,23 @@ And then you can use that factory to generate as many users as you want.
 layout: center
 ---
 
-```ruby {6-10}
+![personas process](/images/personas-process-withfb.png)
+
+
+<!--
+And so we could easily wire this up to our sign in button.
+-->
+
+---
+layout: center
+---
+
+```ruby {7-11}
 FactoryBot.define do
   factory :user do
     first_name { "John" }
     last_name  { "Doe" }
+    sequence(:email) { |i| "user_#{i}@example.org" }
 
     trait :with_roth_401k do
       after(:create) do |user, _|
@@ -1515,6 +1598,14 @@ FactoryBot.define do
   end
 end
 ```
+
+<style>
+pre {
+font-size: 120% !important;
+line-height: 120% !important;
+}
+</style>
+
 
 <!--
 Plus, you you can define things like traits, like a user with a Roth 401k account.
@@ -1528,85 +1619,142 @@ layout: center
 FactoryBot.create(:user, :with_roth_401k)
 ```
 
-<!--
-And so this was perfect -- we could rely on these traits to make it easy to define a bunch of different personas.
--->
+<style>
+pre {
+font-size: 150% !important;
+line-height: 120% !important;
+}
+</style>
 
+
+<!--
+And then you just apply those traits at creation time.
+And so this was actually perfect.
+-->
 
 ---
 layout: center
 ---
 
-```ruby {all|6-8}
+![personas process](/images/personas-process-expanded.png)
+
+<div v-click-hide class="bg-white absolute bottom-0 left-0 right-0 top-70"></div>
+
+
+<!--
+Because each persona could get its own factory definition. And by just changing up the traits
+
+CLICK
+
+We could change up the actual account dashboard that you drop into.
+-->
+
+---
+layout: center
+---
+
+```ruby {all|6}
 DemoMode.add_persona :nathans_test_persona do
   features << 'Retirement Goal'
   features << 'Roth 401(k)'
 
   sign_in_as do |_password|
-    FactoryBot.create(:user) do |user|
-      FactoryBot.create(:goal, :retirement, :with_roth_401k, user: user)
-    end
+    FactoryBot.create(:user, :with_roth_401k)
   end
 end
 ```
 
+<style>
+pre {
+font-size: 120% !important;
+line-height: 120% !important;
+}
+</style>
+
+
 <!--
-And so we came up with a quick little DSL for defining these personas.
+So to support this, we came up with a quick little DSL for defining these personas.
 
-All you had to do was drop your factory bot code in here, and it would take care of there rest.
+All you had to do was drop your factory bot code in here, 
 
-And then we built the UI on top of this.
+CLICK
+
+and it would take care of there rest.
+
+And, so, we took these persona definitions, and we built...
 -->
 
 ---
 layout: center
-class: px-10
 ---
 
-![persona picker](/images/persona-picker.png)
+<video muted>
+  <source src="/images/personas-login.mov" />
+</video>
+
 
 <!--
-And so we had our persona picker. This could replace the login page entirely.
+This user interface.
 
-And every time you click on one of these sign in buttons, you'd get a totally fresh user account.
+And so we had our persona picker. And we made this replace the login page entirely.
 -->
 
 ---
+layout: center
+---
 
-# sign in gif
+<video muted autoplay>
+  <source src="/images/personas-login.mov" />
+</video>
 
 <!--
 And it worked!
 
-Or at least, it worked for like 10 minutes.
-But when we deployed a change, suddenly, it broke.
+CLICK
+
+There's the loading spinner, and that should take us to the dashboard.
+
+But there was one hiccup. When we deployed a change, suddenly...
+-->
+
+---
+layout: image
+image: /images/500-error.png
+---
+
+# &nbsp;
+
+<!--
+...it broke. Darn. This was definitely giving us flashbacks. But we dug in...
 -->
 
 ---
 layout: center
 ---
 
-**initial deployment:**
 
 <v-clicks>
 
-user_1@example.org
+### <span class="text-blue-500">deployment 1:</span>
 
-user_2@example.org
+✅ <strong>user_1</strong>@example.org
 
-user_3@example.org
+✅ <strong>user_2</strong>@example.org
 
+✅ <strong>user_3</strong>@example.org
 
-**subsequent deployment**
+### <span class="text-blue-500">deployment 2:</span>
 
-user_1@example.org
+<p>❌ <strong>user_1</strong>@example.org</p>
 
 </v-clicks>
 
 <!--
 And here's what was happening.
 
-After the initial deployment, we could generate user 1, user 2, user 3, and they'd work just fine.
+CLICK
+
+After the initial deployment, we could generate user 1, user 2, user 3, and so on, and they'd work just fine.
 But when we redeploy, the next user we generate would reset back to user_1.
 
 And this would fail against uniqueness constraints in our database, or uniqueness validations in the models,
@@ -1626,6 +1774,16 @@ FactoryBot.define do
   end
 end
 ```
+
+
+<style>
+pre {
+font-size: 120% !important;
+line-height: 120% !important;
+}
+</style>
+
+
 
 <!--
 And if you look back at the way factories are defined,
@@ -1824,11 +1982,27 @@ But it helped us get to a demoable state, and that's what mattered.
 -->
 
 ---
+layout: image
+image: /images/sales-pitch.jpg
+class: text-center
+---
 
-## personas demo
+<video muted autoplay width=390 class="absolute left-67 top-40">
+  <source src="/images/personas-login.mov" />
+</video>
+
+<div v-click style="position:absolute;bottom:40px;left:0;right:0" class="text-3xl">
+  <strong>(this is definitely a real demo)</strong>
+</div>
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@xteemu?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Teemu Paananen</a> on <a href="https://unsplash.com/s/photos/pitch?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
 
 <!--
-And, again, it worked!
+And so now it worked for real. And we could actually use it to start giving real demos.
+
+CLICK
 -->
 
 ---
