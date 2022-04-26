@@ -650,33 +650,22 @@ But we also had time in our roadmap finally.
 ---
 layout: image
 image: /images/iceberg.jpg
+class: text-center
 ---
 
-<div class="ml-50 mt-30 text-3xl text-shadow-lg font-bold">
+<div class="mt-50 text-shadow-lg" v-click>
 
-<v-clicks>
-
-- What was deployed?
-- How frequently was it deployed?
-- Where did the data come from?
-- How did you log in?
-- Who owned it?
-
-</v-clicks>
+<h1 style="font-size:250%"><b>maintenance burden > up-front cost</b></h1>
 
 </div>
 
 <!--
-And so the first thing we did was a bit of a retrospective deep dive, to try to
-understand firstly, how everything had even worked, and in turn, what decisions
-and assumptions had resulted in it ultimately breaking down.
+And thinking back to that iceberg of demoability, we had already learned the first lesson, right under the surface:
 
-And so we asked ourselves questions like:
-- What got deployed
-- And how frequently?
-- How did the database work?
-- How did you log in?
-- And, most importantly, whose job was it to maintain this thing?
+CLICK
+
+The maintenance burden is always going to outweigh the up front cost. And so we knew that this time around,
+we needed to figure out a solution that we could maintain in the long run.
 -->
 
 ---
@@ -712,7 +701,7 @@ layout: center
 </div>
 
 <!--
-And this helped us trace things back to 4 major architectural decisions.
+And so we started just writing down a list of what the original demo mode had consisted of.
 
 Firstly, what got deployed? Well, everything. All of our apps.
 
@@ -857,8 +846,8 @@ So it's all one Rails process.
 -->
 
 ---
-
-# WebValve
+layout: center
+---
 
 ```ruby
 class FakeBank < WebValve::FakeService
@@ -1318,153 +1307,600 @@ How the accounts got added to the demo database, and how to access them.
 
 ---
 
+TODO:
+[db]
+^
+|
+[app]
+
 <!--
 And so if you remember, we relied on this kind of magic process that would
 tear down and recreate the database every so often.
 
 And when it did, you'd freshly-baked little demo accounts that you
 could log in as, if you knew their email and password.
--->
 
-
-<!--
-and for that, we started with the most painful part of the process:
-
-the cycle of refreshing and resetting the database.
-
-Not only was this a common cause of build failure, it also wasn't
-always reliably in sync with the state of the code.
-
-Like, we were extracting certain test accounts from our staging environment,
-but there was no rule that said the expected staging and demo database schemas
-had to be in sync.
+And so this was not great for a couple reasons.
 -->
 
 ---
 
+TODO:
+[db]
+^
+|
+[app]->migration
+
 <!--
-And so ideally we'd do away with that entirely, and let the demo apps manage their
-own data.
+For one, it was a little fragile.
+The schema of the new database had to be exactly in sync with the expected schema of the app.
+So if we were in the process of rolling something new out in production, a migration might run right before we swap things out.
+And then we're out of sync.
 -->
 
 ---
 
+TODO:
+user1@example.org
+user2@example.org
+user3@example.org
+
 <!--
-Now, one option there, was to use Rails' built-in seeds.rb feature.
-And we use this locally to seed our developer laptops with a bunch of test users.
+But secondly, even when the refresh was working, it only gave us so many accounts.
 
-But this still doesn't solve one other thing, which is that,
-if I logged into one of these users, and signed up for, like, a Roth IRA,
-that user then had a Roth IRA. And so if I need to repeat that demo again,
-I already have a Roth IRA.
+And so if I wanted to demo, like, adding a Roth IRA, I could only do it once, because that user would then _have_ a Roth IRA, and I'd have to find a different user account if I wanted to do it again.
+Or I'd have to wait until after the next big refresh.
 
-And we saw a lot of that, where these demo accounts would sort of get into 
-these unusable states, and they wouldn't be reset until the next big data refresh.
-
-And on top of that, there was nothing stopping two people from using the same demo account,
-and that could also cause us to stomp on our own toes.
+And so you can see how if you have multiple people doing demos all the time, the limiting factor becomes our ability to juggle enough account logins that we don't burn through them all before the next refresh.
 -->
 
 ---
 
+TODO: 
+
 <!--
-So instead, we thought, well what if we generate a new user account, each time you log in.
+And so we decided to just redo this entire process entirely.
+
+Instead, we thought, well what if we generate a new user account, each time you log in.
 So you'd always start with a blank slate.
+-->
 
+---
+layout: image
+image: /images/dev-laptop.jpg
+---
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@cgower?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Christopher Gower</a> on <a href="https://unsplash.com/s/photos/laptop-office?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
+
+<!--
 And again, when we looked to our local development environments we saw that we already had
 a way of doing this.
-
-Factories! So we use a tool called FactoryBot. And we thought, well, what if we just call
-FactoryBot.create(:user), and then log in as that user.
 -->
-
----
-
-<!--
-And instead of a login form, all we would need was a single sign in button.
--->
-
----
-layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
----
-
-# Code
-
----
-
-# Components
-
----
-class: px-40
----
-
-# Two Columns
-
-This is me, **testing a two col approach**
-
-<div grid="~ cols-2 gap-2" m="-t-2">
-
-```yaml
----
-theme: default
----
-```
-
-```yaml
----
-theme: seriph
----
-```
-
-# Test1
-
-# Test2
-
-<div>
-
-- list 1
-- yay
-- boo
-
-</div>
-
-<div>
-
-- list2
-- boo
-- yay
-
-</div>
-
-</div>
 
 ---
 layout: center
-class: text-center
+class: px-40
+---
+
+![factory_bot logo](/images/factory_bot.png)
+
+
+<!--
+Factories! So we use a tool called FactoryBot.by our friends at ThoughtBot.
+-->
+
+---
+layout: center
+---
+
+```ruby
+FactoryBot.define do
+  factory :user do
+    first_name { "John" }
+    last_name  { "Doe" }
+    sequence(:email) { |i| "user_#{i}@example.org" }
+  end
+end
+```
+
+<!--
+FactoryBot lets you define Factories.
+
+Like this user factory, which describes how to generate a user.
+-->
+
+---
+layout: center
+---
+
+```ruby
+user_1 = FactoryBot.create(:user)
+user_2 = FactoryBot.create(:user)
+user_3 = FactoryBot.create(:user)
+```
+
+<!--
+And then you can use that factory to generate as many users as you want.
+-->
+
+---
+layout: center
+---
+
+```ruby {6-10}
+FactoryBot.define do
+  factory :user do
+    first_name { "John" }
+    last_name  { "Doe" }
+
+    trait :with_roth_401k do
+      after(:create) do |user, _|
+        Factorybot.create(:account, :roth_401k, user: user)
+      end
+    end
+  end
+end
+```
+
+<!--
+Plus, you you can define things like traits, like a user with a Roth 401k account.
+-->
+
+---
+layout: center
+---
+
+```ruby
+FactoryBot.create(:user, :with_roth_401k)
+```
+
+<!--
+And then you can create a user, with those traits!
+
+And we thought, well, when we want to demo a feature, what if we just call
+FactoryBot.create(:user), with whatever traits we need for that feature, and
+then log in as that user.
+
+Seems reasonable.
+-->
+
+---
+layout: center
+class: px-70
+---
+
+![login form](/images/log_in.png)
+
+<!--
+But how do we log in as that user?
+
+And, more specifically, how do we expect non-engineers to log in as that user?
+They're not gonna know how to generate a factory, and pull out the generated email, and then
+log in with that email.
+
+And as we were sketching this out, we drew something on a whiteboard.
+-->
+
+---
+
+TODO: Whiteboard of persona picker
+
+
+<!--
+Instead of a login form, why not just pick the user from a list of user templates.
+
+And this was our ah-ha moment.
+-->
+
+---
+
+TODO: Diagram of persona picker bg job
+
+
+<!--
+So we went ahead and prototyped it. A quick interface that would
+present a list of user personas, and when you pick one, it would
+show a loading screen,
+spin out a background job to generate the user,
+and then drop you right into the dashboard once the job completed.
+-->
+
+---
+layout: center
+---
+
+```ruby
+DemoMode.add_persona :nathans_test_persona do
+  features << 'Retirement Goal'
+  features << 'Roth 401(k)'
+
+  sign_in_as do |_password|
+    FactoryBot.create(:user) do |user|
+      FactoryBot.create(:goal, :retirement, :with_roth_401k, user: user)
+    end
+  end
+end
+```
+
+<!--
+And we came up with a quick little DSL for defining these personas.
+
+And I mean, you could do whatever you wanted, I mean, this is Nathan's test
+persona, with a retirement goal and roth 401k.
+
+And then we built the UI on top of this.
+-->
+
+---
+layout: center
+class: px-10
+---
+
+![persona picker](/images/persona-picker.png)
+
+<!--
+And so we had our persona picker. This could replace the login page entirely.
+
+And every time you click on one of these sign in buttons, you'd get a totally fresh user account.
+-->
+
+---
+
+# sign in gif
+
+<!--
+And it worked!
+
+Or at least, it worked for like 10 minutes.
+But when we deployed a change, suddenly, it broke.
+-->
+
+---
+layout: center
+---
+
+**initial deployment:**
+
+<v-clicks>
+
+user_1@example.org
+
+user_2@example.org
+
+user_3@example.org
+
+
+**subsequent deployment**
+
+user_1@example.org
+
+</v-clicks>
+
+<!--
+And here's what was happening.
+
+After the initial deployment, we could generate user 1, user 2, user 3, and they'd work just fine.
+But when we redeploy, the next user we generate would reset back to user_1.
+
+And this would fail against uniqueness constraints in our database, or uniqueness validations in the models,
+because user_1's email was already taken.
+-->
+
+---
+layout: center
+---
+
+```ruby {5}
+FactoryBot.define do
+  factory :user do
+    first_name { "John" }
+    last_name  { "Doe" }
+    sequence(:email) { |i| "user_#{i}@example.org" }
+  end
+end
+```
+
+<!--
+And if you look back at the way factories are defined,
+you see that we rely on this sequence feature to generate unique emails for us.
+
+The problem is, again...
+
+-->
+
+---
+layout: center
+class: px-20
+---
+
+![dory](/images/dory.gif)
+
+<div style="position:absolute;right:10px;bottom:10px;color: #ddd" class="text-xs">
+Finding Nemo (2003)
+</div>
+
+
+<!--
+It has no short term memory
+
+The sequences reset every time the Ruby process restarts.
+
+So, again, we got a little clever.
+-->
+
+---
+layout: center
+---
+
+```ruby
+module FactoryBot
+  class DefinitionProxy
+    def sequence(name, &block)
+      add_attribute(name) do
+        find_next_in_sequence(@instance&.class, name, &block)
+      end
+    end
+
+    def find_next_in_sequence(klass, name, &block)
+      # ???
+    end
+  end
+end
+```
+
+<!--
+And we decided to patch sequences so that they'd be able to look up their
+next value based on what was already in the database
+
+But how does that lookup work?
+-->
+
+---
+
+# SELECT MAX(email) FROM users
+
+<!--
+Well first, we thought, what if we just take the MAX value.
+
+And if it's an integer, or a string with a standard lexographic order, sure I guess that works.
+-->
+
+---
+layout: center
+---
+
+```ruby
+sequence(:short_id) { |i| 12394555 - i }
+```
+
+user_1.short_id # 12394554  
+user_2.short_id # 12394553  
+user_3.short_id # 12394552
+
+<v-click>
+
+```ruby
+sequence(:ssn) { |i| i.to_s.rjust(9, '0') }
+```
+
+user_1.ssn # => [encrypted value]  
+user_1.ssn_hmac # => UNIQUE
+
+</v-click>
+
+
+<!--
+But what about nonstandard sequences? Like one that goes in descending order.
+
+CLICK
+
+Or even worse... attributes that are encrypted but that have a corresponding one-way hash for enforcing uniqueness.
+
+There's just no way to select for the MAX value in these columns.
+-->
+
+---
+
+# RANDOM()
+
+<!--
+
+We could use a random number, but some columns have a cutoff. Plus that doesn't actually prevent collisions, just makes them less likely.
+Or we could keep track of sequence values as we insert them? Like a separate registry table.
+That would've worked too, but eventually, we just went with the worst best option.
+-->
+
+---
+
+# CleverSequence
+
+<!--
+We'd use an exponential search function to search the space of possible values, and find the next gap in the sequence.
+
+And this was a little slow, but not that slow,
+
+and we only had to do it once. Because the sequence can just keep going from there.
+
+CLICK
+
+And of course, we called it clever sequence (because clever code isn't always good code)
+
+But it helped us get to a demoable state, and that's what mattered.
+
+-->
+
+---
+layout: center
 ---
 
 <div class="grid grid-cols-3">
 
-<div></div>
 
-```mermaid {theme: 'neutral', scale: 1}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
+<div>
 
-<div></div>
+# &nbsp;
 
+## **Deployed:**
+## **Data:**
+## **Cadence:**
+## **Ownership:**
+
+</div><div class="pr-10">
+
+# Demo v1:
+
+## ~~everything~~
+## ~~fixtures/seeds~~
+## push button (🤞)
+## single team
+
+</div><div>
+
+# Demo v2:
+
+
+## one! (+stateful fakes)
+
+<v-click>
+
+## Personas!
+
+</v-click>
+
+</div>
 </div>
 
 
----
-layout: center
-class: text-center
+<!--
+So cross that one off the list. Instead of fixtures and seeds, we had...
+
+CLICK
+
+the new personas framework powered by factories, and of course webvalve
+and our stateful fakes, all powering this fancy little standalone demo app.
+
+And we could've stopped there, but we're not done crossing out this list!
+
+So next up, was the cadence of deployments
+-->
+
 ---
 
-# Learn More
 
-[Documentations](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html)
+# Graph of cadence vs pain
+
+<!--
+And if you remember, I said that the longer the cadence, the more painful it got.
+
+And there's a simple reason for this
+-->
+
+---
+
+# left: git log with lots of changes
+
+# right: git log with few changes
+
+<!--
+
+It's because whenever something goes wrong, the way to debug it is to look into every change
+that has happened since the last deploy.
+
+CLICK
+
+So if you haven't deployed in a month, you have to look through six months of changes.
+So, I'm sure you can see where I'm going with this.
+
+CLICK
+
+If you deploy all the time, then when something goes wrong, you just have 1 or 2 things that might've caused it!
+
+-->
+
+---
+
+# CI/CD
+
+<!--
+And so if it sounds like I'm making the case for continuous integration and continuous deployment, it's because I am!
+
+This is how we deployed our production apps, so we made the demo app do the same thing!
+-->
+
+---
+
+# Slack and Sentry
+
+<!--
+Of course, with continuous deploys, you need good monitoring and alerting, so that you actually know when something breaks.
+
+CLICK
+
+So we enabled slack alerts, and 
+
+CLICK
+
+we made sure errors would show up in our bugtracker.
+
+But then, we thought, well how can we detect broken states before they get deployed?
+-->
+
+---
+
+# Left: test case
+
+# Right: PR fail
+
+<!--
+And so we wrote tests and stuck them in our standard test suite!
+We actually made it possible to toggle the personas mode on and off using an environment variable.
+And then the test itself would click through an actual product demo, starting with the personas page.
+
+CLICK
+
+And so now if a test failed, a developer would see a red PR build, and would hopefully be obligated to fix it.
+-->
+
+---
+
+# crossing out push-button
+
+<!--
+And so we can totally cross out push-button deploys.
+-->
+
+---
+
+# WIP
+
+---
+layout: image
+image: /images/iceberg.jpg
+---
+
+<div class="ml-50 mt-30 text-3xl text-shadow-lg font-bold">
+
+<v-clicks>
+
+1. Maintenance cost > up-front cost
+2. An app should make sense in isolation
+3. Start with the UX and work backwards
+4. The demo env _is_ a production env
+5. Incentives matter more than tech
+
+</v-clicks>
+
+</div>
+
+<!--
+Recap of the demoability iceberg.
+
+I'm gonna add just one more thing...
+
+CLICK
+
+And it's that incentives matter more than technical solutions.
+-->
+
