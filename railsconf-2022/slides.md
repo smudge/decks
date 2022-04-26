@@ -669,44 +669,45 @@ we needed to figure out a solution that we could maintain in the long run.
 -->
 
 ---
-layout: center
+layout: image
+image: /images/notebook.jpg
+class: font-mono pl-40 text-3xl pt-10
 ---
 
-<div class="grid grid-cols-3">
+<style>
+li { list-style-type: none; }
+li + li {
+  margin-top: 1em;
+}
+</style>
 
 
-<div>
-
-# &nbsp;
-
-## **Deployed:**
-## **Data:**
-## **Cadence:**
-## **Ownership:**
-
-</div><div class="pr-10">
-
-# Demo v1:
+<div class="text-gray-800">
 
 <v-clicks>
 
-## everything
-## fixtures/seeds
-## push button (🤞)
-## single team
+- Consisted of **multiple apps/services**
+- Populated with **seed/fixture data**
+- Relied on **short-lived databases**
+- Deployed via **push-button (and 🤞)**
+- Owned by **one team**
 
 </v-clicks>
 
 </div>
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
 <!--
-And so we started just writing down a list of what the original demo mode had consisted of.
+And so we started just writing down a list of what the original demo env had consisted of.
 
 Firstly, what got deployed? Well, everything. All of our apps.
 
 Secondly, the database was populated up front with all of the demo accounts,
-and this got reset with every deployment.
+
+and the entire database got reset with every deployment.
 
 And at first, all of this was deployed weekly (on Sundays), and then Monthly,
 but when even that got to be too painful, we started only deploying when we
@@ -720,45 +721,36 @@ And so, now that we had this list, we started crossing things out.
 -->
 
 ---
-layout: center
+layout: image
+image: /images/notebook.jpg
+class: font-mono pl-40 text-3xl pt-10
 ---
 
-<div class="grid grid-cols-3">
+<style>
+li { list-style-type: none; }
+li + li {
+  margin-top: 1em;
+}
+</style>
 
+<div class="text-gray-800">
 
-<div>
-
-# &nbsp;
-
-## **Deployed:**
-## **Data:**
-## **Cadence:**
-## **Ownership:**
-
-</div><div class="pr-10">
-
-# Demo v1:
-
-## ~~everything~~
-## fixtures/seeds
-## push button (🤞)
-## single team
-
-</div><div>
-
-# Demo v2:
-
-## ???
+- Consisted of ~~**multiple apps/services**~~
+- Populated with **seed/fixture data**
+- Relied on **short-lived databases**
+- Deployed via **push-button (and 🤞)**
+- Owned by **one team**
 
 </div>
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
 <!--
-First, we thought, what if instead of deploying an
-entire cluster of services, we deploy just the one app that we want to demo, running in some kind of standalone mode.
+Starting with the idea of deploying an entire cluster of services.
 
-And the benefits there should be obvious right? From a maintainability standpoint, why manage all of this
-if we could just manage this.
+And the choice there should be obvious right? From a maintainability standpoint, why keep a _bunch_ of apps running if we really only cared about one app. The thing we wanted to demo.
 
 And that got us thinking, because at Betterment we already have a way of running our Rails apps in isolation.
 -->
@@ -1250,60 +1242,118 @@ And so now it can remember things!
 -->
 
 ---
-
-# Recap
-
-- We enabled WebValve
-- We made the fake responses not just fake, but demoable
-- And we gave fakes the ability to remember things
-
+layout: image
+image: /images/iceberg.jpg
+class: text-center
 ---
 
-<div class="grid grid-cols-3">
+<div class="mt-50 text-shadow-lg" v-click>
 
-
-<div>
-
-# &nbsp;
-
-## **Deployed:**
-## **Data:**
-## **Cadence:**
-## **Ownership:**
-
-</div><div class="pr-10">
-
-# Demo v1:
-
-## ~~everything~~
-## fixtures/seeds
-## push button (🤞)
-## single team
-
-</div><div>
-
-# Demo v2:
-
-<v-click>
-
-## one! (+stateful fakes)
-
-</v-click>
+<h1 style="font-size:250%"><b>An app should (mostly) work in isolation</b></h1>
 
 </div>
-</div>
+
 
 <!--
-And so we had reduced our demo env from deploying EVERYTHING, to
+And, so, quickly, to recap:
+
+We enabled WebValve. We made the fake services real _enough_ to support a useful demo. And we gave fakes the ability to remember things.
+
+And all of this brings us to the next layer of the demoability iceberg, which is that...
 
 CLICK
 
-deploying just one app.
+An app should mostly work in isolation. Like, it should mostly make sense on its own.
 
-
-So next we focused our attention on the user accounts.
-How the accounts got added to the demo database, and how to access them.
+It might needs some extra massaging at the system boundaries, but if the thing you want to demo can't readily be run in isolation, then
 -->
+
+---
+layout: image
+image: /images/notebook.jpg
+class: font-mono pl-40 text-3xl pt-10
+---
+
+<style>
+li { list-style-type: none; }
+li + li {
+  margin-top: 1em;
+}
+</style>
+
+<div class="text-gray-800">
+
+- Consisted of ~~**multiple apps/services**~~
+- Populated with **seed/fixture data**
+- Relied on **short-lived databases**
+- Deployed via **push-button (and 🤞)**
+- Owned by **one team**
+
+</div>
+
+<div class="text-blue-800 absolute left-40 top-0 right-0 bottom-0">
+
+<v-clicks>
+
+- <span class="pl-60">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
+
+</v-clicks>
+
+</div>
+
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
+
+<!--
+And so, again, instead of deploying an entire cluster of apps, we could deploy just the one.
+
+CLICK
+
+deploying just one app. With some stateful fakes.
+
+So next we focused our attention on the way we populate the demo data and accounts.
+-->
+
+---
+layout: image
+image: /images/notebook.jpg
+class: font-mono pl-40 text-3xl pt-10
+---
+
+<style>
+li { list-style-type: none; }
+li + li {
+  margin-top: 1em;
+}
+</style>
+
+<div class="text-gray-800">
+
+- Consisted of ~~**multiple apps/services**~~
+- Populated with ~~**seed/fixture data**~~
+- Relied on **short-lived databases**
+- Deployed via **push-button (and 🤞)**
+- Owned by **one team**
+
+</div>
+
+<div class="text-blue-800 absolute left-40 top-0 right-0 bottom-0">
+
+- <span class="pl-60">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
+
+</div>
+
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
+
+<!--
+And so we crossed out this idea of using seeds and fixtures.
+-->
+
 
 ---
 
@@ -1732,49 +1782,71 @@ But it helped us get to a demoable state, and that's what mattered.
 -->
 
 ---
-layout: center
+
+## personas demo
+
+<!--
+And, again, it worked!
+-->
+
+---
+layout: image
+image: /images/iceberg.jpg
+class: text-center
 ---
 
-<div class="grid grid-cols-3">
+<div class="mt-50 text-shadow-lg" v-click>
 
-
-<div>
-
-# &nbsp;
-
-## **Deployed:**
-## **Data:**
-## **Cadence:**
-## **Ownership:**
-
-</div><div class="pr-10">
-
-# Demo v1:
-
-## ~~everything~~
-## ~~fixtures/seeds~~
-## push button (🤞)
-## single team
-
-</div><div>
-
-# Demo v2:
-
-
-## one! (+stateful fakes)
-
-<v-click>
-
-## Personas!
-
-</v-click>
+<h1 style="font-size:250%"><b>The UX should inform everything else</b></h1>
 
 </div>
+
+<!--
+And so we have another iceberg reveal. This time, the take-away was that...
+
+CLICK
+
+We needed to start with the user experience and work backwards.
+-->
+
+---
+layout: image
+image: /images/notebook.jpg
+class: font-mono pl-40 text-3xl pt-10
+---
+
+<style>
+li { list-style-type: none; }
+li + li {
+  margin-top: 1em;
+}
+</style>
+
+<div class="text-gray-800">
+
+- Consisted of ~~**multiple apps/services**~~
+- Populated with ~~**seed/fixture data**~~
+- Relied on **short-lived databases**
+- Deployed via **push-button (and 🤞)**
+- Owned by **one team**
+
+</div>
+
+<div class="text-blue-800 absolute left-40 top-0 right-0 bottom-0">
+
+- <span class="pl-60">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
+- <span v-click class="pl-70">↱ **personas** <span class="text-xl">(+ factories)</span></span>
+
+</div>
+
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
 
 <!--
-So cross that one off the list. Instead of fixtures and seeds, we had...
+So cross another one off the list. Instead of fixtures and seeds, we had...
 
 CLICK
 
@@ -1784,6 +1856,50 @@ and our stateful fakes, all powering this fancy little standalone demo app.
 And we could've stopped there, but we're not done crossing out this list!
 
 So next up, was the cadence of deployments
+-->
+
+---
+layout: image
+image: /images/notebook.jpg
+class: font-mono pl-40 text-3xl pt-10
+---
+
+<style>
+li { list-style-type: none; }
+li + li {
+  margin-top: 1em;
+}
+</style>
+
+<div class="text-gray-800">
+
+- Consisted of ~~**multiple apps/services**~~
+- Populated with ~~**seed/fixture data**~~
+- Relied on ~~**short-lived databases**~~
+- Deployed via **push-button (and 🤞)**
+- Owned by **one team**
+
+</div>
+
+<div class="text-blue-800 absolute left-40 top-0 right-0 bottom-0">
+
+- <span class="pl-60">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
+- <span class="pl-70">↱ **personas** <span class="text-xl">(+ factories)</span></span>
+- <span v-click class="pl-45">↱ a **long-lived database**</span>
+
+</div>
+
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
+
+<!--
+So we can cross out this one too. Instead
+
+CLICK
+
+we can run a long-lived database just like our production DB.
 -->
 
 ---
@@ -1865,15 +1981,145 @@ And so now if a test failed, a developer would see a red PR build, and would hop
 
 ---
 
-# crossing out push-button
+
+---
+layout: image
+image: /images/notebook.jpg
+class: font-mono pl-40 text-3xl pt-10
+---
+
+<style>
+li { list-style-type: none; }
+li + li {
+  margin-top: 1em;
+}
+</style>
+
+<div class="text-gray-800">
+
+- Consisted of ~~**multiple apps/services**~~
+- Populated with ~~**seed/fixture data**~~
+- Relied on ~~**short-lived databases**~~
+- Deployed ~~via **push-button (and 🤞)**~~
+- Owned by **one team**
+
+</div>
+
+<div class="text-blue-800 absolute left-40 top-0 right-0 bottom-0">
+
+- <span class="pl-60">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
+- <span class="pl-70">↱ **personas** <span class="text-xl">(+ factories)</span></span>
+- <span class="pl-45">↱ a **long-lived database**</span>
+- <span v-click class="pl-40">↱ **continuously**</span>
+
+</div>
+
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
+
 
 <!--
 And so we can totally cross out push-button deploys.
+
+CLICK
+
+Because now we have continuous integration and deployments just like our production environment.
 -->
+
 
 ---
 
 # WIP
+
+
+---
+layout: image
+image: /images/notebook.jpg
+class: font-mono pl-40 text-3xl pt-10
+---
+
+<style>
+li { list-style-type: none; }
+li + li {
+  margin-top: 1em;
+}
+</style>
+
+<div class="text-gray-800">
+
+- Consisted of ~~**multiple apps/services**~~
+- Populated with ~~**seed/fixture data**~~
+- Relied on ~~**short-lived databases**~~
+- Deployed ~~via **push-button (and 🤞)**~~
+- ~~Owned by **one team**~~
+
+</div>
+
+<div class="text-blue-800 absolute left-40 top-0 right-0 bottom-0">
+
+- <span class="pl-60">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
+- <span class="pl-70">↱ **personas** <span class="text-xl">(+ factories)</span></span>
+- <span class="pl-45">↱ **long-lived database**</span>
+- <span class="pl-40">↱ **continuously**</span>
+- <span v-click>↱ Maintained by **everyone**</span>
+
+</div>
+
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
+
+<!--
+
+Who owns this thing was immaterial, because the real question was who maintained it.
+
+And, really, it was...
+
+CLICK
+
+maintained by everyone!
+
+And, uh, this has gotten kinda messy at this point, so let's just rewrite the list.
+-->
+
+---
+layout: image
+image: /images/notebook.jpg
+class: font-mono pl-40 text-3xl pt-10
+---
+
+<style>
+li { list-style-type: none; }
+li + li {
+  margin-top: 1em;
+}
+</style>
+
+<div class="text-gray-800">
+
+- Consisted of <span class="text-blue-800">**one app**</span>
+- Populated with <span class="text-blue-800">**personas**</span>
+- Relied on a <span class="text-blue-800">**long-lived database**</span>
+- Deployed <span class="text-blue-800">**continuously**</span>
+- Maintained by <span class="text-blue-800">**everyone**</span>
+
+</div>
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
+
+<!--
+
+There we go. So this was the environment 2.0.
+
+An isolated app, centered around personas, utilizing a long-lived database, and deployed continuously.
+
+And, as a result of all of the tools we use in our day-to-day work, was maintained by everyone.
+-->
 
 ---
 layout: image
@@ -1903,4 +2149,3 @@ CLICK
 
 And it's that incentives matter more than technical solutions.
 -->
-
