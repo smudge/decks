@@ -1783,14 +1783,11 @@ line-height: 120% !important;
 }
 </style>
 
-
-
 <!--
 And if you look back at the way factories are defined,
 you see that we rely on this sequence feature to generate unique emails for us.
 
-The problem is, again...
-
+And this time the problem is that...
 -->
 
 ---
@@ -1804,9 +1801,8 @@ class: px-20
 Finding Nemo (2003)
 </div>
 
-
 <!--
-It has no short term memory
+It has no LONG term memory
 
 The sequences reset every time the Ruby process restarts.
 
@@ -1945,13 +1941,26 @@ There are a few ways to solve for this, and I'd say that we went with the best w
 -->
 
 ---
+layout: center
+class: text-center pt-35
+---
 
-# CleverSequence
+![clever sequence](/images/clever-sequence.png)
+
+<v-click>
+
+<p class="text-5xl pt-10"><strong>O(log n)</strong></p>
+
+</v-click>
 
 <!--
 ...to use an exponential search function to search the space of possible values, and find the next gap in the sequence.
 
-And this was a little slow, but not that slow,
+And this was a little slow, but
+
+CLICK
+
+not that slow,
 
 and we only had to do it once. Because once you find the starting value, the sequence can just keep going from there.
 -->
