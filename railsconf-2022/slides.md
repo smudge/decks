@@ -782,14 +782,13 @@ layout: center
 ...webvalve.
 
 what webvalve lets us do is define fake versions of any external service or app,
-and it will automatically route all web traffic to the fakes,
+and it will automatically route all web traffic to the fakes.
 -->
 
 ---
 layout: two-cols
 class: text-center
 ---
-
 
 # Without WebValve:
 
@@ -831,7 +830,14 @@ end
 </v-click>
 
 <!--
-and so instead of running an entire cluster of applications locally,
+and so 
+
+CLICK
+
+instead of running an entire cluster of applications locally, or maybe connecting to external sandbox APIs
+
+CLICK
+
 we have a set of fakes which actually run _inside_ of the Rails app itself.
 
 So it's all one Rails process.
@@ -866,8 +872,7 @@ layout: center
 ![rails at scale](/images/rails-at-scale.jpg)
 
 <!--
-Now, there's a whole other talk on how useful WebValve can be for local development
-and testing.
+Now, there's a whole other talk on WebValve itself.
 -->
 
 ---
@@ -877,8 +882,8 @@ layout: center
 ![rails at scale 2](/images/rails-at-scale-2.png)
 
 <!--
-Our VP of Architecture, Sam Moore, does a great job summarizing,
-and so I'm not gonna cover it here.
+And our VP of Architecture, Sam, summarizes how useful WebValve can be for local development
+and testing, and so I'm not gonna cover all of that here.
 -->
 
 ---
@@ -890,9 +895,10 @@ class: px-50
 
 ![webvalve readme](/images/webvalve-readme.png)
 
-
 <!--
-and you can find that and more in the webvalve README
+So if you're interested, you can find that **and more** on GitHub
+
+But what I will cover is how we got all of this working in our demo environment
 -->
 
 ---
@@ -936,15 +942,13 @@ U((Demoers)) --> A[App A]
 </v-click>
 
 <!--
-But what I will cover is how we got it working for demos.
-
 And, so, firstly,
 
 CLICK
 
 it did allow us to actually deploy just a single app, basically for free.
 
-Because it used all of the fake services that our teams had _already_ written.
+Because it relied on all of the fake services that our teams had _already_ written.
 -->
 
 ---
@@ -955,9 +959,11 @@ class: px-40 bg-blue-100
 ![summary page](/images/summary-page.png)
 
 <!--
-And so this was great!
+And so, right off the bat, this was great!
 
-I showed one of my colleagues who commonly gave client demos, and he clicked
+But remember that we were stubbing out all collaborating services. Like, basically all outside HTTP requests.
+
+So. I showed it one of my colleagues who commonly gave client demos, and he clicked
 around, and he liked what he was seeing.
 
 But then he encountered...
@@ -1004,12 +1010,11 @@ class: px-40
 Arrested Development (TV Series 2003-2019)
 </div>
 
-
 <!--
 So I walked away from that meeting feeling a little bummed, because he was
 right, and I knew I was just making excuses for technical shortcomings.
 
-And, so I started to wonder if this was even the right approach.
+And, so I started to wonder if this whole WebValve idea was even the right approach.
 -->
 
 ---
@@ -1125,6 +1130,8 @@ class: px-20 bg-blue-100
 So I went back to my colleague, and he said, yeah, sure, looks fine, and, so at
 that point I decided, okay, we can probably run with this.
 
+And we did. And there were only like one or two other places where we had to fill in the gaps like this.
+
 But there was one more issue.
 -->
 
@@ -1236,9 +1243,10 @@ sequenceDiagram
     Fake-->>+App: $123
 ```
 
-
 <!--
 And so now it can remember things!
+
+You could deposit 123 dollars and then actually see it reflected in your balance.
 -->
 
 ---
@@ -1253,7 +1261,6 @@ class: text-center
 
 </div>
 
-
 <!--
 And, so, quickly, to recap:
 
@@ -1263,9 +1270,7 @@ And all of this brings us to the next layer of the demoability iceberg, which is
 
 CLICK
 
-An app should mostly work in isolation. Like, it should mostly make sense on its own.
-
-It might needs some extra massaging at the system boundaries, but if the thing you want to demo can't readily be run in isolation, then
+An app should mostly work in isolation. Like, it might need some extra massaging at the system boundaries, but it should mostly make sense on its own.
 -->
 
 ---
@@ -1307,11 +1312,11 @@ Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_med
 </div>
 
 <!--
-And so, again, instead of deploying an entire cluster of apps, we could deploy just the one.
+And so, again, instead of deploying an entire cluster of apps, we could...
 
 CLICK
 
-deploying just one app. With some stateful fakes.
+deploy just one app. With some stateful fakes.
 
 So next we focused our attention on the way we populate the demo data and accounts.
 -->
@@ -1351,69 +1356,84 @@ Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_med
 </div>
 
 <!--
-And so we crossed out this idea of using seeds and fixtures.
+And so we crossed out that one too. Because, why not, it worked with the first
+one!
+
+But wait, if we don't use seeds or fixture data -- like, if we don't populate
+the user accounts ahead of time -- then what do we do?
+-->
+
+---
+layout: center
+class: px-70
+---
+
+![login form](/images/log_in.png)
+
+<!--
+Like, how else are you going to login?
+
+You'll be faced with this form, and you'll need to enter something, right?
+
+Well the more we thought about this, the more we realized how awkward this must be for our client-facing teams.
+-->
+
+---
+layout: center
+---
+
+# sticky note
+
+<!--
+Did they, like, keep the list of demo logins on a sticky note? 
+
+CLICK
+
+How did they know that someone else wasn't already using one of the demo accounts?
+-->
+
+---
+layout: center
+class: px-70
+---
+
+![login form](/images/log_in.png)
+
+<!--
+And so, if it's so awkward, why are we using this login form at all? 
+
+And that was our "ah ha" moment.
 -->
 
 
 ---
 
-TODO:
-[db]
-^
-|
-[app]
+TODO: Whiteboard of persona picker
+
 
 <!--
-And so if you remember, we relied on this kind of magic process that would
-tear down and recreate the database every so often.
+So we sketched out something totally different on a whiteboard.
 
-And when it did, you'd freshly-baked little demo accounts that you
-could log in as, if you knew their email and password.
+A page where you are presented with, say, 3 options. 3 users, with sign in buttons.
 
-And so this was not great for a couple reasons.
+But when you click "sign in", instead of logging you in as a _specific_ user,
+it creates a totally new COPY of that user, just for you.
 -->
 
 ---
 
-TODO:
-[db]
-^
-|
-[app]->migration
+TODO: Diagram of persona picker bg job
+
 
 <!--
-For one, it was a little fragile.
-The schema of the new database had to be exactly in sync with the expected schema of the app.
-So if we were in the process of rolling something new out in production, a migration might run right before we swap things out.
-And then we're out of sync.
+So we went ahead and prototyped it. A quick interface that would
+present a list of user personas, and when you pick one, it would
+show a loading screen,
+spin out a background job to generate the user,
+and then drop you right into the dashboard once the job completed.
 -->
 
----
 
-TODO:
-user1@example.org
-user2@example.org
-user3@example.org
-
-<!--
-But secondly, even when the refresh was working, it only gave us so many accounts.
-
-And so if I wanted to demo, like, adding a Roth IRA, I could only do it once, because that user would then _have_ a Roth IRA, and I'd have to find a different user account if I wanted to do it again.
-Or I'd have to wait until after the next big refresh.
-
-And so you can see how if you have multiple people doing demos all the time, the limiting factor becomes our ability to juggle enough account logins that we don't burn through them all before the next refresh.
--->
-
----
-
-TODO: 
-
-<!--
-And so we decided to just redo this entire process entirely.
-
-Instead, we thought, well what if we generate a new user account, each time you log in.
-So you'd always start with a blank slate.
--->
 
 ---
 layout: image
@@ -1516,46 +1536,6 @@ then log in as that user.
 Seems reasonable.
 -->
 
----
-layout: center
-class: px-70
----
-
-![login form](/images/log_in.png)
-
-<!--
-But how do we log in as that user?
-
-And, more specifically, how do we expect non-engineers to log in as that user?
-They're not gonna know how to generate a factory, and pull out the generated email, and then
-log in with that email.
-
-And as we were sketching this out, we drew something on a whiteboard.
--->
-
----
-
-TODO: Whiteboard of persona picker
-
-
-<!--
-Instead of a login form, why not just pick the user from a list of user templates.
-
-And this was our ah-ha moment.
--->
-
----
-
-TODO: Diagram of persona picker bg job
-
-
-<!--
-So we went ahead and prototyped it. A quick interface that would
-present a list of user personas, and when you pick one, it would
-show a loading screen,
-spin out a background job to generate the user,
-and then drop you right into the dashboard once the job completed.
--->
 
 ---
 layout: center
@@ -2113,8 +2093,7 @@ Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_med
 </div>
 
 <!--
-
-There we go. So this was the environment 2.0.
+There we go. So this was the Demo environment 2.0.
 
 An isolated app, centered around personas, utilizing a long-lived database, and deployed continuously.
 
