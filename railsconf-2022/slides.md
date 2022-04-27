@@ -1199,7 +1199,7 @@ And this is where we came up with the idea of stateful fakes
 layout: center
 ---
 
-```ruby {all|2-5|6-11|13-21|19}
+```ruby {all|2-5|6-11|13-22|19}
 class FakeBalanceService < WebValve::FakeService
   class FakeAccount < ActiveRecord::Base
     money :balance
@@ -1806,7 +1806,7 @@ It has no LONG term memory
 
 The sequences reset every time the Ruby process restarts.
 
-So, again, we got a little clever.
+So, apologies to our friends at ThoughtBot, but...
 -->
 
 ---
@@ -1839,9 +1839,9 @@ line-height: 120% !important;
 
 
 <!--
-And we decided to actually patch the sequences feature to dynamically look up the next available value in the database.
+we decided to patch FactoryBot
 
-And we tried a few things here.
+So that it could actually look up the next value in the sequence by checking the database.
 -->
 
 ---
@@ -1942,7 +1942,7 @@ There are a few ways to solve for this, and I'd say that we went with the best w
 
 ---
 layout: center
-class: text-center pt-35
+class: text-center pt-10
 ---
 
 ![clever sequence](/images/clever-sequence.png)
@@ -1993,13 +1993,10 @@ line-height: 120% !important;
 }
 </style>
 
-
 <!--
-
-And of course, we called it clever sequence (because clever code isn't always good code)
+And of course, we called it clever sequence (because clever code isn't necessarily good code)
 
 But it helped us get to a demoable state, and that's what mattered.
-
 -->
 
 ---
@@ -2081,22 +2078,58 @@ li + li {
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
-
 <!--
 So cross another one off the list. Instead of fixtures and seeds, we had...
 
 CLICK
 
-the new personas framework powered by factories, and of course webvalve
-and our stateful fakes, all powering this fancy little standalone demo app.
+the new personas framework powered by factories.
 
 And we could've stopped there, but we're not done crossing out this list!
+
+So let's look at this short-lived database idea. And this one is really easy.
 -->
 
 ---
+layout: center
+class: px-80
+---
 
-# WIP
+![short-lived db](/images/short-lived-db.png)
 
+
+<!--
+So, if you recall, we had this process that would basically destroy and recreate the database every so often.
+
+But the only reason we needed to do this was because we had previously relied on pre-populated demo accounts,
+and we wanted to reset them.
+
+But we had personas now!
+-->
+
+---
+layout: center
+class: px-80
+---
+
+![long-lived db](/images/long-lived-db.png)
+
+
+<!--
+So if we just... didn't reset the database ever, and kept it around indefinitely,
+all of the demo functionality would still work as intended.
+-->
+
+---
+layout: center
+class: px-30 pb-25
+---
+
+![db:migrate](/images/db-migrate.png)
+
+<!--
+And we'd just rely on schema migrations, the same way we do in production.
+-->
 
 ---
 layout: image
@@ -2135,95 +2168,181 @@ Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_med
 </div>
 
 <!--
-So we can cross out this one too. Instead
+So cross that out, and replace short-lived databases with
 
 CLICK
 
-we can run a long-lived database just like our production DB.
+a long lived database.
 
 So next up, was the cadence of deployments
 -->
 
 ---
+layout: center
+class: px-50 mr-20
+---
 
+![pain graph](/images/pain-graph.png)
 
-# Graph of cadence vs pain
 
 <!--
 And if you remember, I said that the longer the cadence, the more painful it got.
 
-And there's a simple reason for this
--->
-
----
-
-# left: git log with lots of changes
-
-# right: git log with few changes
-
-<!--
+And there's a simple reason for this.
 
 It's because whenever something goes wrong, the way to debug it is to look into every change
 that has happened since the last deploy.
 
-CLICK
+-->
 
-So if you haven't deployed in a month, you have to look through six months of changes.
+---
+layout: two-cols
+---
+
+![git log with lots of changes](/images/git-push-button.png)
+
+::right::
+
+<v-click>
+
+![git log with very few changes](/images/git-continuous.png)
+
+</v-click>
+
+<style>
+img { width: 65% }
+</style>
+
+<!--
+So if you haven't deployed in 3 months, you have to **sift** through 3 months of changes to figure out what broke.
 So, I'm sure you can see where I'm going with this.
 
 CLICK
 
 If you deploy all the time, then when something goes wrong, you just have 1 or 2 things that might've caused it!
 
+And so if it sounds like I'm making the case for continuous integration and continuous deployment, it's because...
 -->
 
 ---
+layout: center
+---
 
-# CI/CD
+![ci-cd diagram](/images/ci-cd.png)
 
 <!--
-And so if it sounds like I'm making the case for continuous integration and continuous deployment, it's because I am!
+...I am!
 
-This is how we deployed our production apps, so we made the demo app do the same thing!
+This is how we build our production apps, so it made sense to just do the same thing for demo.
+
+
+Of course, with continuous deploys, you need to actually operate and monitor as well, so that you actually know when something breaks.
 -->
 
 ---
+layout: two-cols
+class: text-center px-10 pt-25
+---
 
-# Slack and Sentry
+![slack](/images/slack.png)
+
+::right::
+
+<v-click>
+
+![sentry](/images/sentry.png)
+
+</v-click>
 
 <!--
-Of course, with continuous deploys, you need good monitoring and alerting, so that you actually know when something breaks.
-
-CLICK
-
 So we enabled slack alerts, and 
 
 CLICK
 
 we made sure errors would show up in our bugtracker.
 
-But then, we thought, well how can we detect broken states before they get deployed?
+And both of these can feed into our teams' on call processes.
+-->
+
+---
+layout: center
+---
+
+![ci-cd diagram](/images/ci-cd.png)
+
+<!--
+And then the last bit that was missing was there on the lower left... testing.
 -->
 
 ---
 
-# Left: test case
+<div grid="~ cols-2 gap-5" m="-t-2"><div>
 
-# Right: PR fail
+```ruby {all|1-3|6-8|all}
+before do
+  with_env('DEMO_MODE', 'true')
+end
+
+scenario 'visitor selects the "finley" persona' do
+  demo_session_new_page.finley.sign_in.click
+  expect(demo_loading_page).to be_loaded
+  work_off_jobs!
+
+  expect(summary_page).to be_loaded
+  expect(summary_page).to have_goal_cards(count: 1)
+  summary_page.goal_cards[0].tap do |goal|
+    expect(goal.type).to have_content('Retirement')
+    expect(goal).to have_content('$16,245.94')
+  end
+  summary_page.performance_tab.click
+
+  expect(performance_page).to be_loaded
+end
+```
+
+</div>
+<div><div class="bg-white px-5 pt-35 pb-2 absolute top-0 bottom-0" v-click-hide=4 v-click=3>
+
+![empty graph](/images/build-fail.png)
+
+</div>
+
+<div class="bg-white px-5 pt-35 pb-2 absolute top-0 bottom-0" v-after>
+
+![graph](/images/build-pass.png)
+
+</div></div></div>
 
 <!--
 And so we wrote tests and stuck them in our standard test suite!
+
+CLICK
+
 We actually made it possible to toggle the personas mode on and off using an environment variable.
+
+CLICK
+
 And then the test itself would click through an actual product demo, starting with the personas page.
 
 CLICK
 
-And so now if a test failed, a developer would see a red PR build, and would hopefully be obligated to fix it.
+And so now if a test failed, a developer would see a red PR build, and know that they broke an actual customer demo or sales pitch.
+
+CLICK
+
+And they can't merge until they make it green.
 -->
 
 ---
+layout: center
+---
 
-# CI / CD
+![ci-cd diagram](/images/ci-cd.png)
+
+<!--
+And with that, we were running the whole CI/CD infinity loop with our demo application.
+-->
+
 
 ---
 layout: image
@@ -2264,18 +2383,14 @@ Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_med
 
 
 <!--
-And so we can totally cross out push-button deploys.
+And so instead of push-button deploys...
 
 CLICK
 
-Because now we have continuous integration and deployments just like our production environment.
+We were deploying continuously, and really benefiting from it, just like in our production environment.
+
+And so what's left here is that last line.
 -->
-
-
----
-
-# WIP
-
 
 ---
 layout: image
@@ -2317,9 +2432,20 @@ Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_med
 
 <!--
 
-Who owns this thing was immaterial, because the real question was who maintained it.
+And I think we can cross this out, without any more slides, because we can just look at the things we've done above.
 
-And, really, it was...
+So for one, we're using these stateful fakes, which teams already write when developing and testing apps locally.
+
+And for the demo personas, we're using factories, which again, teams already produce when writing their tests.
+
+Then we have this long-lived database, that depends just on migrations, that teams already write when building features.
+
+And we're following a CI/CD process that routes any build failures or issues through to the team closest to the change being made.
+
+
+And so after all of this, who owns this thing is immaterial, because the real question is who maintains it.
+
+And it's effectively...
 
 CLICK
 
