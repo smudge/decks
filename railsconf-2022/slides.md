@@ -381,43 +381,20 @@ And so how did we do that?
 
 ---
 layout: two-cols
-class: text-center px-30
+class: text-center px-10
 ---
 
-# production
+# RAILS_ENV=**production**
 
-```mermaid
-graph BT
-
-U((Customers)) --> A
-A[App A] .-> B[App B] & C[App C] & D
-B .-> C
-C .-> B
-D[App D] .-> C
-C .-> E[App E]
-D .-> E
-E .-> C
-```
-
+<img src="/images/app-cluster.png" class="pr-10 pt-3"/>
 
 ::right::
 
 <v-click>
 
-# "staging"
+# RAILS_ENV=**staging**
 
-```mermaid
-graph BT
-
-U((Developers)) --> A
-A[App A] .-> B[App B] & C[App C] & D
-B .-> C
-C .-> B
-D[App D] .-> C
-C .-> E[App E]
-D .-> E
-E .-> C
-```
+<img src="/images/app-cluster.png" class="pr-10 pt-3"/>
 
 </v-click>
 
@@ -454,25 +431,25 @@ then you don't really need to learn to draw the owl.
 
 ---
 layout: two-cols
-class: text-center px-30
+class: text-center px-10
 ---
 
-# staging
+# RAILS_ENV=**staging**
 
-<img src="/images/owl.jpg" class="mt-15" />
+<img src="/images/owl.jpg" class="mt-15 ml-15" />
 
 ::right::
 
 <v-click>
 
-# demo
+# RAILS_ENV=**demo**
 
 <div class="relative mt-15">
 
-<img src="/images/owl.jpg" />
+<img src="/images/owl.jpg" class="ml-15" />
 
-<img src="/images/tophat.svg" class="absolute" style="top:-45px; left:50px; transform:rotate(25deg);" />
-<img src="/images/moustache.svg" class="absolute" style="top:20px;left:-5px; width:75%;" />
+<img src="/images/tophat.svg" class="absolute" style="top:-45px; left:120px; transform:rotate(25deg);" />
+<img src="/images/moustache.svg" class="absolute" style="top:15px;left:48px; width:50%;" />
 
 </div>
 
@@ -489,41 +466,18 @@ accounts we needed and keep those around.
 
 ---
 layout: two-cols
-class: text-center px-30
+class: text-center px-10
 ---
 
-# staging
+# RAILS_ENV=**staging**
 
-```mermaid
-graph BT
-
-U((Developers)) --> A
-A[App A] .-> B[App B] & C[App C] & D
-B .-> C
-C .-> B
-D[App D] .-> C
-C .-> E[App E]
-D .-> E
-E .-> C
-```
-
+<img src="/images/app-cluster.png" class="pr-10 pt-3"/>
 
 ::right::
 
-# demo
+# RAILS_ENV=**demo**
 
-```mermaid
-graph BT
-
-U((Demoers)) --> A
-A[App A] .-> B[App B] & C[App C] & D
-B .-> C
-C .-> B
-D[App D] .-> C
-C .-> E[App E]
-D .-> E
-E .-> C
-```
+<img src="/images/app-cluster.png" class="pr-10 pt-3"/>
 
 <!--
 But as for the rest of it, we just copy-pasted the deployment
@@ -787,26 +741,14 @@ and it will automatically route all web traffic to the fakes.
 
 ---
 layout: two-cols
-class: text-center
+class: text-center px-10
 ---
 
 # Without WebValve:
 
 <v-click>
 
-
-```mermaid
-graph LR
-
-A[App A] --> B[App B] & C[App C]
-C --> B
-B --> C
-D[App D] --> C
-
-subgraph Main App
-A
-end
-```
+<img src="/images/webvalve-without.png" class="pt-3" />
 
 </v-click>
 
@@ -817,15 +759,7 @@ end
 
 <v-click>
 
-```mermaid
-graph LR
-
-A[App A] --> B(Fake B) & C(Fake C)
-
-subgraph Main App
-A & B & C
-end
-```
+<img src="/images/webvalve-with.png" class="px-10 pt-20" />
 
 </v-click>
 
@@ -912,24 +846,12 @@ But what I will cover is how we got all of this working in our demo environment
 
 ---
 layout: two-cols
-class: text-center px-30
+class: text-center px-10
 ---
 
 # Before
 
-```mermaid
-graph BT
-
-U((Demoers)) --> A
-A[App A] .-> B[App B] & C[App C] & D
-B .-> C
-C .-> B
-D[App D] .-> C
-C .-> E[App E]
-D .-> E
-E .-> C
-```
-
+<img src="/images/app-cluster.png" class="pr-10 pt-3"/>
 
 ::right::
 
@@ -937,16 +859,7 @@ E .-> C
 
 <v-click>
 
-<div class="mt-50 pl-10">
-
-```mermaid
-graph BT
-
-U((Demoers)) --> A[App A]
-```
-
-</div>
-
+<img src="/images/app-cluster-after.png" class="pr-10 pt-3"/>
 
 </v-click>
 
@@ -1164,16 +1077,10 @@ And by that I mean, if you performed an action...
 
 ---
 layout: center
-class: px-20
+class: px-50
 ---
 
-```mermaid
-sequenceDiagram
-    App->>+Fake: Deposit $123
-    Fake->>+App: Okay
-    App->>+Fake: What's my balance?
-    Fake-->>+App: $0
-```
+![webvalve nonstateful fake](/images/webvalve-nonstateful-fake.png)
 
 <!--
 Like make a deposit, which resulted in an external POST request.
@@ -1257,16 +1164,10 @@ It can actually UPDATE those tables during POST/PUT/PATCH/DELETE/etc
 
 ---
 layout: center
-class: px-20
+class: px-50
 ---
 
-```mermaid
-sequenceDiagram
-    App->>+Fake: Deposit $123
-    Fake->>+App: Okay
-    App->>+Fake: What's my balance?
-    Fake-->>+App: $123
-```
+![webvalve stateful fake](/images/webvalve-stateful-fake.png)
 
 <!--
 And so now it can remember things!
@@ -1276,13 +1177,12 @@ You could deposit 123 dollars and then actually see it reflected in your balance
 
 ---
 layout: center
+class: text-center
 ---
 
-```mermaid
-graph BT
+# RAILS_ENV=**demo**
 
-U((Demoers)) --> A[App A + 'stateful' fakes]
-```
+<img src="/images/app-cluster-after-small.png" class="px-85 mt-10" />
 
 <!--
 And so we'd done it. We could run our app in total isolation from all external apps and services.
@@ -2276,7 +2176,7 @@ And then the last bit that was missing was there on the lower left... testing.
 
 ---
 
-<div grid="~ cols-2 gap-5" m="-t-2"><div>
+<div grid="~ cols-2 gap-5" m="t-10"><div>
 
 ```ruby {all|1-3|6-8|all}
 before do
@@ -2419,7 +2319,7 @@ li + li {
 
 - <span class="pl-60">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
 - <span class="pl-70">↱ **personas** <span class="text-xl">(+ factories)</span></span>
-- <span class="pl-45">↱ **long-lived database**</span>
+- <span class="pl-45">↱ a **long-lived database**</span>
 - <span class="pl-40">↱ **continuously**</span>
 - <span v-click>↱ Maintained by **everyone**</span>
 
