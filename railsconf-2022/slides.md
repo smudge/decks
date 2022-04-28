@@ -2391,6 +2391,132 @@ And, as a result of all of the tools we use in our day-to-day work, was maintain
 
 ---
 layout: image
+image: /images/2020.svg
+---
+
+# &nbsp;
+
+<!--
+So we shipped this in 2020, and as we all know it has been at least 6 years since then. Or I dunno, I stopped counting.
+-->
+
+---
+
+
+<div grid="~ cols-3 gap-5" m="t-2">
+<div>
+
+<img src="/images/persona-picker.png" class="mb-10 mt-30" />
+<img src="/images/betterment.png" class="px-10 pt-1" />
+
+</div><div>
+
+<img src="/images/persona-picker-b4b.png" class="mb-5 mt-31" />
+<img src="/images/b4b.png" class="px-10" />
+
+</div><div>
+
+<img src="/images/persona-picker-b4a.png" class="mb-9 mt-31" />
+<img src="/images/b4a.png" class="px-10" />
+
+</div>
+</div>
+
+<!--
+And since then we launched versions of it for 3 of our consumer facing products.
+So each of these is a different Rails app with its own set of stateful fakes and personas.
+-->
+
+---
+layout: center
+---
+
+<video muted autoplay loop>
+  <source src="/images/personas-ecosystem.mov" />
+</video>
+
+<!--
+We also launched a version of this for internal testing purposes, teams have added like a zillion test personas.
+
+So any Betterment employee has access to this and can test run the app with any persona.
+-->
+
+---
+layout: center
+---
+
+<div style="width: 882px; height: 61px; background-image:url(/images/personas-cli.gif); margin-bottom: -1px" />
+<div style="width: 882px; height: 319px; background-image:url(/images/personas-cli.gif); background-position: bottom; margin-top: -1px" />
+
+<!--
+And we paired this with a developer CLI so that devs can generate personas in their local development environments.
+
+In fact, this ended up replacing user seeds entirely, which cut down a bunch on the time it takes to run rake db:setup.
+-->
+
+---
+layout: center
+---
+
+<video muted autoplay loop width=222 height=480 style="width:222px;height:480px;">
+  <source src="/images/personas-mobile.mov" />
+</video>
+
+<img src="/images/iphone-front.png" class="absolute top-6" style="left:365px; width:251px;" />
+
+<!--
+We also connected a test build of our mobile app to a Rails API backed by the same set of personas.
+-->
+
+---
+layout: image
+image: /images/demo-mode-usage.svg
+---
+
+# &nbsp;
+
+<!--
+And most importantly, the internal usage of these apps has only gone up over time.
+
+And that leads us to...
+-->
+
+---
+
+# iceberg: incentives matter
+
+<!-- 
+Our final observation, which is that... like, incentives matter. And human incentives have a much greater long term impact than any technology choices you might make.
+-->
+
+---
+
+# teams in friction
+
+<!--
+Thinking back, to a few years ago, what we had were three misaligned teams.
+
+We had the teams building Betterment's consumer-facing product, focused on their own roadmaps and goals.
+
+Then, we had a B2B engineering team trying to stand up a demo environment for that consumer-facing product.
+
+And then a non-engineering team who desperately needed that demo environment, but couldn't trust that it would work.
+-->
+
+---
+
+# teams in harmony
+
+<!--
+And what we managed to do was align these incentives. And secretly, that's what this talk has actually been about.
+
+Tools like webvalve and factory bot were just implementation details.
+
+
+-->
+
+---
+layout: image
 image: /images/iceberg.jpg
 ---
 
