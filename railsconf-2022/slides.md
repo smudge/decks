@@ -519,6 +519,8 @@ Photo by <a href="https://unsplash.com/@airfocus?utm_source=unsplash&utm_medium=
 <!--
 
 We were still hard at work on our roadmap.
+
+But we were getting a sense that the demo environment wasn't really all that reliable.
 -->
 
 ---
@@ -540,18 +542,24 @@ layout: center
 </v-clicks>
 
 <!--
-But we were getting a sense that the demo environment wasn't really all that reliable.
+In fact, we were being told directly,
 
-And, you know, anytime this happened, we could drop
-what we were doing and fix it. But it was always a choice between
-that and the roadmap.
+CLICK
 
-Plus, everytime it broke,
-it got a little bit harder to fix. Like an old
-car that you keep patching up until eventually it's held
-together by duck tape and sheer force of will.
+and again, and again,
 
-and eventually, one morning, when you turn the key to start the ignition,
+CLICK
+
+in no uncertain terms,
+
+CLICK
+
+that the demo environment was not reliable.
+
+CLICK
+
+It just kept breaking for all sorts of reasons.
+
 -->
 
 ---
@@ -562,7 +570,20 @@ layout: center
 
 
 <!--
-nothing happens.
+And eventually, getting it working was just too much for us.
+
+And so we effectively gave up. And it felt bad.
+-->
+
+---
+layout: image
+image: /images/2018.svg
+---
+
+# &nbsp;
+
+<!--
+And by 2018, the slack messages had stopped entirely, because teams had found other ways of giving demos.
 -->
 
 ---
@@ -574,11 +595,9 @@ class: pt-20
 <img style="width:42%;margin:0 auto;" src="/images/jenkins.png" />
 
 <!--
+And I saved this screengrab of our build history (by the way, we don't use Jenkins anymore).
 
-that's where we ended up. and so we effectively gave up. And it felt bad.
-
-By the way, we don't use Jenkins anymore, but I saved this screengrab of our build history,
-and if you look closely, it's actually an entire year's worth of broken builds.
+If you look closely, it's actually an entire year's worth of broken builds.
 
 Each one of those was a developer, banging their head against their keyboard, trying to get this working.
 -->
@@ -593,7 +612,7 @@ class: text-center text-shadow-lg font-mono
 ## Observation No. 1
 
 <!--
-And thinking back to that iceberg of demoability, we had already made our first big observation, which is that...
+And thinking back to that iceberg of demoability, we had already made our first big observation, right beneath the surface, which is that...
 -->
 
 ---
@@ -706,7 +725,7 @@ Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_med
 <!--
 Starting with the idea of deploying an entire cluster of services.
 
-And the choice there should be obvious right? From a maintainability standpoint, why keep a _bunch_ of apps running if we really only cared about one app. The thing we wanted to demo.
+Because, from a maintainability standpoint, why keep a _bunch_ of apps running if we really only care about one app. The thing we wanted to demo.
 
 And that got us thinking, because at Betterment we already have a way of running our Rails apps in isolation.
 -->
@@ -737,8 +756,10 @@ layout: center
 <!--
 ...webvalve.
 
-what webvalve lets us do is define fake versions of any external service or app,
+what webvalve lets us do is define fake versions of external apps,
 and it will automatically route all web traffic to the fakes.
+
+It's built on top of WebMock, if you're familiar with that gem.
 -->
 
 ---
@@ -748,11 +769,7 @@ class: text-center px-10
 
 # Without WebValve:
 
-<v-click>
-
 <img src="/images/webvalve-without.png" class="pt-3" />
-
-</v-click>
 
 ::right::
 
@@ -766,11 +783,7 @@ class: text-center px-10
 </v-click>
 
 <!--
-and so 
-
-CLICK
-
-instead of running an entire cluster of applications locally, or maybe connecting to external sandbox APIs
+and so instead of running an entire cluster of applications locally, and connecting to external sandbox APIs and that kind of thing
 
 CLICK
 
@@ -3101,4 +3114,3 @@ https://github.com/thoughtbot/factory_bot
 ========================================
 
 Slides made with https://sli.dev/ and https://excalidraw.com/
-
