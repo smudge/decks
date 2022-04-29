@@ -249,16 +249,12 @@ demo.rb file to your app, but that's just the tip of the iceberg.
 -->
 
 ---
-layout: image
-image: /images/iceberg.jpg
-class: text-center
+layout: cover
+background: /images/iceberg.jpg
+class: text-center text-shadow-lg font-mono
 ---
 
-<div class="mt-50 text-shadow-lg">
-
-<h1 style="font-size:400%"><b>"demoability"</b></h1>
-
-</div>
+# "Demoability"
 
 <!--
 Because "demoability" -- the ability to quickly take something
@@ -588,6 +584,32 @@ Each one of those was a developer, banging their head against their keyboard, tr
 -->
 
 ---
+layout: cover
+background: /images/iceberg.jpg
+class: text-center text-shadow-lg font-mono
+---
+
+# "Demoability"
+## Observation No. 1
+
+<!--
+And thinking back to that iceberg of demoability, we had already made our first big observation, which is that...
+-->
+
+---
+layout: cover
+background: /images/iceberg.jpg
+class: text-center text-shadow-lg font-mono
+---
+
+# deployment<br/>!=<br/>maintenance
+
+<!--
+Deploying a demo environment is not the same as maintaining a demo environment.
+-->
+
+
+---
 layout: image
 image: /images/2019.svg
 ---
@@ -595,31 +617,11 @@ image: /images/2019.svg
 # &nbsp;
 
 <!--
-So fast forward again, and by 2019, the business needs had caught up with us
+And so by 2019, the business needs had caught up with us
 again. We really needed this thing to be working.
 
-But we also had time in our roadmap finally.
--->
-
----
-layout: image
-image: /images/iceberg.jpg
-class: text-center
----
-
-<div class="mt-50 text-shadow-lg" v-click>
-
-<h1 style="font-size:250%"><b>maintenance burden > up-front cost</b></h1>
-
-</div>
-
-<!--
-And thinking back to that iceberg of demoability, we had already learned the first lesson, right under the surface:
-
-CLICK
-
-The maintenance burden is always going to outweigh the up front cost. And so we knew that this time around,
-we needed to figure out a solution that we could maintain in the long run.
+But we also had time in our roadmap finally,
+and this time we wanted to build something that was easier to maintain in the long run.
 -->
 
 ---
@@ -2458,7 +2460,7 @@ In fact, this ended up replacing user seeds entirely, which cut down a bunch on 
 layout: center
 ---
 
-<video muted autoplay loop width=222 height=480 style="width:222px;height:480px;">
+<video muted autoplay width=222 height=480 style="width:222px;height:480px;">
   <source src="/images/personas-mobile.mov" />
 </video>
 
@@ -2482,11 +2484,29 @@ And that leads us to...
 -->
 
 ---
+layout: cover
+background: /images/iceberg.jpg
+class: text-center text-shadow-lg font-mono
+---
 
-# iceberg: incentives matter
+# "Demoability"
+## Observation No. 5
 
 <!-- 
-Our final observation, which is that... like, incentives matter. And human incentives have a much greater long term impact than any technology choices you might make.
+Our final observation, which is that... 
+-->
+
+---
+layout: cover
+background: /images/iceberg.jpg
+class: text-center text-shadow-lg font-mono
+---
+
+# Incentives outweigh technology
+
+
+<!--
+like, incentives matter. And human incentives have a much greater long term impact than any technology choices you might make.
 -->
 
 ---
