@@ -395,7 +395,7 @@ class: text-center px-10
 </v-click>
 
 <!--
-So, firstly, there's always the option to just use the production app, right? And in our case, it's a cluster of multiple applications.
+So, firstly, there's always the option to just use the production app, right? And in our case, it's a cluster of multiple monolithic Rails applications.
 But since our app involves real money, and real personal info, that option didn't feel great.
 
 But we looked around and saw that Betterment also had a _staging_ environment.
@@ -670,7 +670,7 @@ but when even that got to be too painful, we started only deploying when we
 needed to. So it was "push button" deploys, but I'd call it"push button and
 cross fingers"
 
-Lastly, who maintained it? Well, us. The engineering team closest to the need
+Lastly, who owned it? Well, us. The engineering team closest to the need
 for its existence (and most incentivized to do the work).
 
 And so, now that we had this list, we started crossing things out.
@@ -692,10 +692,10 @@ li + li {
 <div class="text-gray-800">
 
 - Consisted of ~~**multiple apps/services**~~
-- Populated with **seed/fixture data**
-- Relied on **short-lived databases**
-- Deployed via **push-button (and 🤞)**
-- Owned by **one team**
+- <span style="opacity:0.5">Populated with **seed/fixture data**</span>
+- <span style="opacity:0.5">Relied on **short-lived databases**</span>
+- <span style="opacity:0.5">Deployed via **push-button (and 🤞)**</span>
+- <span style="opacity:0.5">Owned by **one team**</span>
 
 </div>
 
@@ -1161,7 +1161,7 @@ And during POST requests
 
 CLICK
 
-It can actually UPDATE those tables during POST/PUT/PATCH/DELETE/etc
+It can actually UPDATE those tables 
 -->
 
 ---
@@ -1196,26 +1196,6 @@ We enabled WebValve. We made the fake services real _enough_ to support a useful
 
 ---
 layout: image
-image: /images/iceberg.jpg
-class: text-center
----
-
-<div class="mt-50 text-shadow-lg" v-click>
-
-<h1 style="font-size:250%"><b>An app should (mostly) work in isolation</b></h1>
-
-</div>
-
-<!--
-And all of this brings us to the next layer of the demoability iceberg, which is that...
-
-CLICK
-
-An app should mostly work in isolation. Like, it might need some extra massaging at the system boundaries, but it should mostly make sense on its own.
--->
-
----
-layout: image
 image: /images/notebook.jpg
 class: font-mono pl-40 text-3xl pt-10
 ---
@@ -1230,10 +1210,10 @@ li + li {
 <div class="text-gray-800">
 
 - Consisted of ~~**multiple apps/services**~~
-- Populated with **seed/fixture data**
-- Relied on **short-lived databases**
-- Deployed via **push-button (and 🤞)**
-- Owned by **one team**
+- <span style="opacity:0.5">Populated with **seed/fixture data**</span>
+- <span style="opacity:0.5">Relied on **short-lived databases**</span>
+- <span style="opacity:0.5">Deployed via **push-button (and 🤞)**</span>
+- <span style="opacity:0.5">Owned by **one team**</span>
 
 </div>
 
@@ -1259,6 +1239,70 @@ CLICK
 
 deploy just one app. With some stateful fakes.
 
+-->
+
+---
+layout: cover
+background: /images/iceberg.jpg
+class: text-center text-shadow-lg font-mono
+---
+
+# "Demoability"
+## Observation No. 2
+
+<!--
+And we've also made our second "demoability" iceberg observation, which is that...
+-->
+
+---
+layout: cover
+background: /images/iceberg.jpg
+class: text-center text-shadow-lg font-mono
+---
+
+# an app should (mostly) work in isolation
+
+<!--
+An app should mostly work in isolation.
+
+Like, it might need some extra massaging at the system boundaries, but it should mostly make sense on its own.
+-->
+
+---
+layout: image
+image: /images/notebook.jpg
+class: font-mono pl-40 text-3xl pt-10
+---
+
+<style>
+li { list-style-type: none; }
+li + li {
+  margin-top: 1em;
+}
+</style>
+
+<div class="text-gray-800">
+
+- <span style="opacity:0.5">Consisted of ~~**multiple apps/services**~~</span>
+- Populated with **seed/fixture data**
+- <span style="opacity:0.5">Relied on **short-lived databases**</span>
+- <span style="opacity:0.5">Deployed via **push-button (and 🤞)**</span>
+- <span style="opacity:0.5">Owned by **one team**</span>
+
+</div>
+
+<div class="text-blue-800 absolute left-40 top-0 right-0 bottom-0">
+
+- <span class="pl-60" style="opacity:0.5">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
+
+</div>
+
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
+
+<!--
 So next we focused our attention on the way we populate the demo data and accounts.
 -->
 
@@ -1277,17 +1321,17 @@ li + li {
 
 <div class="text-gray-800">
 
-- Consisted of ~~**multiple apps/services**~~
+- <span style="opacity:0.5">Consisted of ~~**multiple apps/services**~~</span>
 - Populated with ~~**seed/fixture data**~~
-- Relied on **short-lived databases**
-- Deployed via **push-button (and 🤞)**
-- Owned by **one team**
+- <span style="opacity:0.5">Relied on **short-lived databases**</span>
+- <span style="opacity:0.5">Deployed via **push-button (and 🤞)**</span>
+- <span style="opacity:0.5">Owned by **one team**</span>
 
 </div>
 
 <div class="text-blue-800 absolute left-40 top-0 right-0 bottom-0">
 
-- <span class="pl-60">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
+- <span class="pl-60" style="opacity:0.5">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
 
 </div>
 
@@ -1297,8 +1341,7 @@ Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_med
 </div>
 
 <!--
-And so we crossed out that one too. Because, why not, it worked with the first
-one!
+And so we crossed out that one too.
 
 But wait, if we don't use seeds or fixture data -- like, if we don't populate
 the user accounts ahead of time -- then what do we do?
@@ -1609,8 +1652,6 @@ layout: center
 
 <!--
 And it worked!
-
-CLICK
 
 There's the loading spinner, and that should take us to the dashboard.
 
@@ -1926,23 +1967,30 @@ CLICK
 -->
 
 ---
-layout: image
-image: /images/iceberg.jpg
-class: text-center
+layout: cover
+background: /images/iceberg.jpg
+class: text-center text-shadow-lg font-mono
 ---
 
-<div class="mt-50 text-shadow-lg" v-click>
-
-<h1 style="font-size:250%"><b>The UX should inform everything else</b></h1>
-
-</div>
+# "Demoability"
+## Observation No. 3
 
 <!--
 And so we have another iceberg reveal. This time, the take-away was that...
+-->
 
-CLICK
+---
+layout: cover
+background: /images/iceberg.jpg
+class: text-center text-shadow-lg font-mono
+---
 
-We needed to start with the user experience and work backwards.
+# Start with the UX
+
+<!--
+We needed to start with the user experience and work backwards from there.
+
+Our first demo environment was built on the faulty assumption that the login page was the right UX,
 -->
 
 ---
@@ -1960,17 +2008,17 @@ li + li {
 
 <div class="text-gray-800">
 
-- Consisted of ~~**multiple apps/services**~~
+- <span style="opacity:0.5">Consisted of ~~**multiple apps/services**~~</span>
 - Populated with ~~**seed/fixture data**~~
-- Relied on **short-lived databases**
-- Deployed via **push-button (and 🤞)**
-- Owned by **one team**
+- <span style="opacity:0.5">Relied on **short-lived databases**</span>
+- <span style="opacity:0.5">Deployed via **push-button (and 🤞)**</span>
+- <span style="opacity:0.5">Owned by **one team**</span>
 
 </div>
 
 <div class="text-blue-800 absolute left-40 top-0 right-0 bottom-0">
 
-- <span class="pl-60">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
+- <span class="pl-60" style="opacity:0.5">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
 - <span v-click class="pl-70">↱ **personas** <span class="text-xl">(+ factories)</span></span>
 
 </div>
@@ -1981,7 +2029,7 @@ Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_med
 </div>
 
 <!--
-So cross another one off the list. Instead of fixtures and seeds, we had...
+And by rethinking that assumption, we were able to do away with seeds and fixtures, in favor of...
 
 CLICK
 
@@ -1989,7 +2037,86 @@ the new personas framework powered by factories.
 
 And we could've stopped there, but we're not done crossing out this list!
 
-So let's look at this short-lived database idea. And this one is really easy.
+-->
+
+---
+layout: image
+image: /images/notebook.jpg
+class: font-mono pl-40 text-3xl pt-10
+---
+
+<style>
+li { list-style-type: none; }
+li + li {
+  margin-top: 1em;
+}
+</style>
+
+<div class="text-gray-800">
+
+- <span style="opacity:0.5">Consisted of ~~**multiple apps/services**~~</span>
+- <span style="opacity:0.5">Populated with ~~**seed/fixture data**~~</span>
+- <span style="opacity:1.0">Relied on **short-lived databases**</span>
+- <span style="opacity:0.5">Deployed via **push-button (and 🤞)**</span>
+- <span style="opacity:0.5">Owned by **one team**</span>
+
+</div>
+
+<div class="text-blue-800 absolute left-40 top-0 right-0 bottom-0">
+
+- <span class="pl-60" style="opacity:0.5">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
+- <span class="pl-70" style="opacity:0.5">↱ **personas** <span class="text-xl">(+ factories)</span></span>
+
+</div>
+
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
+
+<!--
+
+So let's look at this short-lived database idea.
+-->
+
+---
+layout: image
+image: /images/notebook.jpg
+class: font-mono pl-40 text-3xl pt-10
+---
+
+<style>
+li { list-style-type: none; }
+li + li {
+  margin-top: 1em;
+}
+</style>
+
+<div class="text-gray-800">
+
+- <span style="opacity:0.5">Consisted of ~~**multiple apps/services**~~</span>
+- <span style="opacity:0.5">Populated with ~~**seed/fixture data**~~</span>
+- <span style="opacity:1.0">Relied on ~~**short-lived databases**~~</span>
+- <span style="opacity:0.5">Deployed via **push-button (and 🤞)**</span>
+- <span style="opacity:0.5">Owned by **one team**</span>
+
+</div>
+
+<div class="text-blue-800 absolute left-40 top-0 right-0 bottom-0">
+
+- <span class="pl-60" style="opacity:0.5">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
+- <span class="pl-70" style="opacity:0.5">↱ **personas** <span class="text-xl">(+ factories)</span></span>
+
+</div>
+
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
+
+
+<!--
+And this one is really easy to cross out..
 -->
 
 ---
@@ -2048,18 +2175,18 @@ li + li {
 
 <div class="text-gray-800">
 
-- Consisted of ~~**multiple apps/services**~~
-- Populated with ~~**seed/fixture data**~~
+- <span style="opacity:0.5">Consisted of ~~**multiple apps/services**~~</span>
+- <span style="opacity:0.5">Populated with ~~**seed/fixture data**~~</span>
 - Relied on ~~**short-lived databases**~~
-- Deployed via **push-button (and 🤞)**
-- Owned by **one team**
+- <span style="opacity:0.5">Deployed via **push-button (and 🤞)**</span>
+- <span style="opacity:0.5">Owned by **one team**</span>
 
 </div>
 
 <div class="text-blue-800 absolute left-40 top-0 right-0 bottom-0">
 
-- <span class="pl-60">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
-- <span class="pl-70">↱ **personas** <span class="text-xl">(+ factories)</span></span>
+- <span class="pl-60" style="opacity:0.5">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
+- <span class="pl-70" style="opacity:0.5">↱ **personas** <span class="text-xl">(+ factories)</span></span>
 - <span v-click class="pl-45">↱ a **long-lived database**</span>
 
 </div>
@@ -2261,19 +2388,19 @@ li + li {
 
 <div class="text-gray-800">
 
-- Consisted of ~~**multiple apps/services**~~
-- Populated with ~~**seed/fixture data**~~
-- Relied on ~~**short-lived databases**~~
+- <span style="opacity:0.5">Consisted of ~~**multiple apps/services**~~</span>
+- <span style="opacity:0.5">Populated with ~~**seed/fixture data**~~</span>
+- <span style="opacity:0.5">Relied on ~~**short-lived databases**~~</span>
 - Deployed ~~via **push-button (and 🤞)**~~
-- Owned by **one team**
+- <span style="opacity:0.5">Owned by **one team**</span>
 
 </div>
 
 <div class="text-blue-800 absolute left-40 top-0 right-0 bottom-0">
 
-- <span class="pl-60">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
-- <span class="pl-70">↱ **personas** <span class="text-xl">(+ factories)</span></span>
-- <span class="pl-45">↱ a **long-lived database**</span>
+- <span class="pl-60" style="opacity:0.5">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
+- <span class="pl-70" style="opacity:0.5">↱ **personas** <span class="text-xl">(+ factories)</span></span>
+- <span class="pl-45" style="opacity:0.5">↱ a **long-lived database**</span>
 - <span v-click class="pl-40">↱ **continuously**</span>
 
 </div>
@@ -2290,8 +2417,77 @@ And so instead of push-button deploys...
 CLICK
 
 We were deploying continuously, and really benefiting from it, just like in our production environment.
+-->
 
-And so what's left here is that last line.
+---
+layout: cover
+background: /images/iceberg.jpg
+class: text-center text-shadow-lg font-mono
+---
+
+# "Demoability"
+## Observation No. 4
+
+<!--
+And that's actually the next iceberg observation.
+-->
+
+---
+layout: cover
+background: /images/iceberg.jpg
+class: text-center text-shadow-lg font-mono
+---
+
+# the demo env<br/>_is_<br/>a production env
+
+<!--
+I'd argue that the demo environment _is_ a production environment.
+
+Because, like, if you're running live sales demos to real audiences,
+then that's a production app, and it deserves production-like uptime guarantees.
+-->
+
+
+---
+layout: image
+image: /images/notebook.jpg
+class: font-mono pl-40 text-3xl pt-10
+---
+
+<style>
+li { list-style-type: none; }
+li + li {
+  margin-top: 1em;
+}
+</style>
+
+<div class="text-gray-800">
+
+- <span style="opacity:0.5">Consisted of ~~**multiple apps/services**~~</span>
+- <span style="opacity:0.5">Populated with ~~**seed/fixture data**~~</span>
+- <span style="opacity:0.5">Relied on ~~**short-lived databases**~~</span>
+- <span style="opacity:0.5">Deployed ~~via **push-button (and 🤞)**~~</span>
+- Owned by **one team**
+
+</div>
+
+<div class="text-blue-800 absolute left-40 top-0 right-0 bottom-0">
+
+- <span class="pl-60" style="opacity:0.5">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
+- <span class="pl-70" style="opacity:0.5">↱ **personas** <span class="text-xl">(+ factories)</span></span>
+- <span class="pl-45" style="opacity:0.5">↱ a **long-lived database**</span>
+- <span class="pl-40" style="opacity:0.5">↱ **continuously**</span>
+
+</div>
+
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
+
+<!--
+
+And I think we can cross this out...
 -->
 
 ---
@@ -2309,21 +2505,20 @@ li + li {
 
 <div class="text-gray-800">
 
-- Consisted of ~~**multiple apps/services**~~
-- Populated with ~~**seed/fixture data**~~
-- Relied on ~~**short-lived databases**~~
-- Deployed ~~via **push-button (and 🤞)**~~
-- ~~Owned by **one team**~~
+- <span style="opacity:0.5">Consisted of ~~**multiple apps/services**~~</span>
+- <span style="opacity:0.5">Populated with ~~**seed/fixture data**~~</span>
+- <span style="opacity:0.5">Relied on ~~**short-lived databases**~~</span>
+- <span style="opacity:0.5">Deployed ~~via **push-button (and 🤞)**~~</span>
+- <span style="opacity:1.0">~~Owned by **one team**~~</span>
 
 </div>
 
 <div class="text-blue-800 absolute left-40 top-0 right-0 bottom-0">
 
-- <span class="pl-60">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
-- <span class="pl-70">↱ **personas** <span class="text-xl">(+ factories)</span></span>
-- <span class="pl-45">↱ a **long-lived database**</span>
-- <span class="pl-40">↱ **continuously**</span>
-- <span v-click>↱ Maintained by **everyone**</span>
+- <span class="pl-60" style="opacity:0.5">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
+- <span class="pl-70" style="opacity:0.5">↱ **personas** <span class="text-xl">(+ factories)</span></span>
+- <span class="pl-45" style="opacity:0.5">↱ a **long-lived database**</span>
+- <span class="pl-40" style="opacity:0.5">↱ **continuously**</span>
 
 </div>
 
@@ -2332,18 +2527,221 @@ li + li {
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
+
 <!--
 
-And I think we can cross this out, without any more slides, because we can just look at the things we've done above.
+without any more slides, because we can just look at the things we've done above.
 
+-->
+
+---
+layout: image
+image: /images/notebook.jpg
+class: font-mono pl-40 text-3xl pt-10
+---
+
+<style>
+li { list-style-type: none; }
+li + li {
+  margin-top: 1em;
+}
+</style>
+
+<div class="text-gray-800">
+
+- <span style="opacity:1.0">Consisted of ~~**multiple apps/services**~~</span>
+- <span style="opacity:0.5">Populated with ~~**seed/fixture data**~~</span>
+- <span style="opacity:0.5">Relied on ~~**short-lived databases**~~</span>
+- <span style="opacity:0.5">Deployed ~~via **push-button (and 🤞)**~~</span>
+- <span style="opacity:0.5">~~Owned by **one team**~~</span>
+
+</div>
+
+<div class="text-blue-800 absolute left-40 top-0 right-0 bottom-0">
+
+- <span class="pl-60" style="opacity:1.0">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
+- <span class="pl-70" style="opacity:0.5">↱ **personas** <span class="text-xl">(+ factories)</span></span>
+- <span class="pl-45" style="opacity:0.5">↱ a **long-lived database**</span>
+- <span class="pl-40" style="opacity:0.5">↱ **continuously**</span>
+
+</div>
+
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
+
+
+<!--
 So for one, we're using these stateful fakes, which teams already write when developing and testing apps locally.
+-->
 
+---
+layout: image
+image: /images/notebook.jpg
+class: font-mono pl-40 text-3xl pt-10
+---
+
+<style>
+li { list-style-type: none; }
+li + li {
+  margin-top: 1em;
+}
+</style>
+
+<div class="text-gray-800">
+
+- <span style="opacity:0.5">Consisted of ~~**multiple apps/services**~~</span>
+- <span style="opacity:1.0">Populated with ~~**seed/fixture data**~~</span>
+- <span style="opacity:0.5">Relied on ~~**short-lived databases**~~</span>
+- <span style="opacity:0.5">Deployed ~~via **push-button (and 🤞)**~~</span>
+- <span style="opacity:0.5">~~Owned by **one team**~~</span>
+
+</div>
+
+<div class="text-blue-800 absolute left-40 top-0 right-0 bottom-0">
+
+- <span class="pl-60" style="opacity:0.5">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
+- <span class="pl-70" style="opacity:1.0">↱ **personas** <span class="text-xl">(+ factories)</span></span>
+- <span class="pl-45" style="opacity:0.5">↱ a **long-lived database**</span>
+- <span class="pl-40" style="opacity:0.5">↱ **continuously**</span>
+
+</div>
+
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
+
+
+<!--
 And for the demo personas, we're using factories, which again, teams already produce when writing their tests.
+-->
 
+---
+layout: image
+image: /images/notebook.jpg
+class: font-mono pl-40 text-3xl pt-10
+---
+
+<style>
+li { list-style-type: none; }
+li + li {
+  margin-top: 1em;
+}
+</style>
+
+<div class="text-gray-800">
+
+- <span style="opacity:0.5">Consisted of ~~**multiple apps/services**~~</span>
+- <span style="opacity:0.5">Populated with ~~**seed/fixture data**~~</span>
+- <span style="opacity:1.0">Relied on ~~**short-lived databases**~~</span>
+- <span style="opacity:0.5">Deployed ~~via **push-button (and 🤞)**~~</span>
+- <span style="opacity:0.5">~~Owned by **one team**~~</span>
+
+</div>
+
+<div class="text-blue-800 absolute left-40 top-0 right-0 bottom-0">
+
+- <span class="pl-60" style="opacity:0.5">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
+- <span class="pl-70" style="opacity:0.5">↱ **personas** <span class="text-xl">(+ factories)</span></span>
+- <span class="pl-45" style="opacity:1.0">↱ a **long-lived database**</span>
+- <span class="pl-40" style="opacity:0.5">↱ **continuously**</span>
+
+</div>
+
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
+
+
+<!--
 Then we have this long-lived database, that depends just on migrations, that teams already write when building features.
+-->
 
+---
+layout: image
+image: /images/notebook.jpg
+class: font-mono pl-40 text-3xl pt-10
+---
+
+<style>
+li { list-style-type: none; }
+li + li {
+  margin-top: 1em;
+}
+</style>
+
+<div class="text-gray-800">
+
+- <span style="opacity:0.5">Consisted of ~~**multiple apps/services**~~</span>
+- <span style="opacity:0.5">Populated with ~~**seed/fixture data**~~</span>
+- <span style="opacity:0.5">Relied on ~~**short-lived databases**~~</span>
+- <span style="opacity:1.0">Deployed ~~via **push-button (and 🤞)**~~</span>
+- <span style="opacity:0.5">~~Owned by **one team**~~</span>
+
+</div>
+
+<div class="text-blue-800 absolute left-40 top-0 right-0 bottom-0">
+
+- <span class="pl-60" style="opacity:0.5">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
+- <span class="pl-70" style="opacity:0.5">↱ **personas** <span class="text-xl">(+ factories)</span></span>
+- <span class="pl-45" style="opacity:0.5">↱ a **long-lived database**</span>
+- <span class="pl-40" style="opacity:1.0">↱ **continuously**</span>
+
+</div>
+
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
+
+
+<!--
 And we're following a CI/CD process that routes any build failures or issues through to the team closest to the change being made.
+-->
 
+---
+layout: image
+image: /images/notebook.jpg
+class: font-mono pl-40 text-3xl pt-10
+---
+
+<style>
+li { list-style-type: none; }
+li + li {
+  margin-top: 1em;
+}
+</style>
+
+<div class="text-gray-800">
+
+- <span style="opacity:0.5">Consisted of ~~**multiple apps/services**~~</span>
+- <span style="opacity:0.5">Populated with ~~**seed/fixture data**~~</span>
+- <span style="opacity:0.5">Relied on ~~**short-lived databases**~~</span>
+- <span style="opacity:0.5">Deployed ~~via **push-button (and 🤞)**~~</span>
+- <span style="opacity:1.0">~~Owned by **one team**~~</span>
+
+</div>
+
+<div class="text-blue-800 absolute left-40 top-0 right-0 bottom-0">
+
+- <span class="pl-60" style="opacity:0.5">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
+- <span class="pl-70" style="opacity:0.5">↱ **personas** <span class="text-xl">(+ factories)</span></span>
+- <span class="pl-45" style="opacity:0.5">↱ a **long-lived database**</span>
+- <span class="pl-40" style="opacity:0.5">↱ **continuously**</span>
+- <span style="opacity:1.0" v-click>↱ Maintained by **everyone**</span>
+
+</div>
+
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
+
+
+<!--
 
 And so after all of this, who owns this thing is immaterial, because the real question is who maintains it.
 
@@ -2392,6 +2790,59 @@ And, as a result of all of the tools we use in our day-to-day work, was maintain
 -->
 
 ---
+layout: cover
+background: /images/iceberg.jpg
+class: text-center text-shadow-lg font-mono
+---
+
+# "Demoability"
+## Observation No. 5
+
+<!-- 
+And that leads into our final observation, which is simply that...
+-->
+
+---
+layout: cover
+background: /images/iceberg.jpg
+class: text-center text-shadow-lg font-mono
+---
+
+# Incentives Matter
+
+
+<!--
+like, incentives matter.
+
+And that's actually what this talk has been secretly about all along.
+-->
+
+---
+
+# teams in friction
+
+<!--
+Thinking back, to a few years ago, what we had were three misaligned teams.
+
+We had the teams building Betterment's consumer-facing product, focused on their own roadmaps and goals.
+
+Then, we had a B2B engineering team trying to stand up a demo environment for that consumer-facing product.
+
+And then a non-engineering team who desperately needed that demo environment, but couldn't trust that it would work.
+-->
+
+---
+
+# teams in harmony
+
+<!--
+And what we managed to do was align these incentives.
+
+Tools like webvalve and factory bot were just implementation details.
+-->
+
+
+---
 layout: image
 image: /images/2020.svg
 ---
@@ -2400,6 +2851,8 @@ image: /images/2020.svg
 
 <!--
 So we shipped this in 2020, and as we all know it has been at least 6 years since then. Or I dunno, I stopped counting.
+
+But to close us out, I wanted to share what we've done in the years since this released.
 -->
 
 ---
@@ -2425,7 +2878,7 @@ So we shipped this in 2020, and as we all know it has been at least 6 years sinc
 </div>
 
 <!--
-And since then we launched versions of it for 3 of our consumer facing products.
+Firstly, we actually ended up launching versions of it for 3 of our consumer facing products.
 So each of these is a different Rails app with its own set of stateful fakes and personas.
 -->
 
@@ -2478,88 +2931,24 @@ image: /images/demo-mode-usage.svg
 # &nbsp;
 
 <!--
-And most importantly, the internal usage of these apps has only gone up over time.
-
-And that leads us to...
+And the internal usage of these apps has only gone up over time.
 -->
 
 ---
-layout: cover
-background: /images/iceberg.jpg
-class: text-center text-shadow-lg font-mono
----
 
-# "Demoability"
-## Observation No. 5
-
-<!-- 
-Our final observation, which is that... 
--->
-
----
-layout: cover
-background: /images/iceberg.jpg
-class: text-center text-shadow-lg font-mono
----
-
-# Incentives outweigh technology
-
+# even more teams in harmony
 
 <!--
-like, incentives matter. And human incentives have a much greater long term impact than any technology choices you might make.
+And so in keeping with the theme of aligning organizational incentives,
+this shared language of "personas" has started to really permeate our entire development process.
 -->
 
 ---
 
-# teams in friction
+# teams in harmony plus maybe you?
 
 <!--
-Thinking back, to a few years ago, what we had were three misaligned teams.
+And so I'm excited to announce that we've actually open sourced our demo and personas framework.
 
-We had the teams building Betterment's consumer-facing product, focused on their own roadmaps and goals.
-
-Then, we had a B2B engineering team trying to stand up a demo environment for that consumer-facing product.
-
-And then a non-engineering team who desperately needed that demo environment, but couldn't trust that it would work.
--->
-
----
-
-# teams in harmony
-
-<!--
-And what we managed to do was align these incentives. And secretly, that's what this talk has actually been about.
-
-Tools like webvalve and factory bot were just implementation details.
-
-
--->
-
----
-layout: image
-image: /images/iceberg.jpg
----
-
-<div class="ml-50 mt-30 text-3xl text-shadow-lg font-bold">
-
-<v-clicks>
-
-1. Maintenance cost > up-front cost
-2. An app should make sense in isolation
-3. Start with the UX and work backwards
-4. The demo env _is_ a production env
-5. Incentives matter more than tech
-
-</v-clicks>
-
-</div>
-
-<!--
-Recap of the demoability iceberg.
-
-I'm gonna add just one more thing...
-
-CLICK
-
-And it's that incentives matter more than technical solutions.
+So maybe you can add yourself to this diagram!
 -->
