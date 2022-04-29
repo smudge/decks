@@ -11,7 +11,7 @@ class: text-center
 
 # **RAILS_ENV=demo**
 
-#### unlocking the potential of the "demo" environment
+### diving into the "demo" environment
 
 <!--
 Okay, so let's get started.
@@ -2203,7 +2203,47 @@ CLICK
 
 a long lived database.
 
-So next up, was the cadence of deployments
+-->
+
+---
+layout: image
+image: /images/notebook.jpg
+class: font-mono pl-40 text-3xl pt-10
+---
+
+<style>
+li { list-style-type: none; }
+li + li {
+  margin-top: 1em;
+}
+</style>
+
+<div class="text-gray-800">
+
+- <span style="opacity:0.5">Consisted of ~~**multiple apps/services**~~</span>
+- <span style="opacity:0.5">Populated with ~~**seed/fixture data**~~</span>
+- <span style="opacity:0.5">Relied on ~~**short-lived databases**~~</span>
+- <span style="opacity:1.0">Deployed via ~~**push-button (and 🤞)**~~</span>
+- <span style="opacity:0.5">Owned by **one team**</span>
+
+</div>
+
+<div class="text-blue-800 absolute left-40 top-0 right-0 bottom-0">
+
+- <span class="pl-60" style="opacity:0.5">↱ **one app** <span class="text-xl">(+ stateful fakes)</span></span>
+- <span class="pl-70" style="opacity:0.5">↱ **personas** <span class="text-xl">(+ factories)</span></span>
+- <span class="pl-45" style="opacity:0.5">↱ a **long-lived database**</span>
+
+</div>
+
+
+<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
+
+
+<!--
+So next up, was the cadence of deployments. And we crossed this out too.
 -->
 
 ---
@@ -2486,8 +2526,7 @@ Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_med
 </div>
 
 <!--
-
-And I think we can cross this out...
+And so we've made it to this last item in the list. The question of who owns this thing. And...
 -->
 
 ---
@@ -2527,11 +2566,8 @@ li + li {
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
-
 <!--
-
-without any more slides, because we can just look at the things we've done above.
-
+I think we can cross this out... without any more slides, because we can just look at the things we've done above.
 -->
 
 ---
@@ -2818,29 +2854,104 @@ And that's actually what this talk has been secretly about all along.
 -->
 
 ---
+layout: center
+class: px-60
+---
 
-# teams in friction
+![incentives-0](/images/incentives-0.png)
 
 <!--
 Thinking back, to a few years ago, what we had were three misaligned teams.
-
-We had the teams building Betterment's consumer-facing product, focused on their own roadmaps and goals.
-
-Then, we had a B2B engineering team trying to stand up a demo environment for that consumer-facing product.
-
-And then a non-engineering team who desperately needed that demo environment, but couldn't trust that it would work.
 -->
 
 ---
+layout: center
+class: px-60
+---
 
-# teams in harmony
+![incentives-1.5](/images/incentives-1.5.png)
 
 <!--
-And what we managed to do was align these incentives.
-
-Tools like webvalve and factory bot were just implementation details.
+We had the teams building Betterment's consumer-facing product, focused on their own roadmaps and goals,
+and so they had no reason to maintain a demo environment.
 -->
 
+---
+layout: center
+class: px-60
+---
+
+![incentives-1](/images/incentives-1.png)
+
+<!--
+Then, we had a B2B engineering team, who owned the demo environment for a consumer product that they weren't building.
+-->
+
+---
+layout: center
+class: px-60
+---
+
+![incentives-2](/images/incentives-2.png)
+
+<!--
+And a non-engineering team who desperately needed that demo environment, but who quickly learned not to trust it.
+-->
+
+---
+layout: center
+class: px-60
+---
+
+![incentives-3](/images/incentives-3.png)
+
+<!--
+And so we had a complete misalignment in incentives.
+-->
+
+---
+layout: center
+class: px-60
+---
+
+![incentives-4](/images/incentives-4.png)
+
+<!--
+But when we meet developers where they are, with tools that they use every day, like webvalve and factories.
+-->
+
+---
+layout: center
+class: px-60
+---
+
+![incentives-5](/images/incentives-5.png)
+
+<!--
+And codify the needs of our stakeholders, with automated tests, and with abstractions like personas.
+-->
+
+---
+layout: center
+class: px-60
+---
+
+![incentives-6](/images/incentives-6.png)
+
+<!--
+And focus on the user experience for our demo-giving users.
+-->
+
+---
+layout: center
+class: px-60
+---
+
+![incentives-7](/images/incentives-7.png)
+
+<!--
+We now have a set of teams with the agency, expertise, and incentives to maintain this environment together.
+-->
 
 ---
 layout: image
@@ -2924,6 +3035,18 @@ We also connected a test build of our mobile app to a Rails API backed by the sa
 -->
 
 ---
+layout: center
+class: px-60
+---
+
+![incentives-everyone](/images/incentives-everyone.png)
+
+<!--
+And so now our PMs, our designers, our mobile engineers, and many others
+are using this shared language of Personas to collaborate and iterate.
+-->
+
+---
 layout: image
 image: /images/demo-mode-usage.svg
 ---
@@ -2935,20 +3058,47 @@ And the internal usage of these apps has only gone up over time.
 -->
 
 ---
+layout: cover
+background: /images/demo_mode_fancy.jpg
+class: text-center font-mono
+---
 
-# even more teams in harmony
+# gem 'demo_mode'
+## https://github.com/Betterment/demo_mode
 
 <!--
-And so in keeping with the theme of aligning organizational incentives,
-this shared language of "personas" has started to really permeate our entire development process.
+And so now it's 2022,
+and I'm excited to announce that as of today,
+we've actually open sourced our demo and personas framework.
+
+We've called the gem 'demo_mode'. It's a mountable Rails engine,
+so you just drop into your app, define a couple personas, and
+then enable the persona picker.
+
+You can pair it with WebValve, if you want, but you don't have to.
+And you can use FactoryBot if you want, but you don't have to.
 -->
 
 ---
+layout: cover
+background: /images/demo_mode_fancy.jpg
+class: font-mono
+---
 
-# teams in harmony plus maybe you?
+# Thanks!
 
-<!--
-And so I'm excited to announce that we've actually open sourced our demo and personas framework.
+Twitter: [@smudgethefirst](https://twitter.com/smudgethefirst)  
+GitHub: [@smudge](https://github.com/smudge)  
+Homepage: https://ngriffith.com
 
-So maybe you can add yourself to this diagram!
--->
+========================================
+
+**Repos:**  
+https://github.com/Betterment/webvalve  
+https://github.com/Betterment/demo_mode  
+https://github.com/thoughtbot/factory_bot
+
+========================================
+
+Slides made with https://sli.dev/ and https://excalidraw.com/
+
