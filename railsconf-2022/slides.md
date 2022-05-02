@@ -3,6 +3,7 @@ theme: default
 colorSchema: light
 title: RAILS_ENV=demo
 info: For RailsConf 2022
+download: true
 highlighter: shiki
 lineNumbers: false
 background: /images/demo_mode_fancy.jpg
