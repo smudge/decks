@@ -1666,7 +1666,7 @@ layout: center
 ---
 
 <video muted>
-  <source src="/images/personas-login.mov" />
+  <source src="/images/personas-login.mp4" />
 </video>
 
 
@@ -1681,7 +1681,7 @@ layout: center
 ---
 
 <video muted autoplay>
-  <source src="/images/personas-login.mov" />
+  <source src="/images/personas-login.mp4" />
 </video>
 
 <!--
@@ -1983,7 +1983,7 @@ class: text-center
 ---
 
 <video muted autoplay width=390 class="absolute left-67 top-40">
-  <source src="/images/personas-login.mov" />
+  <source src="/images/personas-login.mp4" />
 </video>
 
 <div v-click style="position:absolute;bottom:40px;left:0;right:0" class="text-3xl">
@@ -3032,7 +3032,7 @@ layout: center
 ---
 
 <video muted autoplay loop>
-  <source src="/images/personas-ecosystem.mov" />
+  <source src="/images/personas-ecosystem.mp4" />
 </video>
 
 <!--
@@ -3059,7 +3059,7 @@ layout: center
 ---
 
 <video muted autoplay width=222 height=480 style="width:222px;height:480px;">
-  <source src="/images/personas-mobile.mov" />
+  <source src="/images/personas-mobile.mp4" />
 </video>
 
 <img src="/images/iphone-front.png" class="absolute top-6" style="left:365px; width:251px;" />
