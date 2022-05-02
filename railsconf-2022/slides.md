@@ -1957,7 +1957,7 @@ module FactoryBot
     end
 
     def find_next_in_sequence(klass, name, &block)
-      block.call CleverSequence.lookup(klass, name).next
+      CleverSequence.lookup(klass, name, &block).next
     end
   end
 end
