@@ -3097,7 +3097,7 @@ Slides made with [**Slidev**](https://sli.dev/) and [**Excalidraw**](https://exc
 
 </p>
 
-<QrCode :value="'https://ngriffith.com/railsconf-2022'" :size="300" level="M"  style="position:absolute; right:1.2em; bottom:1.2em; border: 5px solid white; width: 7em; height: 7em; opacity:0.2" />
+<QrCode :value="'https://ngriffith.com/railsconf-2022'" :size="300" margin="1" level="M"  style="position:absolute; right:1.2em; bottom:1.2em; width: 7em; height: 7em; opacity:0.2" />
 
 <!--
 And that's all I have for you!
