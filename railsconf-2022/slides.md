@@ -15,6 +15,8 @@ class: text-center
 ### diving into the "demo" environment
 
 <!--
+DOORKNOCKER and/or LOCAL SERVER+JOBS!
+
 Okay, so let's get started.
 
 Hello. Welcome. I'm Nathan. I'm glad to be here. A little nervous, too.
@@ -126,6 +128,7 @@ $ ls config/environments/
 pre {
 font-size: 200% !important;
 line-height: 120% !important;
+padding: 1em !important;
 }
 </style>
 
@@ -137,7 +140,7 @@ And of course these environments correspond to config files...
 layout: center
 ---
 
-### config/environments/production.rb
+<div class="text-center mb-2 text-blue-500 text-3xl"><strong>config/environments/production.rb</strong></div>
 
 ```ruby
 Rails.application.configure do
@@ -155,6 +158,15 @@ Rails.application.configure do
   # ...
 end
 ```
+
+<style>
+pre {
+font-size: 100% !important;
+line-height: 140% !important;
+padding: 1em !important;
+}
+</style>
+
 
 <!--
 And these config files have actual config **content** in them in them, like, what makes that environment unique.
@@ -232,10 +244,12 @@ $ ls config/environments/
   test.rb
 ```
 
+
 <style>
 pre {
 font-size: 200% !important;
 line-height: 120% !important;
+padding: 1em !important;
 }
 </style>
 
@@ -811,7 +825,8 @@ end
 <style>
 pre {
 font-size: 150% !important;
-line-height: 120% !important;
+line-height: 140% !important;
+padding: 1em !important;
 }
 </style>
 
@@ -848,12 +863,16 @@ And our VP of Architecture, Sam, summarizes how useful WebValve can be for local
 
 ---
 layout: center
-class: px-55 text-blue-500 font-weight-500 text-center
+class: px-60
 ---
 
-## [github.com/Betterment/webvalve](https://github.com/Betterment/webvalve)
+<div class="text-center mb-2 text-blue-500 text-3xl"><strong>https://github.com/Betterment/webvalve</strong></div>
 
 ![webvalve readme](/images/webvalve-readme.png)
+
+<style>
+  img { border: 4px solid rgba(200, 200, 200, 0.5) }
+</style>
 
 <!--
 If you're interested, you can find that **and more** on GitHub
@@ -955,7 +974,7 @@ And, so I started to wonder if this whole WebValve approach was even the right i
 
 
 
-<div grid="~ cols-2 gap-5" m="-t-2"><div>
+<div grid="~ cols-2 gap-25" m="t-21"><div>
 
 ```ruby
 class FakeBalanceService < WebValve::FakeService
@@ -975,11 +994,23 @@ end
 ```
 
 </div>
-<div><div class="bg-blue-100 px-5 pt-2 pb-2 absolute top-0 bottom-0">
+<div><div class="bg-blue-100 px-5 pt-18 pb-2 absolute top-0 bottom-0">
 
 ![empty graph](/images/performance/returns-empty.png)
 
 </div></div></div>
+
+
+<style>
+pre {
+  position:absolute;top:0;bottom:0;left:0;right:0;
+  font-size: 85% !important;
+  line-height: 145% !important;
+  margin:0 !important;
+  border-radius: 0 !important;
+  padding: 20px !important;
+}
+</style>
 
 
 <!--
@@ -992,25 +1023,25 @@ And so, I thought, why not, just, make the fake service a little more fake.
 
 ---
 
-<div grid="~ cols-2 gap-5" m="-t-2"><div>
+<div grid="~ cols-2 gap-25"><div>
 
 ```ruby {all|7|8|9|10|11|all}
 class FakeBalanceService < WebValve::FakeService
   get '/api/daily_returns' do
     date_range = dates(params[:from], params[:to])
-    balance = Money.new(1_000_00)
+    bal = Money.new(1_000_00)
     json(date_range.map.with_index do |date, idx|
-      starting_balance = balance
+      starting_bal = bal
       buys = deposit?(date) ? random_buy : 0
       sells = withdraw?(date) ? random_sell : 0
-      mkt_changes = balance * random_market_change
-      divs = dividend?(date) ? balance * 0.01 : 0
-      fees = fee?(date) ? balance * 0.0025 : 0
-      balance += buys - sells + mkt_changes + divs - fees
+      mkt_changes = bal * random_market_change
+      divs = dividend?(date) ? bal * 0.01 : 0
+      fees = fee?(date) ? bal * 0.0025 : 0
+      bal += buys - sells + mkt_changes + divs - fees
       {
         date: date.to_s(:iso8601),
-        balance_cents: balance.cents,
-        starting_balance_cents: starting_balance.cents,
+        balance_cents: bal.cents,
+        starting_balance_cents: starting_bal.cents,
         market_change_amount_cents: mkt_changes.cents,
         dividend_amount_cents: divs.cents,
         fees_cents: fees.cents,
@@ -1021,17 +1052,28 @@ end
 ```
 
 </div>
-<div><div class="bg-blue-100 px-5 pt-2 pb-2 absolute top-0 bottom-0" v-click-hide>
+<div><div class="bg-blue-100 px-5 pt-18 pb-2 absolute top-0 bottom-0" v-click-hide>
 
 ![empty graph](/images/performance/returns-empty.png)
 
 </div>
 
-<div class="bg-blue-100 px-5 pt-2 pb-2 absolute top-0 bottom-0" v-after>
+<div class="bg-blue-100 px-5 pt-18 pb-2 absolute top-0 bottom-0" v-after>
 
 ![graph](/images/performance/returns.png)
 
 </div></div></div>
+
+<style>
+pre {
+  position:absolute;top:0;bottom:0;left:0;right:0;
+  font-size: 85% !important;
+  line-height: 145% !important;
+  margin:0 !important;
+  border-radius: 0 !important;
+  padding: 20px !important;
+}
+</style>
 
 <!--
 And so, I wrote a fake stock market simulation.
@@ -1148,6 +1190,7 @@ end
 pre {
 font-size: 95% !important;
 line-height: 140% !important;
+padding: 10px 200px !important;
 }
 </style>
 
@@ -1473,8 +1516,9 @@ end
 
 <style>
 pre {
-font-size: 120% !important;
-line-height: 120% !important;
+font-size: 140% !important;
+line-height: 140% !important;
+padding: 1em !important;
 }
 </style>
 
@@ -1498,8 +1542,9 @@ user_3 = FactoryBot.create(:user)
 
 <style>
 pre {
-font-size: 150% !important;
-line-height: 120% !important;
+font-size: 200% !important;
+line-height: 140% !important;
+padding: 1em !important;
 }
 </style>
 
@@ -1541,8 +1586,9 @@ end
 
 <style>
 pre {
-font-size: 120% !important;
-line-height: 120% !important;
+font-size: 130% !important;
+line-height: 140% !important;
+padding: 1em !important;
 }
 </style>
 
@@ -1560,8 +1606,9 @@ FactoryBot.create(:user, :with_roth_401k)
 
 <style>
 pre {
-font-size: 150% !important;
-line-height: 120% !important;
+font-size: 200% !important;
+line-height: 140% !important;
+padding: 0.7em !important;
 }
 </style>
 
@@ -1605,8 +1652,9 @@ end
 
 <style>
 pre {
-font-size: 120% !important;
-line-height: 120% !important;
+font-size: 160% !important;
+line-height: 140% !important;
+padding: 1em !important;
 }
 </style>
 
@@ -1666,16 +1714,17 @@ image: /images/500-error.png
 
 So, this was giving us flashbacks, right?
 
-But then we dug in a bit...
+But then we dug in a bit, and what we found was that...
 -->
 
 ---
 layout: center
+class: text-3xl
 ---
 
-<v-clicks>
+### <span class="text-blue-500 text-5xl leading-relaxed">🚢 deployment 1</span>
 
-### <span class="text-blue-500">deployment 1:</span>
+<v-clicks>
 
 ✅ <strong>user_1</strong>@example.org
 
@@ -1683,20 +1732,20 @@ layout: center
 
 ✅ <strong>user_3</strong>@example.org
 
-### <span class="text-blue-500">deployment 2:</span>
+### <span class="text-blue-500 text-5xl leading-relaxed">🚢 deployment 2</span>
 
 <p>❌ <strong>user_1</strong>@example.org</p>
 
 </v-clicks>
 
-<arrow x1="350" y1="150" x2="350" y2="400" color="#aaa" width="3" />
+<arrow x1="250" y1="100" x2="250" y2="460" color="#aaa" width="5" />
+
+<style>
+p { line-height: 1.3em !important }
+</style>
 
 <!--
-and what we found was...
-
-CLICK
-
-After the initial deployment, we could generate user 1, user 2, user 3, and so on, and they'd work just fine.
+...after the initial deployment, we could generate user 1, user 2, user 3, and so on, and they'd work just fine.
 But when we redeploy, the next user we generate would reset back to user_1.
 
 And this would fail against uniqueness constraints in our database, or uniqueness validations in the models,
@@ -1720,8 +1769,9 @@ end
 
 <style>
 pre {
-font-size: 120% !important;
-line-height: 120% !important;
+font-size: 150% !important;
+line-height: 140% !important;
+padding: 1em !important;
 }
 </style>
 
@@ -1774,8 +1824,9 @@ end
 
 <style>
 pre {
-font-size: 120% !important;
-line-height: 120% !important;
+font-size: 140% !important;
+line-height: 140% !important;
+padding: 10em !important;
 }
 </style>
 
@@ -1806,11 +1857,11 @@ module FactoryBot
 end
 ```
 
-
 <style>
 pre {
-font-size: 120% !important;
-line-height: 120% !important;
+font-size: 140% !important;
+line-height: 140% !important;
+padding: 10em !important;
 }
 </style>
 
@@ -1830,33 +1881,73 @@ sequence(:short_id) { |i| 10000009 - i }
 
 <v-clicks>
 
-<p class="ml-50 pl-10 pb-5 relative font-mono">
+<p class="text-3xl ml-105 pl-10 pb-5 relative font-mono" style="line-height: 1.2em">
   1000000<strong>9</strong><br/>
   1000000<strong>8</strong><br/>
   1000000<strong>7</strong><br/>
   ...
-  <arrow x1="20" y1="0" x2="20" y2="100" color="#aaa" width="3" />
-</p>
-
-
-```ruby
-sequence(:ssn) { |i| i.to_s.rjust(9, '0') }
-```
-
-<p class="ml-15 pl-10 relative font-mono">
-  decrypt(<strong>"342lk9s..."</strong>) => 000-00-0000<br/>
-  decrypt(<strong>"jf9893d..."</strong>) => 000-00-0001<br/>
-  decrypt(<strong>"j52c5ag..."</strong>) => 000-00-0002<br/>
-  ...
-  <arrow x1="20" y1="0" x2="20" y2="100" color="#aaa" width="3" />
+  <arrow x1="20" y1="0" x2="20" y2="140" color="#aaa" width="4" />
 </p>
 
 </v-clicks>
 
 <style>
 pre {
-font-size: 120% !important;
-line-height: 120% !important;
+font-size: 160% !important;
+line-height: 140% !important;
+padding: 1em !important;
+margin-top: 2em !important;
+}
+</style>
+
+<!--
+Because, here's a sequence that goes in...
+
+CLICK
+
+descending order.
+
+CLICK
+
+And here's a sequence where the attribute is actually...
+
+CLICK
+
+ENCRYPTED at rest.
+
+There's just no way with SQL to select for the MAX value in these columns.
+
+There are a few ways to solve for this, and I'd say that we went with the best-worst option. Which is...
+-->
+
+
+
+---
+layout: center
+---
+
+```ruby
+sequence(:ssn) { |i| i.to_s.rjust(9, '0') }
+```
+
+<v-clicks>
+
+<p class="text-3xl ml-7 pl-10 relative font-mono" style="line-height: 1.2em">
+  decrypt(<strong>"342lk9s..."</strong>) => 000-00-0000<br/>
+  decrypt(<strong>"jf9893d..."</strong>) => 000-00-0001<br/>
+  decrypt(<strong>"j52c5ag..."</strong>) => 000-00-0002<br/>
+  ...
+  <arrow x1="20" y1="0" x2="20" y2="140" color="#aaa" width="4" />
+</p>
+
+</v-clicks>
+
+<style>
+pre {
+font-size: 160% !important;
+line-height: 140% !important;
+padding: 1em !important;
+margin-top: 2em !important;
 }
 </style>
 
@@ -1925,11 +2016,11 @@ module FactoryBot
 end
 ```
 
-
 <style>
 pre {
-font-size: 120% !important;
-line-height: 120% !important;
+font-size: 140% !important;
+line-height: 140% !important;
+padding: 10em !important;
 }
 </style>
 
@@ -2330,7 +2421,7 @@ And then the last bit that we were missing, here, was there on the lower left...
 
 ---
 
-<div grid="~ cols-2 gap-5" m="t-10"><div>
+<div grid="~ cols-2 gap-20" m="t-10"><div>
 
 ```ruby {all|1-3|6-8|all}
 before do
@@ -2366,6 +2457,17 @@ end
 ![graph](/images/build-pass.png)
 
 </div></div></div>
+
+<style>
+pre {
+  position:absolute;top:0;bottom:0;left:0;right:0;
+  font-size: 85% !important;
+  line-height: 150% !important;
+  margin:0 !important;
+  padding: 50px 30px !important;
+  border-radius: 0 !important;
+}
+</style>
 
 <!--
 And so we wrote tests and stuck them in our standard test suite!
@@ -3041,6 +3143,49 @@ image: /images/demo-mode-usage.svg
 And the internal usage of these demo apps has only gone up over time.
 -->
 
+
+---
+layout: image
+image: /images/2022.svg
+---
+
+# &nbsp;
+
+<!--
+And so now it's 2022. And as you can see, my face, along with the rest of me, has made it here to RailsConf Portland.
+
+
+-->
+
+---
+layout: iframe
+url: http://localhost:3000/demo/sessions/new
+---
+
+<style>
+    iframe {
+        --margin: 3em;
+        --scale: 0.6;
+        width: calc(100% / var(--scale) - var(--margin) * 2) !important;
+        height: calc(100% / var(--scale) - var(--margin) * 2) !important;
+        position:absolute;
+        left: calc(var(--margin) * var(--scale));
+        top: calc(var(--margin) * var(--scale));
+        transform-origin: 0 0;
+        background-color: white;
+        transform: scale(var(--scale));
+    }
+</style>
+
+<!--
+And Betterment still has our demo application.
+As you can see, not much has changed.
+
+Except, wait a minute, (DEMO DEMO DEMO)
+
+Yes, that's right, this is the live app, embedded right here in my slide deck.
+-->
+
 ---
 layout: cover
 background: /images/demo_mode_fancy.jpg
@@ -3051,13 +3196,30 @@ class: text-center font-mono
 ## github.com/Betterment/demo_mode
 
 <!--
-And so now it's 2022,
 and I'm excited to announce that as of today,
 we've actually open sourced our demo and personas framework.
 
-We've called the gem 'demo_mode'. It's a mountable Rails engine,
+We've called the gem 'demo_mode', and it's available on Rubygems,
+and
+-->
+
+---
+layout: center
+class: px-50
+---
+
+<div class="text-center mb-10 text-blue-500 text-3xl"><strong>https://github.com/Betterment/demo_mode</strong></div>
+
+<video muted autoplay style="border: 4px solid rgba(200, 200, 200, 0.5)">
+  <source src="/images/demo_mode-github.mp4" />
+</video>
+
+<!--
+On github, with instructions for setting it up.
+
+Basically, it's a mountable Rails engine,
 that you just drop into your app, define a couple personas, and
-then you just enable the persona picker.
+then you enable the persona picker.
 
 You can pair it with WebValve, if you want, but you don't have to.
 And you can use FactoryBot if you want, but you don't have to, if you have other ways of generating user accounts.
