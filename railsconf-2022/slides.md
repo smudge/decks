@@ -911,7 +911,7 @@ Because it relied on all of the fake services that our teams had _already_ writt
 
 ---
 layout: center
-class: px-40 bg-blue-100
+class: px-40 bg-blue-50
 ---
 
 ![summary page](/images/summary-page.png)
@@ -928,7 +928,7 @@ But then he encountered...
 
 ---
 layout: center
-class: px-20 bg-blue-100
+class: px-20 bg-blue-50
 ---
 
 ![performance page (no graphs)](/images/performance/page-empty-graphs.png)
@@ -941,7 +941,7 @@ And he said, hold on, I can't show this to clients.
 
 ---
 layout: center
-class: px-20 bg-blue-100
+class: px-20 bg-blue-50
 ---
 
 ![empty returns graph](/images/performance/returns-empty.png)
@@ -994,7 +994,7 @@ end
 ```
 
 </div>
-<div><div class="bg-blue-100 px-5 pt-18 pb-2 absolute top-0 bottom-0">
+<div><div class="bg-blue-50 px-5 pt-18 pb-2 absolute top-0 bottom-0">
 
 ![empty graph](/images/performance/returns-empty.png)
 
@@ -1052,13 +1052,13 @@ end
 ```
 
 </div>
-<div><div class="bg-blue-100 px-5 pt-18 pb-2 absolute top-0 bottom-0" v-click-hide>
+<div><div class="bg-blue-50 px-5 pt-18 pb-2 absolute top-0 bottom-0" v-click-hide>
 
 ![empty graph](/images/performance/returns-empty.png)
 
 </div>
 
-<div class="bg-blue-100 px-5 pt-18 pb-2 absolute top-0 bottom-0" v-after>
+<div class="bg-blue-50 px-5 pt-18 pb-2 absolute top-0 bottom-0" v-after>
 
 ![graph](/images/performance/returns.png)
 
@@ -1095,7 +1095,7 @@ Again, is this real? No, absolutely not. But is it demoable? Maybe.
 
 ---
 layout: center
-class: px-20 bg-blue-100
+class: px-20 bg-blue-50
 ---
 
 ![performance page (with graphs)](/images/performance/page-graphs.png)
@@ -3160,12 +3160,13 @@ And so now it's 2022. And as you can see, my face, along with the rest of me, ha
 ---
 layout: iframe
 url: http://localhost:3000/demo/sessions/new
+class: bg-blue-50
 ---
 
 <style>
     iframe {
-        --margin: 3em;
-        --scale: 0.6;
+        --margin: 2em;
+        --scale: 0.76;
         width: calc(100% / var(--scale) - var(--margin) * 2) !important;
         height: calc(100% / var(--scale) - var(--margin) * 2) !important;
         position:absolute;
@@ -3205,10 +3206,10 @@ and
 
 ---
 layout: center
-class: px-50
+class: px-40
 ---
 
-<div class="text-center mb-10 text-blue-500 text-3xl"><strong>https://github.com/Betterment/demo_mode</strong></div>
+<div class="text-center mb-5 text-blue-500 text-3xl"><strong>https://github.com/Betterment/demo_mode</strong></div>
 
 <video muted autoplay style="border: 4px solid rgba(200, 200, 200, 0.5)">
   <source src="/images/demo_mode-github.mp4" />
