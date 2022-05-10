@@ -9,7 +9,8 @@
     "@slidev/cli": "latest",
     "@slidev/theme-apple-basic": "^0.20.0",
     "@slidev/theme-default": "latest",
-    "@slidev/theme-seriph": "latest"
+    "@slidev/theme-seriph": "latest",
+    "qrcode.vue": "^3.3.3"
   },
   "devDependencies": {
     "playwright-chromium": "^1.21.1"

@@ -17,12 +17,11 @@ class: text-center
 <!--
 Okay, so let's get started.
 
-Hello. Welcome. I'm Nathan. I'm glad to be here.
-A little nervous, too.
+Hello. Welcome. I'm Nathan. I'm glad to be here. A little nervous, too.
 
 This is actually my first live conference talk.
 
-I gave one last year, but it was prerecorded, so I spent like a week recording over and over trying to get the perfect take. Would definitely not recommend, so I'm more than happy to YOLO this one with you all today.
+I gave one last year, but it was prerecorded, so I spent like a week recording takes over and over trying to get the perfect take. Would definitely not recommend that strategy, so I'm happy to do it live with you today.
 -->
 
 ---
@@ -32,15 +31,13 @@ layout: section
 # RAILS_ENV=demo
 
 <!--
-Okay, so you might be here because you saw the title of this talk
+So you might be here because you saw the title of this talk
 
 RAILS_ENV=demo
 
 and something about it intrigued you.
 
-Or maybe you just picked a room at random. I don't know why you're here.
-
-But either way, let's just unpack this title.
+Or maybe you just picked a room at random. I don't actually know why you're here. But either way, let's just unpack this title.
 -->
 
 ---
@@ -80,7 +77,7 @@ layout: fact
 ## **RAILS_ENV=<ins>production</ins>** bundle exec rails s
 
 <!--
-And you can toggle it to production, when you deploy your app somewhere.
+Or if you're deploying to production, hopefully you're using the _production_ environment.
 -->
 
 ---
@@ -90,7 +87,7 @@ layout: fact
 ## **RAILS_ENV=<ins>staging</ins>** bundle exec rails s
 
 <!--
-Some teams might also have a staging environment.
+And, some companies actually have a staging environment...
 -->
 
 ---
@@ -110,7 +107,7 @@ layout: fact
 ## RAILS_ENV={**development**, **production**, **test**}
 
 <!--
-Out of the box you get the big three: development, production, and test.
+So out of the box you get the big three: development, production, and test.
 -->
 
 ---
@@ -133,8 +130,7 @@ line-height: 120% !important;
 </style>
 
 <!--
-and these environments correspond to
-files live in your config-slash-environments folder
+And of course these environments correspond to config files...
 -->
 
 ---
@@ -161,11 +157,9 @@ end
 ```
 
 <!--
-And these files contain the actual *instructions* for how your app should behave in each environment.
+And these config files have actual config **content** in them in them, like, what makes that environment unique.
 
-Like, what makes that environment unique.
-
-With me so far? Good.
+And I mean, I'm talking to a room of Rails engineers, but I want to make sure we're on the same page, because...
 -->
 
 ---
@@ -175,7 +169,9 @@ layout: fact
 ## RAILS_ENV={**demo**, development, test, production}
 
 <!--
-And so what I'm going to be talking about today is this idea of adding a new, dedicated environment -- called "demo" -- for giving, well, application demos.
+What I'm going to be talking about today is -- at its core -- the idea of adding a new, dedicated environment -- called "demo" -- for giving...
+
+well, application demos.
 -->
 
 ---
@@ -188,10 +184,9 @@ Photo by <a href="https://unsplash.com/@xteemu?utm_source=unsplash&utm_medium=re
 </div>
 
 <!--
-Like, the ability to step up in front of an audience, and show off a live version of your product.
-Like, reliably. And repeatably. And consistently.
+Like, the ability to step up in front of an audience, and show off a live version of your product. Reliably. And repeatably. And consistently.
 
-Because the last thing you want is to get up there, and for something to go horribly wrong, or even a little wrong.
+Because the last thing you want is to get up there, and for something to go horribly wrong.
 -->
 
 ---
@@ -203,8 +198,8 @@ image: /images/showroom.jpg
 Photo by <a href="https://unsplash.com/@rahulbhogal?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Rahul Bhogal</a> on <a href="https://unsplash.com/s/photos/showroom?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
-<!-- 
-So think of this like the showroom model of your app.
+<!--
+So think of this a little bit like the showroom floor... model of your app.
 -->
 
 ---
@@ -246,7 +241,7 @@ line-height: 120% !important;
 
 <!--
 And I wish I could say it were as simple as just adding a new
-demo.rb file to your app, but that's just the tip of the iceberg.
+demo.rb config file to your app, but that's just the... tip of the iceberg.
 -->
 
 ---
@@ -299,7 +294,7 @@ Well, let me introduce myself.
 
 My name is Nathan. I exist online in a few places.
 
-I also exist in real life, and I work at a company called Betterment.
+I also exist in real life, and I work at a company called...
 -->
 
 ---
@@ -312,8 +307,7 @@ class: px-40
 <img v-click src="/images/were-hiring.png" style="width:200px;position:absolute;right:90px;bottom:130px" />
 
 <!--
-You might've heard of us. We offer financial advice, investing accounts,
-retirement, you name it.
+Betterment. You might've heard of us, we offer financial advice, investing accounts, retirement, , you name it.
 I like to say that our top product is financial peace of mind.
 
 CLICK
@@ -331,10 +325,11 @@ But I haven't always worked on this team.
 layout: image
 image: /images/2016.svg
 ---
+
 # &nbsp;
 
 <!--
-Now, the story I want to tell starts in 2016, when I first joined Betterment.
+And so, the story I want to tell starts in 2016, when I first joined Betterment.
 -->
 
 ---
@@ -356,10 +351,9 @@ image: /images/sales-b2c.svg
 
 # &nbsp;
 
-
 <!--
 And so while most people think of Betterment as a B2C business.
-Like, financial services for everyday people like me and my parents.
+Like, financial services for everyday people like me, and all of you, and my parents.
 -->
 
 ---
@@ -370,9 +364,8 @@ image: /images/sales-b2b.svg
 # &nbsp;
 
 <!--
-
 The thing my team was building was actually a B2B product.
-Because our customers were companies, who might want to offer 401k plans to their employees.
+Because our customers were companies, who might want to offer 401k plans to their employees, who would then get the Betterment consumer experience.
 
 And, look, I'm not on the business side of things.
 I'm just a humble software engineer,
@@ -389,9 +382,8 @@ image: /images/sales-b2c2b.svg
 # &nbsp;
 
 <!--
-
 And so we found ourselves in a position where, we 
-really wanted to SHOW OFF Betterment's consumer product
+**really** wanted to show off Betterment's consumer product
 to all of our new and prospective business clients.
 
 And so how did we do that?
@@ -417,17 +409,17 @@ class: text-center px-10
 </v-click>
 
 <!--
-So, firstly, there's always the option to just use the production app, right? And in our case, it's a cluster of multiple monolithic Rails applications.
-But since our app involves real money, and real personal info, that option didn't feel great.
+So, firstly, there's always the option to just use the production app, right? And in our case, it's a cluster of multiple relatively monolithic applications.
+But since our app involves real money, and real personal info, this option didn't feel great.
 
-But we looked around and saw that Betterment also had a _staging_ environment.
+So we looked around and saw that Betterment also had a _staging_ environment.
 
 CLICK
 
 It was deployed in exactly the same overall configuration as production, except
-the database was reset and repopulated nightly with some magical sanitized data instead of real production data.
+the database was reset and repopulated nightly with some magical sanitized "staging" data.
 
-And we said, hey, what if we just did something like that?
+And we said, okay, what if we do something like that?
 -->
 
 ---
@@ -442,9 +434,10 @@ and if this sounds a bit like
 "step 1, draw circles, step 2, draw the owl"
 
 it's because that's exactly what this is.
-you see, if what you need is a drawing of an owl,
+
+See, if what you need is a drawing of an owl,
 and someone else is already drawing owls,
-then you don't really need to learn to draw the owl.
+then you don't really need to learn how to draw the owl.
 -->
 
 ---
@@ -476,10 +469,9 @@ class: text-center px-10
 <!--
 And so, the staging environment was our owl.
 
-Of course, we made a couple modifications to the owl. We
-didn't need or even want all of the sanitized staging data, so
-we added another process that would pick out just the demo
-accounts we needed and keep those around.
+Of course, we made a couple modifications to the owl. For instance, we
+didn't need all of the sanitized staging data, so
+we added another process to just sort of populate the database with some demo accounts.
 -->
 
 ---
@@ -513,9 +505,7 @@ Photo by <a href="https://unsplash.com/@xteemu?utm_source=unsplash&utm_medium=re
 </div>
 
 <!--
-and it worked! so, our work was done, right?
-
-well that's what we thought.
+and it worked! or... so we thought.
 -->
 
 ---
@@ -580,8 +570,7 @@ that the demo environment was not reliable.
 
 CLICK
 
-It just kept breaking for all sorts of reasons.
-
+And it just kept breaking for all sorts of reasons.
 -->
 
 ---
@@ -605,7 +594,7 @@ image: /images/2018.svg
 # &nbsp;
 
 <!--
-And by 2018, the slack messages had stopped entirely, because teams had found other ways of giving demos.
+And by 2018, we _knew_ we had truly failed, because the Slack messages had stopped entirely. Teams had found other ways of giving demos.
 -->
 
 ---
@@ -613,15 +602,14 @@ layout: center
 class: pt-20
 ---
 
-
 <img style="width:42%;margin:0 auto;" src="/images/jenkins.png" />
 
 <!--
-And I saved this screengrab of our build history (by the way, we don't use Jenkins anymore).
+And, I saved this screengrab of our build history. (Now, I can tell this is really old because we haven't used Jenkins for years...)
 
-If you look closely, it's actually an entire year's worth of broken builds.
+And if you look closely, it's actually an entire year's worth of broken builds.
 
-Each one of those was a developer, banging their head against their keyboard, trying to get this working.
+So each one of those was a developer, banging their head against their keyboard, trying to get this working.
 -->
 
 ---
@@ -658,10 +646,10 @@ image: /images/2019.svg
 # &nbsp;
 
 <!--
-And so by 2019, the business needs had caught up with us
-again. We really needed this thing to be working.
+So by 2019, the business needs had caught up with us
+again, and we really needed this thing to be working.
 
-But we also had time in our roadmap finally,
+**But...** we also finally had time in our roadmap,
 and this time we wanted to build something that was easier to maintain in the long run.
 -->
 
@@ -700,21 +688,15 @@ Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_med
 <!--
 And so we started just writing down a list of what the original demo env had consisted of.
 
-Firstly, what got deployed? Well, everything. All of our apps.
+So, firstly, what got deployed? CLICK Well, everything. All of our apps.
 
-Secondly, the database was populated up front with all of the demo accounts,
+Secondly, the database was populated up front with all of the demo accounts CLICK, so we would call that, like, seed or fixture data.
 
-and the entire database got reset with every deployment.
+And then the entire database was reset with every deployment, CLICK so it relied on these short-lived databases.
 
-And at first, all of this was deployed weekly (on Sundays), and then Monthly,
-but when even that got to be too painful, we started only deploying when we
-needed to. So it was "push button" deploys, but I'd call it"push button and
-cross fingers"
+Then at first we deployed this thing on Sundays, but that got to be too painful so we switched to monthly deployments, and WHEN THAT got too painful, we just started deploying only when we needed to. CLICK So I would call it "push button" deploys, but it was really "push button and cross fingers"
 
-Lastly, who owned it? Well, us. The engineering team closest to the need
-for its existence (and most incentivized to do the work).
-
-And so, now that we had this list, we started crossing things out.
+Lastly, who owned it? Well, CLICK us. The engineering team closest to the need for its existence (and most incentivized to do the work). And so, now that we had this list, we started to cross things out.
 -->
 
 ---
@@ -745,9 +727,9 @@ Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_med
 </div>
 
 <!--
-Starting with the idea of deploying an entire cluster of services.
+First, with this idea of deploying an entire cluster of services.
 
-Because, from a maintainability standpoint, why keep a _bunch_ of apps running if we really only care about one app. The thing we wanted to demo.
+Because, from a maintainability standpoint, why keep a _bunch_ of apps running if we really only care about one app. The thing we really wanted to demo.
 
 And that got us thinking, because at Betterment we already have a way of running our Rails apps in isolation.
 -->
@@ -778,10 +760,10 @@ layout: center
 <!--
 ...webvalve.
 
-what webvalve lets us do is define fake versions of external apps,
-and it will automatically route all web traffic to the fakes.
+what webvalve lets us do is define fake versions of all of our external apps,
+and it will automatically route all web traffic to those fakes.
 
-It's built on top of WebMock, if you're familiar with that gem.
+It's actually built on top of WebMock, if you're familiar with that gem.
 -->
 
 ---
@@ -833,11 +815,10 @@ line-height: 120% !important;
 }
 </style>
 
-
 <!--
 And these fakes apps are really simple.
 
-They don't have to do everything the real app would do,
+They don't have to do everything the real app would,
 
 CLICK
 
@@ -862,8 +843,7 @@ class: px-30
 ![rails at scale 2](/images/rails-at-scale-2.png)
 
 <!--
-And our VP of Architecture, Sam, summarizes how useful WebValve can be for local development
-and testing, and so I'm not gonna cover all of that here.
+And our VP of Architecture, Sam, summarizes how useful WebValve can be for local development and for testing, & so I'm not gonna cover all of that here.
 -->
 
 ---
@@ -876,7 +856,7 @@ class: px-55 text-blue-500 font-weight-500 text-center
 ![webvalve readme](/images/webvalve-readme.png)
 
 <!--
-So if you're interested, you can find that **and more** on GitHub
+If you're interested, you can find that **and more** on GitHub
 
 But what I will cover is how we got all of this working in our demo environment
 -->
@@ -920,10 +900,9 @@ class: px-40 bg-blue-100
 <!--
 And so, right off the bat, this was great!
 
-But remember that we were stubbing out all collaborating services. Like, basically all outside HTTP requests.
+But remember that we were stubbing out all of those collaborating services, so basically all outside HTTP requests.
 
-So. I showed it one of my colleagues who commonly gave client demos, and he clicked
-around, and he liked what he was seeing.
+And so I showed it one of my colleagues who commonly gave client demos, and he clicked around, and he liked what he was seeing.
 
 But then he encountered...
 -->
@@ -938,7 +917,7 @@ class: px-20 bg-blue-100
 <!--
 ...this page, which is supposed to graph he performance history of an account.
 
-And he said, hold on, I can't show this to a client.
+And he said, hold on, I can't show this to clients.
 -->
 
 ---
@@ -949,12 +928,9 @@ class: px-20 bg-blue-100
 ![empty returns graph](/images/performance/returns-empty.png)
 
 <!--
-And I was like, well we don't actually have any performance history, because
-this is just a demo app, and the history comes from a different backend
-service, and blah blah blah, developer talk.
+And I was like, well we don't actually have any performance history, because this is just a demo app, and the history comes from a different backend service, and blah blah blah, developer talk.
 
-And he said, doesn't matter. If a client has to ask why something looks broken,
-then the demo is already off track.
+And he said, doesn't matter. If a client has to ask why something looks broken, then the demo is already off track.
 -->
 
 ---
@@ -970,10 +946,9 @@ Arrested Development (TV Series 2003-2019)
 </div>
 
 <!--
-So I walked away from that meeting feeling a little bummed, because he was
-right, and I knew I was just making excuses for technical shortcomings.
+So I walked away from that meeting feeling pretty bummed, because he was right, and I knew I was just making excuses for technical shortcomings.
 
-And, so I started to wonder if this whole WebValve idea was even the right approach.
+And, so I started to wonder if this whole WebValve approach was even the right idea.
 -->
 
 ---
@@ -1017,7 +992,6 @@ And so, I thought, why not, just, make the fake service a little more fake.
 
 ---
 
-
 <div grid="~ cols-2 gap-5" m="-t-2"><div>
 
 ```ruby {all|7|8|9|10|11|all}
@@ -1059,8 +1033,6 @@ end
 
 </div></div></div>
 
-
-
 <!--
 And so, I wrote a fake stock market simulation.
 With buys, and sells, and market changes, and dividends, and fees.
@@ -1068,7 +1040,8 @@ With buys, and sells, and market changes, and dividends, and fees.
 CLICK
 
 And of course, none of this is actually based in any kind of reality.
-Like, this is a terrible simulation.
+Like, this is a terrible simulation, and you shouldn't use it for anything.
+
 But it resulted in
 
 CLICK
@@ -1086,12 +1059,13 @@ class: px-20 bg-blue-100
 ![performance page (with graphs)](/images/performance/page-graphs.png)
 
 <!--
-So I went back to my colleague, and he said, yeah, sure, looks fine, and, so at
-that point I decided, okay, we can probably run with this.
+So I went back to my colleague, and he said BREATHE yeah, sure, looks good
 
-And we did. And there were only like one or two other places where we had to fill in the gaps like this.
+And so at that point I decided, okay, we can probably run with this.
 
-But there was one more issue.
+And, you know, we did. And there were maybe one or two other places where we had to fill in the gaps like this.
+
+But there was one more big issue, which was that...
 -->
 
 ---
@@ -1121,6 +1095,7 @@ class: px-50
 
 <!--
 Like make a deposit, which resulted in an external POST request.
+
 The next time you fetched your balance, via an external GET request.
 It would show your previous balance.
 
@@ -1209,7 +1184,7 @@ class: px-50
 <!--
 And so now it can remember things!
 
-You could deposit 123 dollars and then actually see it reflected in your balance.
+You could deposit 123 dollars into an account, and then see it actually reflected in the balance for that account.
 -->
 
 ---
@@ -1223,10 +1198,6 @@ class: text-center
 
 <!--
 And so we'd done it. We could run our app in total isolation from all external apps and services.
-
-And, so, quickly, to recap:
-
-We enabled WebValve. We made the fake services real _enough_ to support a useful demo. And we gave fakes the ability to remember things.
 -->
 
 ---
@@ -1268,12 +1239,11 @@ Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_med
 </div>
 
 <!--
-And so, again, instead of deploying an entire cluster of apps, we could...
+And so, instead of deploying multiple apps, we had...
 
 CLICK
 
-deploy just one app. With some stateful fakes.
-
+just one app. With stateful fakes.
 -->
 
 ---
@@ -1286,7 +1256,7 @@ class: text-center text-shadow-lg font-mono
 ## Observation No. 2
 
 <!--
-And we've also made our second "demoability" iceberg observation, which is that...
+And we've also made our second observation, in the iceberg of "demoability", which is that...
 -->
 
 ---
@@ -1300,7 +1270,9 @@ class: text-center text-shadow-lg font-mono
 <!--
 An app should mostly work in isolation.
 
-Like, it might need some extra massaging at the system boundaries, but it should mostly make sense on its own.
+Like, it might need some extra massaging at the system boundaries, but if we want an app to be easily demoable, it should mostly make sense on its own.
+
+And thankfully ours did.
 -->
 
 ---
@@ -1376,10 +1348,9 @@ Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_med
 </div>
 
 <!--
-And so we crossed out that one too.
+So we crossed that out too....
 
-But wait, if we don't use seeds or fixture data -- like, if we don't populate
-the user accounts ahead of time -- then what do we do?
+But, then we thought, well, okay, if we're not using seeds or fixture data -- like, if we don't actually populate user accounts ahead of time -- then what do we do?
 -->
 
 ---
@@ -1394,7 +1365,7 @@ Like, how else are you going to login?
 
 You'll be faced with this form, and you'll need to enter something, right?
 
-Well the more we thought about this, the more we realized how awkward this must be for our client-facing teams.
+Well the more we thought about this, the more we realized how awkward this must **already** be for our client-facing teams.
 -->
 
 ---
@@ -1407,7 +1378,7 @@ style: 'background-size: contain'
 # &nbsp;
 
 <!--
-Did they, like, keep the list of demo logins on a sticky note? 
+Like, did they just keep the list of demo logins on a sticky note? 
 
 How did they know that someone else wasn't already using one of the demo accounts?
 -->
@@ -1420,11 +1391,10 @@ class: px-80
 ![login form](/images/log_in.png)
 
 <!--
-And so, if it's so awkward, why are we using this login form at all? 
+And so, if it's so awkward, why are we using the login form at all? 
 
-And that was our "ah ha" moment.
+And that was our "ah ha" moment, and we sketched out something totally different on a whiteboard.
 -->
-
 
 ---
 layout: center
@@ -1432,10 +1402,7 @@ layout: center
 
 ![personas whiteboard](/images/personas-whiteboard.png)
 
-
 <!--
-So we sketched out something totally different on a whiteboard.
-
 A page where you are presented with, like, 3 different users, each with a sign in button.
 
 And we thought to ourselves, well what if...
@@ -1447,11 +1414,9 @@ layout: center
 
 ![personas whiteboard](/images/personas-whiteboard-button.png)
 
-
 <!--
-...when you click sign in, instead of logging in as a _specific_ user account, it spins out a background job and generates a NEW user for you on the fly.
+...when you click sign in, instead of logging in as a _specific_ user account, it spins out some kind of background process and generates a NEW user for you on the fly.
 -->
-
 
 ---
 layout: center
@@ -1460,10 +1425,9 @@ layout: center
 ![personas process](/images/personas-process.png)
 
 <!--
+So you'd see a brief loading spinner, but then you'd be dropped straight into a totally fresh dashboard.
 
-So you'd see a brief loading spinner, and then you'd be dropped straight into a totally fresh account summary page.
-
-This felt way less awkward than the login page and sticky notes approach.
+This felt way less awkward than the login page and, like, having to use sticky notes.
 
 We just needed to figure out how to dynamically create user accounts on the fly.
 -->
@@ -1489,9 +1453,8 @@ class: px-40
 
 ![factory_bot logo](/images/factory_bot.png)
 
-
 <!--
-Factories! So we use a tool called FactoryBot.by our friends at ThoughtBot.
+Factories! So we use a tool called FactoryBot, by our friends at ThoughtBot.
 -->
 
 ---
@@ -1552,9 +1515,8 @@ layout: center
 
 ![personas process](/images/personas-process-withfb.png)
 
-
 <!--
-And so we could easily wire this up to our sign in button.
+And so, great, we could easily wire this up to our sign in button.
 -->
 
 ---
@@ -1583,7 +1545,6 @@ font-size: 120% !important;
 line-height: 120% !important;
 }
 </style>
-
 
 <!--
 Plus, you you can define things like traits, like a user with a Roth 401k account.
@@ -1649,15 +1610,14 @@ line-height: 120% !important;
 }
 </style>
 
-
 <!--
-So to support this, we came up with a quick little DSL for defining these personas.
+So to support this, we came up with this quick little domain specific language (or DSL) for defining these personas.
 
-All you had to do was drop your factory bot code in here, 
+All you had to do was drop your factory code...
 
 CLICK
 
-and it would take care of there rest.
+right in there, and it would take care of the rest.
 
 And, so, we took these persona definitions, and we built...
 -->
@@ -1670,9 +1630,8 @@ layout: center
   <source src="/images/personas-login.mp4" />
 </video>
 
-
 <!--
-This user interface.
+the actual user interface.
 
 And so we had our persona picker. And we made this replace the login page entirely.
 -->
@@ -1690,7 +1649,9 @@ And it worked!
 
 There's the loading spinner, and that should take us to the dashboard.
 
-But there was one hiccup. When we deployed a change, suddenly...
+Bingo.
+
+But there was one hiccup. This was working for us for a while, but then we deployed a change, and suddenly...
 -->
 
 ---
@@ -1701,13 +1662,16 @@ image: /images/500-error.png
 # &nbsp;
 
 <!--
-...it broke. Darn. This was definitely giving us flashbacks. But we dug in...
+...it broke. Darn.
+
+So, this was giving us flashbacks, right?
+
+But then we dug in a bit...
 -->
 
 ---
 layout: center
 ---
-
 
 <v-clicks>
 
@@ -1728,7 +1692,7 @@ layout: center
 <arrow x1="350" y1="150" x2="350" y2="400" color="#aaa" width="3" />
 
 <!--
-And here's what was happening.
+and what we found was...
 
 CLICK
 
@@ -1736,7 +1700,7 @@ After the initial deployment, we could generate user 1, user 2, user 3, and so o
 But when we redeploy, the next user we generate would reset back to user_1.
 
 And this would fail against uniqueness constraints in our database, or uniqueness validations in the models,
-because user_1's email was already taken.
+because user_1's email (among other things) was already taken.
 -->
 
 ---
@@ -1762,10 +1726,10 @@ line-height: 120% !important;
 </style>
 
 <!--
-And if you look back at the way factories are defined,
-you see that we rely on this sequence feature to generate unique emails for us.
+And if you look back at the way that factories are defined,
+you see that we rely on this sequence feature to generate unique sequences for us, so unique emails addresses, and so on.
 
-And this time the problem is that...
+And the problem here is again...
 -->
 
 ---
@@ -1780,9 +1744,9 @@ Finding Nemo (2003)
 </div>
 
 <!--
-It has no LONG term memory
+it has no memory, this time no LONG TERM memory,
 
-The sequences reset every time the Ruby process restarts.
+because the sequences reset every time the Ruby process (or the server) restarts.
 
 So, apologies to our friends at ThoughtBot, but...
 -->
@@ -1851,9 +1815,9 @@ line-height: 120% !important;
 </style>
 
 <!--
-First, we said, let's just take the MAX value in the table - like SELECT MAX - and add 1.
+At first were just like, okay, let's take the maximum value in the table - like SELECT MAX of the column name - and add 1.
 
-And if it's an integer, or a string with a standard lexographic order, it kinda works? But not really.
+And if it's an integer column, or a string with some sort of standard lexographic order, it kinda works? But not really.
 -->
 
 ---
@@ -1896,10 +1860,8 @@ line-height: 120% !important;
 }
 </style>
 
-
-
 <!--
-Like, here's a sequence that goes in...
+Because, here's a sequence that goes in...
 
 CLICK
 
@@ -1915,7 +1877,7 @@ ENCRYPTED at rest.
 
 There's just no way with SQL to select for the MAX value in these columns.
 
-There are a few ways to solve for this, and I'd say that we went with the best worst option. Which is...
+There are a few ways to solve for this, and I'd say that we went with the best-worst option. Which is...
 -->
 
 ---
@@ -1972,9 +1934,9 @@ line-height: 120% !important;
 </style>
 
 <!--
-And of course, we called it clever sequence (because clever code isn't necessarily good code)
+And of course, we called it clever sequence (because clever code isn't necessarily good code, and we wanted to remind ourselves of that)
 
-But it helped us get to a demoable state, and that's what mattered.
+But it helped us get to a demoable state, and again, that's what mattered.
 -->
 
 ---
@@ -1996,9 +1958,7 @@ Photo by <a href="https://unsplash.com/@xteemu?utm_source=unsplash&utm_medium=re
 </div>
 
 <!--
-And so now it worked for real. And we could actually use it to start giving real demos.
-
-CLICK
+And so now it worked for real. CLICK And we could actually start to use it in our real product demos.
 -->
 
 ---
@@ -2011,7 +1971,7 @@ class: text-center text-shadow-lg font-mono
 ## Observation No. 3
 
 <!--
-And so we have another iceberg reveal. This time, the take-away was that...
+And so we had another iceberg reveal. This time, the take-away was...
 -->
 
 ---
@@ -2023,9 +1983,9 @@ class: text-center text-shadow-lg font-mono
 # Start with the UX
 
 <!--
-We needed to start with the user experience and work backwards from there.
+...that we needed to start with the user experience and work backwards from there.
 
-Our first demo environment was built on the faulty assumption that the login page was the right UX,
+Our first demo environment was built on the faulty assumption that the login page was the right user experience,
 -->
 
 ---
@@ -2070,8 +2030,7 @@ CLICK
 
 the new personas framework powered by factories.
 
-And we could've stopped there, but we're not done crossing out this list!
-
+And we could've stopped there, right? Like, we had this thing working end-to-end. But we're not done crossing out this list, so we decided to keep going.
 -->
 
 ---
@@ -2110,7 +2069,6 @@ Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_med
 </div>
 
 <!--
-
 So let's look at this short-lived database idea.
 -->
 
@@ -2149,9 +2107,8 @@ li + li {
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
-
 <!--
-And this one is really easy to cross out..
+And this one is really easy to cross out, because...
 -->
 
 ---
@@ -2161,12 +2118,10 @@ class: px-80
 
 ![short-lived db](/images/short-lived-db.png)
 
-
 <!--
-So, if you recall, we had this process that would basically destroy and recreate the database every so often.
+if you recall, we had this process that would basically destroy and recreate the database every so often.
 
-But the only reason we needed to do this was because we had previously relied on pre-populated demo accounts,
-and we wanted to reset them.
+But the only reason we needed this process was because we had previously relied on demo data being pre-populated with seeds and fixtures, and we wanted to reset that periodically.
 
 But we had personas now!
 -->
@@ -2192,7 +2147,7 @@ class: px-30 pb-25
 ![db:migrate](/images/db-migrate.png)
 
 <!--
-And we'd just rely on schema migrations, the same way we do in production.
+We just had to make sure that we ran all of the necessary schema migrations over time, just like we do in production.
 -->
 
 ---
@@ -2232,12 +2187,11 @@ Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_med
 </div>
 
 <!--
-So cross that out, and replace short-lived databases with
+And so, that was easy. We can go ahead and replace that with
 
 CLICK
 
-a long lived database.
-
+a long lived database, that runs schema migrations.
 -->
 
 ---
@@ -2276,9 +2230,8 @@ li + li {
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
-
 <!--
-So next up, was the cadence of deployments. And we crossed this out too.
+So next up, was the cadence of deployments. And we crossed this out. And if you remember...
 -->
 
 ---
@@ -2288,15 +2241,13 @@ class: px-50 mr-20
 
 ![pain graph](/images/pain-graph.png)
 
-
 <!--
-And if you remember, I said that the longer the cadence, the more painful it got.
+I said that the longer the cadence, the more painful it got.
 
 And there's a simple reason for this.
 
 It's because whenever something goes wrong, the way to debug it is to look into every change
-that has happened since the last deploy.
-
+that has happened since the last successful deploy.
 -->
 
 ---
@@ -2319,7 +2270,7 @@ img { width: 65% }
 
 <!--
 So if you haven't deployed in 3 months, you have to **sift** through 3 months of changes to figure out what broke.
-So, I'm sure you can see where I'm going with this.
+And I'm sure you can see where I'm going with this.
 
 CLICK
 
@@ -2337,10 +2288,9 @@ layout: center
 <!--
 ...I am!
 
-This is how we build our production apps, so it made sense to just do the same thing for demo.
+This is how we build our production apps at Betterment, so it made sense to just do the same thing for demo.
 
-
-Of course, with continuous deploys, you need to actually operate and monitor as well, so that you actually know when something breaks.
+Of course, with continuous deploys, you need to actually operate and monitor the thing as well, so you actually know when something breaks.
 -->
 
 ---
@@ -2363,9 +2313,9 @@ So we enabled slack alerts, and
 
 CLICK
 
-we made sure errors would show up in our bugtracker.
+we made sure errors would flow into our bugtracker.
 
-And both of these can feed into our teams' on call processes.
+And both of these things can then feed into our on call processes for all of our teams.
 -->
 
 ---
@@ -2375,7 +2325,7 @@ layout: center
 ![ci-cd diagram](/images/ci-cd.png)
 
 <!--
-And then the last bit that was missing was there on the lower left... testing.
+And then the last bit that we were missing, here, was there on the lower left... testing.
 -->
 
 ---
@@ -2430,7 +2380,7 @@ And then the test itself would click through an actual product demo, starting wi
 
 CLICK
 
-And so now if a test failed, a developer would see a red PR build, and know that they broke an actual customer demo or sales pitch.
+And so if a test failed, a developer would see a red PR build, and know that they broke an actual customer demo or sales pitch.
 
 CLICK
 
@@ -2516,12 +2466,11 @@ class: text-center text-shadow-lg font-mono
 # the demo env<br/>_is_<br/>a production env
 
 <!--
-I'd argue that the demo environment _is_ a production environment.
+I'd argue that the demo environment _is_ a kind of production environment.
 
-Because, like, if you're running live sales demos to real audiences,
+Because, like, if you're running live sales demos in front of real audiences,
 then that's a production app, and it deserves production-like uptime guarantees.
 -->
-
 
 ---
 layout: image
@@ -2726,9 +2675,8 @@ li + li {
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
-
 <!--
-Then we have this long-lived database, that depends just on migrations, that teams already write when building features.
+Then we have this long-lived database, that depends just on migrations, and teams are already writing those when they build features.
 -->
 
 ---
@@ -2768,9 +2716,8 @@ li + li {
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
-
 <!--
-And we're following a CI/CD process that routes any build failures or issues through to the team closest to the change being made.
+Plus we're following a CI/CD process that routes any build failures or issues through to the team closest to the change being made.
 -->
 
 ---
@@ -2811,10 +2758,8 @@ li + li {
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
-
 <!--
-
-And so after all of this, who owns this thing is immaterial, because the real question is who maintains it.
+And so, the problem of ownership... of who owns this thing... is kind of immaterial, because the real question is who maintains it.
 
 And it's effectively...
 
@@ -2822,7 +2767,7 @@ CLICK
 
 maintained by everyone!
 
-And, uh, this has gotten kinda messy at this point, so let's just rewrite the list.
+And, so, this list has gotten kinda messy, so let's just rewrite it....
 -->
 
 ---
@@ -2853,11 +2798,11 @@ Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_med
 </div>
 
 <!--
-There we go. So this was the Demo environment 2.0.
+There we go. This was the Demo environment 2.0.
 
 An isolated app, centered around personas, utilizing a long-lived database, and deployed continuously.
 
-And, as a result of all of the tools we use in our day-to-day work, was maintained by everyone.
+And, as a result of all of all of the tools we use in our day-to-day work, was maintained by everyone.
 -->
 
 ---
@@ -2941,7 +2886,7 @@ class: px-60
 ![incentives-3](/images/incentives-3.png)
 
 <!--
-And so we had a complete misalignment in incentives.
+And so we had three completely misaligned teams with misaligned incentives.
 -->
 
 ---
@@ -2952,7 +2897,7 @@ class: px-60
 ![incentives-4](/images/incentives-4.png)
 
 <!--
-But when we meet developers where they are, with tools that they use every day, like webvalve and factories.
+But, with this new demo environment, when we meet developers where they are, with tools that they use every day, like webvalve and factories.
 -->
 
 ---
@@ -2963,7 +2908,7 @@ class: px-60
 ![incentives-5](/images/incentives-5.png)
 
 <!--
-And codify the needs of our stakeholders, with automated tests, and with abstractions like personas.
+And when we codify the needs of our stakeholders, with automated tests, and with abstractions like personas.
 -->
 
 ---
@@ -2974,7 +2919,7 @@ class: px-60
 ![incentives-6](/images/incentives-6.png)
 
 <!--
-And focus on the user experience for our demo-giving users.
+And then we focus on the user experience for our demo-giving users.
 -->
 
 ---
@@ -2996,13 +2941,12 @@ image: /images/2020.svg
 # &nbsp;
 
 <!--
-So we shipped this in 2020, and as we all know it has been at least 6 years since then. Or I dunno, I stopped counting.
+So we shipped this in 2020, and as we all know it has been at least 6 years, 7 years maybe, since then. I dunno, I stopped counting.
 
 But to close us out, I wanted to share what we've done in the years since this released.
 -->
 
 ---
-
 
 <div grid="~ cols-3 gap-5" m="t-2">
 <div>
@@ -3024,7 +2968,7 @@ But to close us out, I wanted to share what we've done in the years since this r
 </div>
 
 <!--
-Firstly, we actually ended up launching versions of it for 3 of our consumer facing products.
+Firstly, we actually ended up launching versions of it for 3 of our customer-facing products.
 So each of these is a different Rails app with its own set of stateful fakes and personas.
 -->
 
@@ -3037,9 +2981,11 @@ layout: center
 </video>
 
 <!--
-We also launched a version of this for internal testing purposes, teams have added like a zillion test personas.
+Secondly, we also launched a version of this for internal testing purposes. 
 
-So any Betterment employee has access to this and can test run the app with any persona.
+Teams have, like, a zillion test personas, which I've scribbled out, so you can't actually see them...
+
+But any Betterment employee has access to this and can test run the app with any persona.
 -->
 
 ---
@@ -3052,7 +2998,7 @@ layout: center
 <!--
 And we paired this with a developer CLI so that devs can generate personas in their local development environments.
 
-In fact, this ended up replacing user seeds entirely, which cut down a bunch on the time it takes to run rake db:setup.
+In fact, this ended up replacing user seeds entirely, which cut down a bunch on the time it takes to reset our local databases.
 -->
 
 ---
@@ -3067,6 +3013,8 @@ layout: center
 
 <!--
 We also connected a test build of our mobile app to a Rails API backed by the same set of personas.
+
+And so it's the same loading indicator that drops you right into the dashboard.
 -->
 
 ---
@@ -3077,8 +3025,9 @@ class: px-60
 ![incentives-everyone](/images/incentives-everyone.png)
 
 <!--
-And so now our PMs, our designers, our mobile engineers, and many others
-are using this shared language of Personas to collaborate and iterate.
+And so now, talk about aligning incentives
+
+we've been joined by PMs, designers, mobile engineers, and many other stakeholders across the company, all of whom are relying on "flavors" of the demo environment -- and on this shared language of personas -- to collaborate and iterate on the Betterment product.
 -->
 
 ---
@@ -3089,7 +3038,7 @@ image: /images/demo-mode-usage.svg
 # &nbsp;
 
 <!--
-And the internal usage of these apps has only gone up over time.
+And the internal usage of these demo apps has only gone up over time.
 -->
 
 ---
@@ -3107,11 +3056,11 @@ and I'm excited to announce that as of today,
 we've actually open sourced our demo and personas framework.
 
 We've called the gem 'demo_mode'. It's a mountable Rails engine,
-so you just drop into your app, define a couple personas, and
-then enable the persona picker.
+that you just drop into your app, define a couple personas, and
+then you just enable the persona picker.
 
 You can pair it with WebValve, if you want, but you don't have to.
-And you can use FactoryBot if you want, but you don't have to.
+And you can use FactoryBot if you want, but you don't have to, if you have other ways of generating user accounts.
 -->
 
 ---
@@ -3120,24 +3069,40 @@ background: /images/demo_mode_fancy.jpg
 class: font-mono
 ---
 
-# Thanks!
+# RAILS_ENV=demo
 
-**Slides and Errata:**  
-https://ngriffith.com/railsconf-2022
+<p style="opacity:1.0">
 
-Presented By: **Nathan Griffith**  
+<span style="opacity:0.5">Presented By:</span> **Nathan Griffith**  
 <img src="/images/twitter.png" style="display:inline;width:20px" /> [@smudgethefirst](https://twitter.com/smudgethefirst) <img src="/images/github.png" style="display:inline;width:20px" /> [@smudge](https://github.com/smudge)
+
+</p>
+
+<span style="opacity:0.5">Slides and Errata:</span>  
+**https://ngriffith.com/railsconf-2022**
 
 =========================================
 
-**Referenced Projects:**  
+<span style="opacity:0.5">Referenced Projects:</span>  
 https://github.com/Betterment/demo_mode  
 https://github.com/Betterment/webvalve  
-https://github.com/bblimke/webmock  
 https://github.com/thoughtbot/factory_bot  
+https://github.com/bblimke/webmock  
 
 =========================================
 
 <p style="opacity:0.5">
-  Slides made with https://sli.dev/ and https://excalidraw.com/
+
+Slides made with [**Slidev**](https://sli.dev/) and [**Excalidraw**](https://excalidraw.com/)  
+
 </p>
+
+<QrCode :value="'https://ngriffith.com/railsconf-2022'" :size="300" level="M"  style="position:absolute; right:1.2em; bottom:1.2em; border: 5px solid white; width: 7em; height: 7em; opacity:0.2" />
+
+<!--
+And that's all I have for you!
+
+I've posted a copy of these slides at the link on _this_ slide.
+
+And if you enjoyed this talk, and want to chat more, or if you're interested in learning more about demo_mode, or webvalve, or any of our other open source gems, come find me afterwards, or reach out to me online!
+-->
