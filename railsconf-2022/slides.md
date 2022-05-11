@@ -319,6 +319,7 @@ class: px-40
 ![Betterment Logo](/images/betterment.png)
 
 <img v-click src="/images/were-hiring.png" style="width:200px;position:absolute;right:90px;bottom:130px" />
+<img v-click src="/images/face.png" style="width:200px;position:absolute;left:100px;top:190px;transform:rotate(30deg)" />
 
 <!--
 Betterment. You might've heard of us, we offer financial advice, investing accounts, retirement, , you name it.
@@ -328,7 +329,9 @@ CLICK
 
 And I should mention that we're hiring.
 
-And I work on the application platform teams at Betterment.
+CLICK
+
+And so I work on the application platform teams at Betterment.
 We focus on a lot of cross-cutting concerns, and we
 provide our product teams with more of a day-to-day peace of mind.
 
