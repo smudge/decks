@@ -2952,6 +2952,8 @@ class: px-60
 
 ![incentives-1.5](/images/incentives-1.5.png)
 
+<img src="/images/thoughts/retail.png" style="position:absolute; right: 10px; top: 30px; width: 260px;" />
+
 <!--
 We had the team building Betterment's consumer-facing product, focused on their own roadmaps and goals,
 and they had no reason to maintain a demo environment.
@@ -2964,6 +2966,10 @@ class: px-60
 
 ![incentives-1](/images/incentives-1.png)
 
+
+<img src="/images/thoughts/retail.png" style="position:absolute; right: 10px; top: 30px; width: 260px;" />
+<img src="/images/thoughts/b2b.png" style="position:absolute; bottom: 190px; left: 10px; width: 260px;" />
+
 <!--
 Then, we had the B2B engineering team, who owned the demo environment for a consumer product that they weren't really building.
 -->
@@ -2975,8 +2981,13 @@ class: px-60
 
 ![incentives-2](/images/incentives-2.png)
 
+
+<img src="/images/thoughts/retail.png" style="position:absolute; right: 10px; top: 30px; width: 260px;" />
+<img src="/images/thoughts/b2b.png" style="position:absolute; bottom: 190px; left: 10px; width: 260px;" />
+<img src="/images/thoughts/demoers.png" style="position:absolute; top: 30px; left: 310px; width: 260px;" />
+
 <!--
-And a non-engineering team who desperately needed that demo environment (to give demos), but who quickly learned not to trust it.
+And finally a non-engineering team who desperately needed that demo environment (to give demos), but who quickly learned not to trust it.
 -->
 
 ---
@@ -3195,7 +3206,7 @@ Except, wait a minute, (DEMO DEMO DEMO)
 
 Yes, that's right, this is a live app, embedded right here in my slide deck.
 
-It would be ironic if I gave a talk about giving demos and didn't give a quick demo.
+It would be ironic if I gave a talk about giving demos and didn't give at least a quick demo.
 
 So we can click on this "see performance" link, and there's our fake market simulation. And when we log out, we're right back at that splash page.
 
