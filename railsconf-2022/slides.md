@@ -2928,11 +2928,10 @@ class: text-center text-shadow-lg font-mono
 
 # Incentives Matter
 
-
 <!--
 like, incentives matter.
 
-And that's actually what this talk has been secretly about all along.
+It might sound a little obvious, but it's actually what this talk has been secretly about all along.
 -->
 
 ---
@@ -2943,7 +2942,7 @@ class: px-60
 ![incentives-0](/images/incentives-0.png)
 
 <!--
-Thinking back, to a few years ago, what we had were three misaligned teams.
+Because thinking back to 2016 and that first demo environment...
 -->
 
 ---
@@ -2954,8 +2953,8 @@ class: px-60
 ![incentives-1.5](/images/incentives-1.5.png)
 
 <!--
-We had the teams building Betterment's consumer-facing product, focused on their own roadmaps and goals,
-and so they had no reason to maintain a demo environment.
+We had the team building Betterment's consumer-facing product, focused on their own roadmaps and goals,
+and they had no reason to maintain a demo environment.
 -->
 
 ---
@@ -2966,7 +2965,7 @@ class: px-60
 ![incentives-1](/images/incentives-1.png)
 
 <!--
-Then, we had a B2B engineering team, who owned the demo environment for a consumer product that they weren't building.
+Then, we had the B2B engineering team, who owned the demo environment for a consumer product that they weren't really building.
 -->
 
 ---
@@ -2977,7 +2976,7 @@ class: px-60
 ![incentives-2](/images/incentives-2.png)
 
 <!--
-And a non-engineering team who desperately needed that demo environment, but who quickly learned not to trust it.
+And a non-engineering team who desperately needed that demo environment (to give demos), but who quickly learned not to trust it.
 -->
 
 ---
@@ -2996,10 +2995,21 @@ layout: center
 class: px-60
 ---
 
+![incentives-0](/images/incentives-0.png)
+
+<!--
+But, with this NEW demo environment...
+-->
+
+---
+layout: center
+class: px-60
+---
+
 ![incentives-4](/images/incentives-4.png)
 
 <!--
-But, with this new demo environment, when we meet developers where they are, with tools that they use every day, like webvalve and factories.
+...when we meet developers where they are, with tools that they use every day, like webvalve and factory_bot.
 -->
 
 ---
@@ -3010,7 +3020,7 @@ class: px-60
 ![incentives-5](/images/incentives-5.png)
 
 <!--
-And when we codify the needs of our stakeholders, with automated tests, and with abstractions like personas.
+And when we codify the needs of our stakeholders, with automated tests and alerting, and with abstractions like personas.
 -->
 
 ---
@@ -3021,7 +3031,7 @@ class: px-60
 ![incentives-6](/images/incentives-6.png)
 
 <!--
-And then we focus on the user experience for our demo-giving users.
+And then we focus on the user experience for our demo-giving users, and ensure that they have reliable uptime guarantees.
 -->
 
 ---
@@ -3129,7 +3139,7 @@ class: px-60
 <!--
 And so now, talk about aligning incentives
 
-we've been joined by PMs, designers, mobile engineers, and many other stakeholders across the company, all of whom are relying on "flavors" of the demo environment -- and on this shared language of personas -- to collaborate and iterate on the Betterment product.
+we've been joined by PMs, designers, mobile engineers, and many other stakeholders across the company, all of whom are relying on this new demo environment -- and on this shared language of personas -- to collaborate and iterate on the Betterment product.
 -->
 
 ---
@@ -3140,9 +3150,8 @@ image: /images/demo-mode-usage.svg
 # &nbsp;
 
 <!--
-And the internal usage of these demo apps has only gone up over time.
+And the internal usage of these demo apps has really only gone up over time.
 -->
-
 
 ---
 layout: image
@@ -3184,7 +3193,13 @@ As you can see, not much has changed.
 
 Except, wait a minute, (DEMO DEMO DEMO)
 
-Yes, that's right, this is the live app, embedded right here in my slide deck.
+Yes, that's right, this is a live app, embedded right here in my slide deck.
+
+It would be ironic if I gave a talk about giving demos and didn't give a quick demo.
+
+So we can click on this "see performance" link, and there's our fake market simulation. And when we log out, we're right back at that splash page.
+
+Now, if this persona picker is something that you would want, for your app...
 -->
 
 ---
@@ -3197,11 +3212,11 @@ class: text-center font-mono
 ## github.com/Betterment/demo_mode
 
 <!--
-and I'm excited to announce that as of today,
-we've actually open sourced our demo and personas framework.
+and I'm excited to announce ... that
+we've **open sourced** our demo and personas framework.
 
-We've called the gem 'demo_mode', and it's available on Rubygems,
-and
+We've called the gem 'demo_mode'. it's available on Rubygems,
+and on GitHub, where you'll instructions for setting it up.
 -->
 
 ---
@@ -3216,11 +3231,9 @@ class: px-40
 </video>
 
 <!--
-On github, with instructions for setting it up.
-
 Basically, it's a mountable Rails engine,
-that you just drop into your app, define a couple personas, and
-then you enable the persona picker.
+that you just drop into your app, you define a couple personas, and
+then you launch the app in "demo mode"
 
 You can pair it with WebValve, if you want, but you don't have to.
 And you can use FactoryBot if you want, but you don't have to, if you have other ways of generating user accounts.
@@ -3268,4 +3281,8 @@ And that's all I have for you!
 I've posted a copy of these slides at the link on _this_ slide.
 
 And if you enjoyed this talk, and want to chat more, or if you're interested in learning more about demo_mode, or webvalve, or any of our other open source gems, come find me afterwards, or reach out to me online!
+
+Thank you!
+
+(time for questions?)
 -->
