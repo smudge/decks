@@ -15,11 +15,11 @@ class: text-center
 ### diving into the "demo" environment
 
 <!--
-DOORKNOCKER and/or LOCAL SERVER+JOBS!
+LOCAL SERVER+JOBS!
 
 Okay, so let's get started.
 
-Hello. Welcome. I'm Nathan. I'm glad to be here. A little nervous, too.
+Hello. Welcome to my talk. I'm glad to be here. A little nervous, too.
 
 This is actually my first live conference talk.
 
@@ -272,7 +272,7 @@ you've been building, and show it off to the world -- is about
 a lot more than just the way you boot up your app.
 
 It's actually something I and my team have been thinking
-about and iterating on for almost six years.
+about and iterating on for almost six years. We've been exploring this iceberg of demoability!
 
 And so who am I?
 -->
@@ -426,7 +426,7 @@ class: text-center px-10
 </v-click>
 
 <!--
-So, firstly, there's always the option to just use the production app, right? And in our case, it's a cluster of multiple relatively monolithic applications.
+So, firstly, there's always the option to just use the production app, right? And in our case, it's a cluster of multiple relatively monolithic applications - so not microservices, but also not one big rails app.
 But since our app involves real money, and real personal info, this option didn't feel great.
 
 So we looked around and saw that Betterment also had a _staging_ environment.
@@ -485,6 +485,8 @@ class: text-center px-10
 
 <!--
 And so, the staging environment was our owl.
+
+CLICK
 
 Of course, we made a couple modifications to the owl. For instance, we
 didn't need all of the sanitized staging data, so
@@ -748,7 +750,7 @@ First, with this idea of deploying an entire cluster of services.
 
 Because, from a maintainability standpoint, why keep a _bunch_ of apps running if we really only care about one app. The thing we really wanted to demo.
 
-And that got us thinking, because at Betterment we already have a way of running our Rails apps in isolation.
+And that got us thinking, because at Betterment we already have a way of running our Rails apps in isolation **from one another**.
 -->
 
 ---
@@ -937,7 +939,7 @@ class: px-20 bg-blue-50
 ![performance page (no graphs)](/images/performance/page-empty-graphs.png)
 
 <!--
-...this page, which is supposed to graph he performance history of an account.
+...this page, which is supposed to graph the performance history of an account.
 
 And he said, hold on, I can't show this to clients.
 -->
@@ -1243,7 +1245,7 @@ class: text-center
 <img src="/images/app-cluster-after-small.png" class="px-85 mt-10" />
 
 <!--
-And so we'd done it. We could run our app in total isolation from all external apps and services.
+And so we'd done it. We could **demo** our app in total isolation from any other apps or services.
 -->
 
 ---
@@ -1647,7 +1649,7 @@ DemoMode.add_persona :nathans_test_persona do
   features << 'Retirement Goal'
   features << 'Roth 401(k)'
 
-  sign_in_as do |_password|
+  sign_in_as do
     FactoryBot.create(:user, :with_roth_401k)
   end
 end
@@ -1706,11 +1708,11 @@ But there was one hiccup. This was working for us for a while, but then we deplo
 -->
 
 ---
-layout: image
-image: /images/500-error.png
+layout: center
+class: px-15
 ---
 
-# &nbsp;
+![500](/images/500-error.png)
 
 <!--
 ...it broke. Darn.
@@ -2227,10 +2229,9 @@ class: px-80
 
 ![long-lived db](/images/long-lived-db.png)
 
-
 <!--
 So if we just... didn't reset the database ever, and kept it around indefinitely,
-all of the demo functionality would still work as intended.
+all of the demo functionality would still work as intended. And it would be easier to maintain, because it had fewer moving parts.
 -->
 
 ---
@@ -2934,7 +2935,7 @@ class: text-center text-shadow-lg font-mono
 <!--
 like, incentives matter.
 
-It might sound a little obvious, but it's actually what this talk has been secretly about all along.
+It might sound a little obvious, cliche even, but it's actually what this talk has been secretly about all along.
 -->
 
 ---
@@ -3056,7 +3057,7 @@ class: px-60
 ![incentives-7](/images/incentives-7.png)
 
 <!--
-We now have a set of teams with the agency, expertise, and incentives to maintain this environment together.
+We now have a set of teams with the agency, expertise, mutual trust, and incentives to maintain this environment together.
 -->
 
 ---
@@ -3138,7 +3139,7 @@ layout: center
 <img src="/images/iphone-front.png" class="absolute top-6" style="left:365px; width:251px;" />
 
 <!--
-We also connected a test build of our mobile app to a Rails API backed by the same set of personas.
+Lastly, we also connected a test build of our **mobile app** to a Rails API backed by the same set of personas.
 
 And so it's the same loading indicator that drops you right into the dashboard.
 -->
@@ -3175,9 +3176,7 @@ image: /images/2022.svg
 # &nbsp;
 
 <!--
-And so now it's 2022. And as you can see, my face, along with the rest of me, has made it here to RailsConf Portland.
-
-
+And so now it's 2022. And as you can see, my disembodied face, along with the rest of me, has made it here to RailsConf Portland.
 -->
 
 ---
@@ -3226,8 +3225,8 @@ class: text-center font-mono
 ## github.com/Betterment/demo_mode
 
 <!--
-and I'm excited to announce ... that
-we've **open sourced** our demo and personas framework.
+I'm excited to announce ... that
+we've **open sourced** it, and the rest of our demo framework.
 
 We've called the gem 'demo_mode'. it's available on Rubygems,
 and on GitHub, where you'll instructions for setting it up.
@@ -3287,7 +3286,7 @@ Slides made with [**Slidev**](https://sli.dev/) and [**Excalidraw**](https://exc
 
 </p>
 
-<QrCode :value="'https://ngriffith.com/railsconf-2022'" :size="300" margin="1" level="M"  style="position:absolute; right:1.2em; bottom:1.2em; width: 7em; height: 7em; opacity:0.2" />
+<QrCode :value="'https://ngriffith.com/railsconf-2022'" :size="350" margin="1" level="M" style="position:absolute; right:1.2em; bottom:1.2em; width: 7em; height: 7em; opacity:0.8" />
 
 <!--
 And that's all I have for you!
@@ -3299,4 +3298,6 @@ And if you enjoyed this talk, and want to chat more, or if you're interested in 
 Thank you!
 
 (time for questions?)
+
+REPEAT THE QUESTION
 -->
