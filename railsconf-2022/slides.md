@@ -871,12 +871,12 @@ layout: center
 class: px-60
 ---
 
-<div class="text-center mb-2 text-blue-500 text-3xl"><strong>https://github.com/Betterment/webvalve</strong></div>
+<div class="text-center mb-2 text-blue-500 text-2xl" style="font-size:1.6em"><strong>https://github.com/Betterment/webvalve</strong></div>
 
 ![webvalve readme](/images/webvalve-readme.png)
 
 <style>
-  img { border: 4px solid rgba(200, 200, 200, 0.5) }
+  img { border: 4px solid rgba(200, 200, 200, 0.5); }
 </style>
 
 <!--
