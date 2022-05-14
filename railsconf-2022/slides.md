@@ -1503,7 +1503,7 @@ class: px-40
 ![factory_bot logo](/images/factory_bot.png)
 
 <!--
-Factories! So we use a tool called FactoryBot, by our friends at ThoughtBot.
+Factories! At Betterment we use a tool called FactoryBot, by our friends at ThoughtBot.
 -->
 
 ---
