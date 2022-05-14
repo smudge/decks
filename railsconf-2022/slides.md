@@ -178,7 +178,7 @@ And I mean, I'm talking to a room of Rails engineers, but I want to make sure we
 layout: fact
 ---
 
-## RAILS_ENV={**demo**, development, test, production}
+## RAILS_ENV={**demo**, development, production, test}
 
 <!--
 What I'm going to be talking about today is -- at its core -- the idea of adding a new, dedicated environment -- called "demo" -- for giving...
@@ -1490,8 +1490,9 @@ Photo by <a href="https://unsplash.com/@cgower?utm_source=unsplash&utm_medium=re
 </div>
 
 <!--
-And again, when we looked to our local development environments we saw that we already had
-a way of doing this.
+And again, when we looked to our local development environments we saw that we **were already doing this.**
+
+**So, when writing our _tests_,** we were using...
 -->
 
 ---
@@ -1664,7 +1665,7 @@ padding: 1em !important;
 </style>
 
 <!--
-So to support this, we came up with this quick little domain specific language (or DSL) for defining these personas.
+So to support this, we came up with this quick little domain specific language (or DSL) for defining these, **and we called them "personas"**.
 
 All you had to do was drop your factory code...
 
