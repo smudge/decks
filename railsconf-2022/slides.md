@@ -782,7 +782,7 @@ layout: center
 what webvalve lets us do is define fake versions of all of our external apps,
 and it will automatically route all web traffic to those fakes.
 
-It's actually built on top of WebMock, if you're familiar with that gem.
+It's actually built on top of WebMock and Sinatra, if you're familiar with those rubygems.
 -->
 
 ---
@@ -3259,7 +3259,7 @@ background: /images/demo_mode_fancy.jpg
 class: font-mono
 ---
 
-# RAILS_ENV=demo
+<h1 class="-mt-3">RAILS_ENV=demo</h1>
 
 <p style="opacity:1.0">
 
@@ -3278,6 +3278,7 @@ https://github.com/Betterment/demo_mode
 https://github.com/Betterment/webvalve  
 https://github.com/thoughtbot/factory_bot  
 https://github.com/bblimke/webmock  
+https://github.com/sinatra/sinatra
 
 =========================================
 
