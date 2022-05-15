@@ -15,15 +15,15 @@ class: text-center
 ### diving into the "demo" environment
 
 <!--
-LOCAL SERVER+JOBS!
+START UP THE LOCAL SERVER + BACKGROUND JOBS!!!!
+
+CHECK FOR MOUSE POSITION!!!
 
 Okay, so let's get started.
 
-Hello. Welcome to my talk. I'm glad to be here. A little nervous, too.
+Hello. Welcome to my talk. I'm glad to be here.
 
-This is actually my first live conference talk.
-
-I gave one last year, but it was prerecorded, so I spent like a week recording takes over and over trying to get the perfect take. Would definitely not recommend that strategy, so I'm happy to do it live with you today.
+This is not my first conference talk, but it's technically my first live conference talk. I'd be lying if I said I wasn't nervous, but I'm also really excited to share this with a live audience.
 -->
 
 ---
@@ -670,6 +670,8 @@ again, and we really needed this thing to be working.
 
 **But...** we also finally had time in our roadmap,
 and this time we wanted to build something that was easier to maintain in the long run.
+
+And so we started just, like, writing down a list of all the things that the original demo env had consisted of.
 -->
 
 ---
@@ -705,17 +707,11 @@ Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_med
 </div>
 
 <!--
-And so we started just writing down a list of what the original demo env had consisted of.
+So, firstly, what got deployed? **CLICK** Well, everything. All of our apps. _(PAUSE)_ Secondly, the database was populated up front with all of the demo accounts **CLICK**, so we would call that, like, seed or fixture data. _(PAUSE)_ And then _to keep that data fresh_ the entire database was reset with every deployment, **CLICK** so it relied on these short-lived databases.
 
-So, firstly, what got deployed? CLICK Well, everything. All of our apps.
+Then at first we deployed this thing on Sundays, but that got to be too painful so we switched to monthly deployments, and WHEN THAT got too painful, we just started deploying only when we needed to. **CLICK** So I would call it "push button" deploys, but it was really "push button and cross fingers"
 
-Secondly, the database was populated up front with all of the demo accounts CLICK, so we would call that, like, seed or fixture data.
-
-And then the entire database was reset with every deployment, CLICK so it relied on these short-lived databases.
-
-Then at first we deployed this thing on Sundays, but that got to be too painful so we switched to monthly deployments, and WHEN THAT got too painful, we just started deploying only when we needed to. CLICK So I would call it "push button" deploys, but it was really "push button and cross fingers"
-
-Lastly, who owned it? Well, CLICK us. The engineering team closest to the need for its existence (and most incentivized to do the work). And so, now that we had this list, we started to cross things out.
+Lastly, who owned it? Well, **CLICK** us. The engineering team closest to the need for its existence (and most incentivized to do the work). And so, now that we had this list, we started to cross things out.
 -->
 
 ---
@@ -748,7 +744,7 @@ Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_med
 <!--
 First, with this idea of deploying an entire cluster of services.
 
-Because, from a maintainability standpoint, why keep a _bunch_ of apps running if we really only care about one app. The thing we really wanted to demo.
+Because, from a maintainability standpoint, why keep a _bunch_ of apps running if we really only care about one. The thing we really wanted to demo.
 
 And that got us thinking, because at Betterment we already have a way of running our Rails apps in isolation **from one another**.
 -->
@@ -1912,21 +1908,7 @@ Because, here's a sequence that goes in...
 CLICK
 
 descending order.
-
-CLICK
-
-And here's a sequence where the attribute is actually...
-
-CLICK
-
-ENCRYPTED at rest.
-
-There's just no way with SQL to select for the MAX value in these columns.
-
-There are a few ways to solve for this, and I'd say that we went with the best-worst option. Which is...
 -->
-
-
 
 ---
 layout: center
@@ -1958,14 +1940,6 @@ margin-top: 2em !important;
 </style>
 
 <!--
-Because, here's a sequence that goes in...
-
-CLICK
-
-descending order.
-
-CLICK
-
 And here's a sequence where the attribute is actually...
 
 CLICK
@@ -1974,7 +1948,7 @@ ENCRYPTED at rest.
 
 There's just no way with SQL to select for the MAX value in these columns.
 
-There are a few ways to solve for this, and I'd say that we went with the best-worst option. Which is...
+There are a few ways to solve for this, and I'd say that we went with the best-worst option. Which is
 -->
 
 ---
@@ -2216,11 +2190,11 @@ class: px-80
 ![short-lived db](/images/short-lived-db.png)
 
 <!--
-if you recall, we had this process that would basically destroy and recreate the database every so often.
+if you recall, we had this process that would basically destroy and recreate the demo database every so often.
 
-But the only reason we needed this process was because we had previously relied on demo data being pre-populated with seeds and fixtures, and we wanted to reset that periodically.
+But the only reason we needed this process was because of those pre-populated seeds and fixtures, right? And we needed to keep resetting them to keep them fresh.
 
-But we had personas now!
+But we had personas now.
 -->
 
 ---
@@ -2480,18 +2454,12 @@ And so we wrote tests and stuck them in our standard test suite!
 CLICK
 
 We actually made it possible to toggle the personas mode on and off using an environment variable.
-
-CLICK
-
+**CLICK**
 And then the test itself would click through an actual product demo, starting with the personas page.
 
 CLICK
 
-And so if a test failed, a developer would see a red PR build, and know that they broke an actual customer demo or sales pitch.
-
-CLICK
-
-And they can't merge until they make it green.
+And so if a test failed, a developer would see a red PR build, and know that they broke an actual customer demo or sales pitch. **CLICK** And they can't merge until they make it green.
 -->
 
 ---
