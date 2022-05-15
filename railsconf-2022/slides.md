@@ -3303,3 +3303,40 @@ Thank you!
 
 REPEAT THE QUESTION
 -->
+
+
+---
+layout: cover
+background: /images/demo_mode_fancy.jpg
+---
+
+<div grid="~ cols-2 gap-15"><div>
+
+This presentation is operated and maintained by Betterment LLC, an SEC Registered Investment Advisor. The information contained is intended for educational purposes only and is not meant to constitute investment or tax advice.
+
+Unless otherwise specified, all images and/or figures shown herein are for illustrative purposes only, and are not reflective of actual experience. Actual returns will vary greatly and depend on personal and market circumstances.
+
+Advisory services provided by Betterment LLC, an SEC-registered investment adviser. Betterment Cash Reserve is offered by Betterment LLC.
+
+Brokerage services provided to clients of Betterment LLC by Betterment Securities, an SEC-registered broker-dealer and member of FINRA /SIPC.
+
+Betterment Checking made available through Betterment Financial LLC. Checking accounts and the Betterment Visa Debit Card provided by and issued by nbkc bank, Overland Park, Kansas, Member FDIC. Neither Betterment LLC nor Betterment Financial LLC, nor any of their affiliates, is a bank.
+
+</div><div>
+
+Investments in securities: Not FDIC Insured • No Bank Guarantee • May Lose Value. Investing in securities involves risks, and there is always the potential of losing money when you invest in securities. Before investing, consider your investment objectives and Betterment LLC's charges and expenses. Betterment LLC's internet-based advisory services are designed to assist clients in achieving discrete financial goals. They are not intended to provide comprehensive tax advice or financial planning with respect to every aspect of a client's financial situation and do not incorporate specific investments that clients hold elsewhere. For more details, see our Form CRS, Form ADV Part II and other disclosures. Past performance does not guarantee future results, and the likelihood of investment outcomes are hypothetical in nature. Not an offer, solicitation of an offer, or advice to buy or sell securities in jurisdictions where Betterment LLC is not registered.
+
+Any links provided to other websites are offered as a matter of convenience and are not intended to imply that Betterment or its authors endorse, sponsor, promote, and/or are affiliated with the owners of or participants in those sites, or endorses any information contained on those sites, unless expressly stated otherwise.
+
+© Betterment Holdings Inc.
+
+</div></div>
+
+<style>
+  p {
+  font-size: 0.6rem;
+  line-height: 1rem;
+  text-align: justify;
+  text-justify: inter-word;
+  }
+</style>
