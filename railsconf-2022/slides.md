@@ -3251,8 +3251,22 @@ then you launch the app in "demo mode"
 You can pair it with WebValve, if you want, but you don't have to.
 And you can use FactoryBot if you want, but you don't have to, if you have other ways of generating user accounts.
 
-And of course you can give it your own logos and colors and styling and that kind of thing.
+And of course you can give it your own logos and branding and that kind of thing.
 -->
+
+
+---
+layout: cover
+background: /images/demo_mode_fancy.jpg
+class: text-center font-mono
+---
+
+# &nbsp;
+
+<!--
+Oh, and before I forget, I'd like to give a quick shout out to all of my teammates over the years who helped make everything you saw possible.
+-->
+
 
 ---
 layout: cover
