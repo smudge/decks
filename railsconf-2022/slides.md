@@ -3203,14 +3203,17 @@ and on GitHub, where you'll find instructions for setting it up.
 -->
 
 ---
-layout: center
-class: px-25
+layout: cover
+background: /images/demo_mode_fancy.jpg
+class: text-center font-mono pt-5
 ---
 
-<div class="text-center mb-2 text-blue-500 text-3xl"><strong>https://github.com/Betterment/demo_mode</strong></div>
+<div class="text-center mb-4 text-3xl font-weight-600">
+  https://github.com/Betterment/demo_mode
+</div>
 
-<div style="overflow:hidden;border: 4px solid rgba(200, 200, 200, 0.5);width:775px;max-width:none">
-<video muted autoplay style="width:780px;position:relative;left:-3px;max-width:none">
+<div style="overflow:hidden;border: 4px solid rgba(200, 200, 200, 0.5);width:735px;max-width:none; margin: 0 auto">
+<video muted autoplay style="width:740px;position:relative;left:-3px;max-width:none">
   <source src="/images/demo_mode-github.mp4" />
 </video>
 </div>
