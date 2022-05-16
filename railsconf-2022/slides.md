@@ -3204,14 +3204,16 @@ and on GitHub, where you'll find instructions for setting it up.
 
 ---
 layout: center
-class: px-40
+class: px-25
 ---
 
-<div class="text-center mb-5 text-blue-500 text-3xl"><strong>https://github.com/Betterment/demo_mode</strong></div>
+<div class="text-center mb-2 text-blue-500 text-3xl"><strong>https://github.com/Betterment/demo_mode</strong></div>
 
-<video muted autoplay style="border: 4px solid rgba(200, 200, 200, 0.5)">
+<div style="overflow:hidden;border: 4px solid rgba(200, 200, 200, 0.5);width:775px;max-width:none">
+<video muted autoplay style="width:780px;position:relative;left:-3px;max-width:none">
   <source src="/images/demo_mode-github.mp4" />
 </video>
+</div>
 
 <!--
 Basically, it's a mountable Rails engine,
