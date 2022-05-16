@@ -23,7 +23,9 @@ Okay, so let's get started.
 
 Hello. Welcome to my talk. I'm glad to be here.
 
-This is not my first conference talk, but it's technically my first live conference talk. I'd be lying if I said I wasn't nervous, but I'm also really excited to share this with a live audience.
+This is technically my first live conference talk.
+
+So, I'd be lying if I said I wasn't... a little nervous, but I'm also really excited to be here in person, finally, with all of you. 
 -->
 
 ---
@@ -89,7 +91,7 @@ layout: fact
 ## **RAILS_ENV=<ins>staging</ins>** bundle exec rails s
 
 <!--
-And, some companies actually have a staging environment...
+And, some companies have a staging environment...
 -->
 
 ---
@@ -711,7 +713,7 @@ So, firstly, what got deployed? **CLICK** Well, everything. All of our apps. _(P
 
 Then at first we deployed this thing on Sundays, but that got to be too painful so we switched to monthly deployments, and WHEN THAT got too painful, we just started deploying only when we needed to. **CLICK** So I would call it "push button" deploys, but it was really "push button and cross fingers"
 
-Lastly, who owned it? Well, **CLICK** us. The engineering team closest to the need for its existence (and most incentivized to do the work). And so, now that we had this list, we started to cross things out.
+Lastly, who owned it? Well, **CLICK** us. The engineering team closest to the need for its existence (and most incentivized to do the work). _(PAUSE)_ And so, now that we had this list, we started to cross things out.
 -->
 
 ---
@@ -1106,7 +1108,7 @@ So I went back to my colleague, and he said BREATHE yeah, sure, looks good
 
 And so at that point I decided, okay, we can probably run with this.
 
-And, you know, we did. And there were maybe one or two other places where we had to fill in the gaps like this.
+And so, we did... And there were maybe one or two other places where we had to fill in the gaps like this.
 
 But there was one more big issue, which was that...
 -->
@@ -1241,7 +1243,7 @@ class: text-center
 <img src="/images/app-cluster-after-small.png" class="px-85 mt-10" />
 
 <!--
-And so we'd done it. We could **demo** our app in total isolation from any other apps or services.
+And so we'd done it. We could **demo** our app in total isolation from any other apps and services.
 -->
 
 ---
@@ -1488,7 +1490,7 @@ Photo by <a href="https://unsplash.com/@cgower?utm_source=unsplash&utm_medium=re
 <!--
 And again, when we looked to our local development environments we saw that we **were already doing this.**
 
-**So, when writing our _tests_,** we were using...
+**Because, when writing our _tests_,** we were using...
 -->
 
 ---
@@ -1499,7 +1501,7 @@ class: px-40
 ![factory_bot logo](/images/factory_bot.png)
 
 <!--
-Factories! At Betterment we use a tool called FactoryBot, by our friends at ThoughtBot.
+Factories! So at Betterment we use a tool called FactoryBot, by our friends at ThoughtBot.
 -->
 
 ---
@@ -1628,9 +1630,8 @@ layout: center
 
 <div v-click-hide class="bg-white absolute bottom-0 left-0 right-0 top-70"></div>
 
-
 <!--
-Because each persona could get its own factory definition. And by just changing up the traits
+Because each user type could get its own factory definition. And by just changing up the traits
 
 CLICK
 
@@ -3079,7 +3080,7 @@ layout: center
 <!--
 Secondly, we also launched a version of this for internal testing purposes. 
 
-Teams have, like, a zillion test personas, which I've scribbled out, so you can't actually see them...
+Teams have added, like, a zillion test personas, which I've scribbled out, so you can't actually see them...
 
 But any Betterment employee has access to this and can test run the app with any persona.
 -->
@@ -3195,10 +3196,10 @@ class: text-center font-mono
 
 <!--
 I'm excited to announce ... that
-we've **open sourced** it, and the rest of our demo framework.
+we've **open sourced** it, along with the rest of our demo framework.
 
 We've called the gem 'demo_mode'. it's available on Rubygems,
-and on GitHub, where you'll instructions for setting it up.
+and on GitHub, where you'll find instructions for setting it up.
 -->
 
 ---
@@ -3219,6 +3220,8 @@ then you launch the app in "demo mode"
 
 You can pair it with WebValve, if you want, but you don't have to.
 And you can use FactoryBot if you want, but you don't have to, if you have other ways of generating user accounts.
+
+And of course you can give it your own logos and colors and styling and that kind of thing.
 -->
 
 ---
@@ -3265,13 +3268,10 @@ I've posted a copy of these slides at the link on _this_ slide.
 
 And if you enjoyed this talk, and want to chat more, or if you're interested in learning more about demo_mode, or webvalve, or any of our other open source gems, come find me afterwards, or reach out to me online!
 
-Thank you!
+And I have a couple minutes left so I can take one or two questions -- so if anyone has any questions... _(PAUSE)_ this is where I pause awkwardly and wait to see if anyone raises a hand... REPEAT THE QUESTION
 
-(time for questions?)
-
-REPEAT THE QUESTION
+And I'll be up here for a bit longer, but I think we're at time! I don't wanna keep y'all from lunch, And so thank you everybody, and enjoy the rest of RailsConf!
 -->
-
 
 ---
 layout: cover
