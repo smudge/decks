@@ -21,9 +21,7 @@ class: text-center
 ### diving into the "demo" environment
 
 <!--
-START UP THE LOCAL SERVER + BACKGROUND JOBS!!!!
-
-CHECK FOR MOUSE POSITION!!!
+START UP THE LOCAL SERVER + BACKGROUND JOBS!!!! EXIT SLACK! **CHECK FOR MOUSE POSITION!!!**
 
 Okay, so let's get started.
 
