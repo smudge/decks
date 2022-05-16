@@ -2,8 +2,14 @@
 theme: default
 colorSchema: light
 title: RAILS_ENV=demo
-info: For RailsConf 2022
+info: |
+  **RAILS_ENV=demo** (Nathan Griffith, RailsConf 2022)
+  
+  _Today’s the day. You’ve prepared your pitch, deployed a special copy of your app, and confirmed—in a trial run—that your walkthrough is ready for a live audience. But, now, when you attempt to log in, something breaks. Flustered, you debug, apologize, and debug some more, before finally calling it quits. Next time, you’ll bring a prerecorded screencast... 😮‍💨_
+  
+  _What could’ve been done to make the app more reliably "demoable"? Join us, as we use "stateful fakes" and "personas" to produce a testable, maintainable, and failure-resistant "demo" deployment, with production-like uptime guarantees!_
 download: true
+exportFilename: RAILS_ENV-demo--NathanGriffith--RailsConf2022
 highlighter: shiki
 lineNumbers: false
 background: /images/demo_mode_fancy.jpg
