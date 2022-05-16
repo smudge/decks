@@ -2366,7 +2366,7 @@ Of course, with continuous deploys, you need to actually operate and monitor the
 
 ---
 layout: two-cols
-class: text-center px-10 pt-25
+class: text-center px-5 pt-25
 ---
 
 ![slack](/images/slack.png)
