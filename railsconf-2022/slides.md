@@ -2360,7 +2360,15 @@ layout: center
 ...I am!
 
 This is how we build our production apps at Betterment, so it made sense to just do the same thing for demo.
+-->
 
+---
+layout: center
+---
+
+![ci-cd diagram (operate-monitor)](/images/ci-cd-operate-monitor.png)
+
+<!--
 Of course, with continuous deploys, you need to actually operate and monitor the thing as well, so you actually know when something breaks.
 -->
 
@@ -2396,8 +2404,19 @@ layout: center
 ![ci-cd diagram](/images/ci-cd.png)
 
 <!--
-And then the last bit that we were missing, here, was there on the lower left... testing.
+And then the last bit that we were missing...
 -->
+
+---
+layout: center
+---
+
+![ci-cd diagram (testing)](/images/ci-cd-test.png)
+
+<!--
+...was right there on the CI side -- testing!
+-->
+
 
 ---
 
