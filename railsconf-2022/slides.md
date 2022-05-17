@@ -197,7 +197,7 @@ layout: image
 image: /images/sales-pitch.jpg
 ---
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5" class="text-xs">
 Photo by <a href="https://unsplash.com/@xteemu?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Teemu Paananen</a> on <a href="https://unsplash.com/s/photos/pitch?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -212,7 +212,7 @@ layout: image
 image: /images/showroom.jpg
 ---
 
-<div style="position:absolute;right:10px;bottom:10px"  class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5"  class="text-xs">
 Photo by <a href="https://unsplash.com/@rahulbhogal?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Rahul Bhogal</a> on <a href="https://unsplash.com/s/photos/showroom?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -227,7 +227,7 @@ class: bg-contain
 style: 'background-size: contain'
 ---
 
-<div class="text-xs" style="color:grey;position:absolute;right:10px;bottom:10px">
+<div class="text-xs" style="position:absolute;right:295px;bottom:10px;opacity:0.5">
 Source: <a href="https://www.reddit.com/r/n64/comments/bn3x7d/playing_demos_in_the_stores/">reddit.com</a>
 </div>
 
@@ -271,6 +271,10 @@ class: text-center text-shadow-lg font-mono
 ---
 
 # "Demoability"
+
+<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
+Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
+</div>
 
 <!--
 Because "demoability" -- the ability to quickly take something
@@ -525,7 +529,7 @@ layout: image
 image: /images/reenactment.jpg
 ---
 
-<div style="position:absolute;right:10px;bottom:10px"  class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5"  class="text-xs">
 Photo by <a href="https://unsplash.com/@xteemu?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Teemu Paananen</a> on <a href="https://unsplash.com/s/photos/pitch?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -549,7 +553,7 @@ layout: image
 image: /images/roadmap.jpg
 ---
 
-<div style="position:absolute;right:10px;bottom:10px"  class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5"  class="text-xs">
 Photo by <a href="https://unsplash.com/@airfocus?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">airfocus</a> on <a href="https://unsplash.com/s/photos/roadmap?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>  
 
@@ -646,6 +650,10 @@ class: text-center text-shadow-lg font-mono
 # "Demoability"
 ## Observation No. 1
 
+<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
+Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
+</div>
+
 <!--
 And thinking back to that iceberg of demoability, we had already made our first big observation, right beneath the surface, which is that...
 -->
@@ -657,6 +665,10 @@ class: text-center text-shadow-lg font-mono
 ---
 
 # deployment<br/>!=<br/>maintenance
+
+<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
+Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
+</div>
 
 <!--
 Deploying a demo environment is not the same as maintaining a demo environment.
@@ -708,7 +720,7 @@ li + li {
 
 </div>
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5" class="text-xs">
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -743,7 +755,7 @@ li + li {
 
 </div>
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5" class="text-xs">
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -760,7 +772,7 @@ layout: image
 image: /images/dev-laptop.jpg
 ---
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.9" class="text-xs">
 Photo by <a href="https://unsplash.com/@cgower?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Christopher Gower</a> on <a href="https://unsplash.com/s/photos/laptop-office?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -968,7 +980,7 @@ class: px-40
 
 
 <div style="position:absolute;right:10px;bottom:10px;color: #ddd" class="text-xs">
-Arrested Development (TV Series 2003-2019)
+Arrested Development (TV Series, 2003-2019)
 </div>
 
 <!--
@@ -1284,7 +1296,7 @@ li + li {
 </div>
 
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5" class="text-xs">
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -1305,6 +1317,10 @@ class: text-center text-shadow-lg font-mono
 # "Demoability"
 ## Observation No. 2
 
+<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
+Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
+</div>
+
 <!--
 And we've also made our second observation, in the iceberg of "demoability", which is that...
 -->
@@ -1316,6 +1332,10 @@ class: text-center text-shadow-lg font-mono
 ---
 
 # an app should (mostly) work in isolation
+
+<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
+Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
+</div>
 
 <!--
 An app should mostly work in isolation.
@@ -1355,7 +1375,7 @@ li + li {
 </div>
 
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5" class="text-xs">
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -1393,7 +1413,7 @@ li + li {
 </div>
 
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5" class="text-xs">
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -1487,7 +1507,7 @@ layout: image
 image: /images/dev-laptop.jpg
 ---
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.9" class="text-xs">
 Photo by <a href="https://unsplash.com/@cgower?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Christopher Gower</a> on <a href="https://unsplash.com/s/photos/laptop-office?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -2029,7 +2049,7 @@ class: text-center
   <strong>(this is definitely a real demo)</strong>
 </div>
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5" class="text-xs">
 Photo by <a href="https://unsplash.com/@xteemu?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Teemu Paananen</a> on <a href="https://unsplash.com/s/photos/pitch?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -2046,6 +2066,10 @@ class: text-center text-shadow-lg font-mono
 # "Demoability"
 ## Observation No. 3
 
+<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
+Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
+</div>
+
 <!--
 And so we had another iceberg reveal. This time, the take-away was...
 -->
@@ -2057,6 +2081,10 @@ class: text-center text-shadow-lg font-mono
 ---
 
 # Start with the UX
+
+<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
+Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
+</div>
 
 <!--
 ...that we needed to start with the user experience and work backwards from there.
@@ -2095,7 +2123,7 @@ li + li {
 </div>
 
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5" class="text-xs">
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -2140,7 +2168,7 @@ li + li {
 </div>
 
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5" class="text-xs">
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -2179,7 +2207,7 @@ li + li {
 </div>
 
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5" class="text-xs">
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -2257,7 +2285,7 @@ li + li {
 </div>
 
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5" class="text-xs">
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -2301,7 +2329,7 @@ li + li {
 </div>
 
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5" class="text-xs">
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -2530,7 +2558,7 @@ li + li {
 </div>
 
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5" class="text-xs">
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -2552,6 +2580,10 @@ class: text-center text-shadow-lg font-mono
 # "Demoability"
 ## Observation No. 4
 
+<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
+Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
+</div>
+
 <!--
 And that's actually the next iceberg observation.
 -->
@@ -2563,6 +2595,10 @@ class: text-center text-shadow-lg font-mono
 ---
 
 # the demo env<br/>_is_<br/>a production env
+
+<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
+Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
+</div>
 
 <!--
 I'd argue that the demo environment _is_ a kind of production environment.
@@ -2604,7 +2640,7 @@ li + li {
 </div>
 
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5" class="text-xs">
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -2645,7 +2681,7 @@ li + li {
 </div>
 
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5" class="text-xs">
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -2686,7 +2722,7 @@ li + li {
 </div>
 
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5" class="text-xs">
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -2728,7 +2764,7 @@ li + li {
 </div>
 
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5" class="text-xs">
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -2770,7 +2806,7 @@ li + li {
 </div>
 
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5" class="text-xs">
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -2811,7 +2847,7 @@ li + li {
 </div>
 
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5" class="text-xs">
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -2853,7 +2889,7 @@ li + li {
 </div>
 
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5" class="text-xs">
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -2892,7 +2928,7 @@ li + li {
 
 </div>
 
-<div style="position:absolute;right:10px;bottom:10px" class="text-xs">
+<div style="position:absolute;right:10px;bottom:10px;opacity:0.5" class="text-xs">
 Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/notebook?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
@@ -2913,6 +2949,10 @@ class: text-center text-shadow-lg font-mono
 # "Demoability"
 ## Observation No. 5
 
+<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
+Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
+</div>
+
 <!-- 
 And that leads into our final observation, which is simply that...
 -->
@@ -2924,6 +2964,10 @@ class: text-center text-shadow-lg font-mono
 ---
 
 # Incentives Matter
+
+<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
+Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
+</div>
 
 <!--
 like, incentives matter.
