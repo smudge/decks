@@ -272,10 +272,6 @@ class: text-center text-shadow-lg font-mono
 
 # "Demoability"
 
-<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
-Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
-</div>
-
 <!--
 Because "demoability" -- the ability to quickly take something
 you've been building, and show it off to the world -- is about
@@ -650,10 +646,6 @@ class: text-center text-shadow-lg font-mono
 # "Demoability"
 ## Observation No. 1
 
-<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
-Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
-</div>
-
 <!--
 And thinking back to that iceberg of demoability, we had already made our first big observation, right beneath the surface, which is that...
 -->
@@ -665,10 +657,6 @@ class: text-center text-shadow-lg font-mono
 ---
 
 # deployment<br/>!=<br/>maintenance
-
-<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
-Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
-</div>
 
 <!--
 Deploying a demo environment is not the same as maintaining a demo environment.
@@ -1317,10 +1305,6 @@ class: text-center text-shadow-lg font-mono
 # "Demoability"
 ## Observation No. 2
 
-<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
-Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
-</div>
-
 <!--
 And we've also made our second observation, in the iceberg of "demoability", which is that...
 -->
@@ -1332,10 +1316,6 @@ class: text-center text-shadow-lg font-mono
 ---
 
 # an app should (mostly) work in isolation
-
-<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
-Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
-</div>
 
 <!--
 An app should mostly work in isolation.
@@ -2066,10 +2046,6 @@ class: text-center text-shadow-lg font-mono
 # "Demoability"
 ## Observation No. 3
 
-<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
-Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
-</div>
-
 <!--
 And so we had another iceberg reveal. This time, the take-away was...
 -->
@@ -2081,10 +2057,6 @@ class: text-center text-shadow-lg font-mono
 ---
 
 # Start with the UX
-
-<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
-Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
-</div>
 
 <!--
 ...that we needed to start with the user experience and work backwards from there.
@@ -2580,10 +2552,6 @@ class: text-center text-shadow-lg font-mono
 # "Demoability"
 ## Observation No. 4
 
-<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
-Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
-</div>
-
 <!--
 And that's actually the next iceberg observation.
 -->
@@ -2595,10 +2563,6 @@ class: text-center text-shadow-lg font-mono
 ---
 
 # the demo env<br/>_is_<br/>a production env
-
-<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
-Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
-</div>
 
 <!--
 I'd argue that the demo environment _is_ a kind of production environment.
@@ -2949,10 +2913,6 @@ class: text-center text-shadow-lg font-mono
 # "Demoability"
 ## Observation No. 5
 
-<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
-Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
-</div>
-
 <!-- 
 And that leads into our final observation, which is simply that...
 -->
@@ -2964,10 +2924,6 @@ class: text-center text-shadow-lg font-mono
 ---
 
 # Incentives Matter
-
-<div class="text-xs" style="position:absolute;right:10px;bottom:10px;opacity:0.3">
-Source: <a href="https://knowyourmeme.com/photos/1292056-iceberg-tiers-parodies">knowyourmeme.com</a>
-</div>
 
 <!--
 like, incentives matter.
