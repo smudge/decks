@@ -2,12 +2,21 @@
 theme: default
 colorSchema: light
 title: RAILS_ENV=demo
-info: |
+info: >
   **RAILS_ENV=demo** (Nathan Griffith, RailsConf 2022)
-  
-  _Today’s the day. You’ve prepared your pitch, deployed a special copy of your app, and confirmed—in a trial run—that your walkthrough is ready for a live audience. But, now, when you attempt to log in, something breaks. Flustered, you debug, apologize, and debug some more, before finally calling it quits. Next time, you’ll bring a prerecorded screencast... 😮‍💨_
-  
-  _What could’ve been done to make the app more reliably "demoable"? Join us, as we use "stateful fakes" and "personas" to produce a testable, maintainable, and failure-resistant "demo" deployment, with production-like uptime guarantees!_
+
+
+  _Today’s the day. You’ve prepared your pitch, deployed a special copy of your
+  app, and confirmed—in a trial run—that your walkthrough is ready for a live
+  audience. But, now, when you attempt to log in, something breaks. Flustered,
+  you debug, apologize, and debug some more, before finally calling it quits.
+  Next time, you’ll bring a prerecorded screencast... 😮‍💨_
+
+
+  _What could’ve been done to make the app more reliably "demoable"? Join us, as
+  we use "stateful fakes" and "personas" to produce a testable, maintainable,
+  and failure-resistant "demo" deployment, with production-like uptime
+  guarantees!_
 download: true
 exportFilename: RAILS_ENV-demo--NathanGriffith--RailsConf2022
 highlighter: shiki
@@ -25,11 +34,10 @@ START UP THE LOCAL SERVER + BACKGROUND JOBS!!!! EXIT SLACK! **CHECK FOR MOUSE PO
 
 Okay, so let's get started.
 
-Hello. Welcome to my talk. I'm glad to be here.
-
+Hello. Welcome to my talk. I'm glad to be here, in person. 
 This is technically my first live conference talk.
 
-So, I'd be lying if I said I wasn't... a little nervous, but I'm also really excited to be here in person, finally, with all of you. 
+Because I gave a prerecorded talk last year and... you know, it just wasn't the same. So I'm excited to be able to be here with y'all, like, in an actual room together.
 -->
 
 ---
@@ -337,7 +345,7 @@ And I should mention that we're hiring.
 
 CLICK
 
-And so I work on the application platform teams at Betterment.
+And so I work on the application platform team at Betterment.
 We focus on a lot of cross-cutting concerns, and we
 provide our product teams with more of a day-to-day peace of mind.
 
@@ -630,7 +638,7 @@ class: pt-20
 <img style="width:42%;margin:0 auto;" src="/images/jenkins.png" />
 
 <!--
-And, I saved this screengrab of our build history. (Now, I can tell this is really old because we haven't used Jenkins for years...)
+And, I saved this screengrab of our build history. (Now, I can tell this is really old because we don't use Jenkins anymore...)
 
 And if you look closely, it's actually an entire year's worth of broken builds.
 
@@ -941,7 +949,7 @@ class: px-20 bg-blue-50
 ![performance page (no graphs)](/images/performance/page-empty-graphs.png)
 
 <!--
-...this page, which is supposed to graph the performance history of an account.
+...this page, which is supposed to show a graph of the performance history of an account.
 
 And he said, hold on, I can't show this to clients.
 -->
@@ -1666,7 +1674,7 @@ padding: 1em !important;
 </style>
 
 <!--
-So to support this, we came up with this quick little domain specific language (or DSL) for defining these, **and we called them "personas"**.
+So to support this, we came up with this quick little domain specific language (or DSL) for defining these things, **and we called them "personas"**.
 
 All you had to do was drop your factory code...
 
@@ -3169,7 +3177,7 @@ image: /images/2022.svg
 # &nbsp;
 
 <!--
-And so now it's 2022. And as you can see, my disembodied face, along with the rest of me, has made it here to RailsConf Portland.
+And so now it's 2022. And as you can see, my disembodied face has made it here to RailsConf Portland.
 -->
 
 ---
