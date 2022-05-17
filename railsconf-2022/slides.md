@@ -37,7 +37,7 @@ Okay, so let's get started.
 Hello. Welcome to my talk. I'm glad to be here, in person. 
 This is technically my first live conference talk.
 
-Because I gave a prerecorded talk last year and... you know, it's not quite the same. So I'm excited to be able to be here with y'all, like, in an actual room together.
+Because I gave a prerecorded talk last year and... you know, it's not quite the same. So I'm very excited for the opportunity to be here with y'all, like, in an actual room together.
 -->
 
 ---
@@ -1761,8 +1761,8 @@ p { line-height: 1.3em !important }
 </style>
 
 <!--
-...after the initial deployment, CLICK we could generate CLICK CLICK CLICK user 1, user 2, user 3, and so on, and they'd work just fine.
-But when we redeploy, CLICK the next user we generate would reset back to user_1. CLICK
+...after the initial deployment, we could generate CLICK CLICK CLICK user 1, user 2, user 3, and so on, and they'd work just fine.
+But when we redeploy, CLICK the next user we generate CLICK would reset back to user_1.
 
 And this would fail against uniqueness constraints in our database, or uniqueness validations in the models,
 because user_1's email (among other things) was already taken.
